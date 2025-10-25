@@ -409,7 +409,7 @@ footer {
         item.addEventListener('click', function() {
           const url = this.getAttribute('data-url');
           if (url) {
-            window.location.href = url;
+            window.location.href = '/moving-to-world' + url;
           }
         });
       });
@@ -431,7 +431,7 @@ footer {
         e.preventDefault();
         const url = items[selectedIndex].getAttribute('data-url');
         if (url) {
-          window.location.href = url;
+          window.location.href = '/moving-to-world' + url;
         }
       } else if (e.key === 'Escape') {
         autocomplete.classList.remove('active');
