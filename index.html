@@ -361,7 +361,7 @@ footer {
     let selectedIndex = -1;
 
     // Load locations data
-    fetch('/moving-to-world/locations.json')
+    fetch('/locations.json')
       .then(response => response.json())
       .then(data => {
         locations = data;
@@ -409,7 +409,7 @@ footer {
         item.addEventListener('click', function() {
           const url = this.getAttribute('data-url');
           if (url) {
-            window.location.href = '/moving-to-world' + url;
+            window.location.href = url;
           }
         });
       });
