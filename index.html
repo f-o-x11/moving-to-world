@@ -361,7 +361,7 @@ footer {
     let selectedIndex = -1;
 
     // Load locations data
-    fetch('/locations.json')
+    fetch('/moving-to-world/locations.json')
       .then(response => response.json())
       .then(data => {
         locations = data;
