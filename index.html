@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moving.to - Your Complete Guide to Moving Anywhere in the World</title>
+<meta name="description" content="Comprehensive moving guides for 32,000+ cities worldwide. Find visa requirements, cost of living, housing, jobs, and quality of life information for your next move.">
+
+<!-- Schema.org structured data for LLM SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Moving.to",
+  "description": "Comprehensive moving guides for cities worldwide",
+  "url": "https://moving.to",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://moving.to/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "International Relocation",
+    "description": "Information and resources for people planning to move to different cities around the world"
+  }
+}
+</script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1e40af;
+  --secondary-color: #10b981;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --bg-light: #f9fafb;
+  --border-color: #e5e7eb;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+header {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  color: white;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tagline {
+  font-size: 1.25rem;
+  opacity: 0.95;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+.search-container {
+  background: white;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.search-wrapper {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.5rem;
+  font-size: 1.125rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0.75rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  pointer-events: none;
+}
+
+#autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  margin-top: 0.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  display: none;
+  z-index: 1000;
+}
+
+#autocomplete.active {
+  display: block;
+}
+
+.autocomplete-item {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--bg-light);
+  transition: background-color 0.2s ease;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.selected {
+  background-color: var(--bg-light);
+}
+
+.autocomplete-item .city-name {
+  font-weight: 600;
+  color: var(--text-dark);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.autocomplete-item .location-path {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+.features {
+  background: white;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 3rem;
+}
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 1.5rem;
+}
+
+.feature h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-dark);
+}
+
+.feature p {
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.loading {
+  text-align: center;
+  padding: 1rem;
+  color: var(--text-light);
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+  }
+  
+  .search-container {
+    padding: 1.5rem;
+  }
+  
+  #searchInput {
+    font-size: 1rem;
+    padding: 0.875rem 2.5rem 0.875rem 1rem;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🌍 Moving.to</h1>
+      <p class="tagline">Your Complete Guide to Moving Anywhere in the World</p>
+    </header>
+
+    <div class="search-container">
+      <div class="search-wrapper">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search for any city... (e.g., Los Angeles, Tokyo, London)"
+          autocomplete="off"
+          aria-label="Search for cities"
+        >
+        <span class="search-icon">🔍</span>
+        <div id="autocomplete"></div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <span class="stat-number">32,496</span>
+        <span class="stat-label">Cities Covered</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">195+</span>
+        <span class="stat-label">Countries</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Free Resources</span>
+      </div>
+    </div>
+
+    <div class="features">
+      <h2>Everything You Need to Know Before Moving</h2>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature-icon">📋</div>
+          <h3>Visa & Immigration</h3>
+          <p>Comprehensive visa requirements and immigration procedures for every destination</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">💰</div>
+          <h3>Cost of Living</h3>
+          <p>Detailed cost comparisons including housing, food, transportation, and utilities</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🏠</div>
+          <h3>Housing Market</h3>
+          <p>Real estate insights, rental markets, and neighborhood guides</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">💼</div>
+          <h3>Job Opportunities</h3>
+          <p>Employment outlook, major industries, and career prospects</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎭</div>
+          <h3>Culture & Lifestyle</h3>
+          <p>Cultural highlights, entertainment, and quality of life information</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🏥</div>
+          <h3>Healthcare & Education</h3>
+          <p>Healthcare systems, schools, and educational opportunities</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Moving.to - Helping people move around the world since 2024</p>
+    </footer>
+  </div>
+
+  <script>
+    let locations = [];
+    let selectedIndex = -1;
+
+    // Load locations data
+    fetch('/locations.json')
+      .then(response => response.json())
+      .then(data => {
+        locations = data;
+        console.log(`Loaded ${locations.length} locations`);
+      })
+      .catch(error => {
+        console.error('Error loading locations:', error);
+      });
+
+    const searchInput = document.getElementById('searchInput');
+    const autocomplete = document.getElementById('autocomplete');
+
+    searchInput.addEventListener('input', function(e) {
+      const query = e.target.value.trim().toLowerCase();
+      
+      if (query.length < 2) {
+        autocomplete.classList.remove('active');
+        return;
+      }
+
+      // Search locations
+      const results = locations.filter(loc => 
+        loc.search.includes(query)
+      ).slice(0, 10);
+
+      if (results.length === 0) {
+        autocomplete.innerHTML = '<div class="autocomplete-item"><div class="city-name">No results found</div></div>';
+        autocomplete.classList.add('active');
+        return;
+      }
+
+      // Display results
+      autocomplete.innerHTML = results.map((loc, index) => `
+        <div class="autocomplete-item" data-url="${loc.url}" data-index="${index}">
+          <div class="city-name">${loc.name}</div>
+          <div class="location-path">${loc.state ? loc.state + ', ' : ''}${loc.country}</div>
+        </div>
+      `).join('');
+
+      autocomplete.classList.add('active');
+      selectedIndex = -1;
+
+      // Add click handlers
+      document.querySelectorAll('.autocomplete-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const url = this.getAttribute('data-url');
+          if (url) {
+            window.location.href = url;
+          }
+        });
+      });
+    });
+
+    // Keyboard navigation
+    searchInput.addEventListener('keydown', function(e) {
+      const items = document.querySelectorAll('.autocomplete-item');
+      
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+        updateSelection(items);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = Math.max(selectedIndex - 1, -1);
+        updateSelection(items);
+      } else if (e.key === 'Enter' && selectedIndex >= 0) {
+        e.preventDefault();
+        const url = items[selectedIndex].getAttribute('data-url');
+        if (url) {
+          window.location.href = url;
+        }
+      } else if (e.key === 'Escape') {
+        autocomplete.classList.remove('active');
+        selectedIndex = -1;
+      }
+    });
+
+    function updateSelection(items) {
+      items.forEach((item, index) => {
+        if (index === selectedIndex) {
+          item.classList.add('selected');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('selected');
+        }
+      });
+    }
+
+    // Close autocomplete when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchInput.contains(e.target) && !autocomplete.contains(e.target)) {
+        autocomplete.classList.remove('active');
+        selectedIndex = -1;
+      }
+    });
+  </script>
+</body>
+</html>
+

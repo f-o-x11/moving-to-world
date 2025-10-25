@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moving.to/sitemap.xml
+
+# Allow all search engines and LLMs to crawl
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
