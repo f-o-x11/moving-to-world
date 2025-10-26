@@ -1,19 +1,1272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Moving to São Sebastião</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving to Alagoas, {{COUNTRY}} - Complete Guide | Moving.to</title>
+    <meta name="description" content="Comprehensive guide to moving to Alagoas, {{COUNTRY}}. Housing, jobs, cost of living, entertainment, demographics, and everything you need to know.">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --text: #2d3748;
+            --text-light: #718096;
+            --bg: #f7fafc;
+            --bg-light: #edf2f7;
+            --border: #e2e8f0;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --danger: #f56565;
+            --shadow: 0 4px 6px rgba(0,0,0,0.07);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .favorite-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .favorite-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .favorite-btn.favorited {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            background: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-tabs-inner {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav-tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-favorite {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .card-favorite:hover {
+            transform: scale(1.1);
+        }
+
+        .card-favorite.favorited {
+            color: #e53e3e;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .card-subtitle {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .card-link:hover {
+            gap: 0.75rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Map */
+        #map {
+            height: 400px;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        /* List Items */
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .list-item-content {
+            flex: 1;
+        }
+
+        .list-item-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .list-item-subtitle {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .list-item-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-tabs-inner {
+                padding: 0 0.5rem;
+            }
+
+            .nav-tab {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Moving to São Sebastião</h1>
-<p>Plan your move to São Sebastião, located in Alagoas, Brazil. Here you will find information on visas, cost of living, housing, jobs, and quality of life.</p>
-<h2>Key Considerations</h2>
-<ul>
-<li>Visa and immigration requirements</li>
-<li>Housing and cost of living comparisons</li>
-<li>Job opportunities and economic outlook</li>
-<li>Cultural highlights and lifestyle</li>
-</ul>
-<p>Check back soon as we add more insights and resources about moving to this city.</p>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>Moving to Alagoas</h1>
+            <p class="subtitle">{{COUNTRY}} • Complete Relocation Guide</p>
+            <button class="favorite-btn" onclick="toggleFavorite('city')">
+                <span id="city-fav-icon">☆</span> Favorite This City
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <div class="nav-tabs-inner">
+            <div class="nav-tab active" onclick="scrollToSection('overview')">Overview</div>
+            <div class="nav-tab" onclick="scrollToSection('housing')">Housing</div>
+            <div class="nav-tab" onclick="scrollToSection('employment')">Jobs</div>
+            <div class="nav-tab" onclick="scrollToSection('cost')">Cost of Living</div>
+            <div class="nav-tab" onclick="scrollToSection('dining')">Dining</div>
+            <div class="nav-tab" onclick="scrollToSection('entertainment')">Entertainment</div>
+            <div class="nav-tab" onclick="scrollToSection('recreation')">Recreation</div>
+            <div class="nav-tab" onclick="scrollToSection('demographics')">Demographics</div>
+            <div class="nav-tab" onclick="scrollToSection('healthcare')">Healthcare</div>
+            <div class="nav-tab" onclick="scrollToSection('education')">Education</div>
+            <div class="nav-tab" onclick="scrollToSection('transportation')">Transport</div>
+            <div class="nav-tab" onclick="scrollToSection('climate')">Climate</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Overview Section -->
+        <div class="section" id="overview">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🏙️</span> City Overview</h2>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">250,000</div>
+                    <div class="stat-label">Population</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">35</div>
+                    <div class="stat-label">Median Age</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$48,000</div>
+                    <div class="stat-label">Median Income</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4.5%</div>
+                    <div class="stat-label">Unemployment</div>
+                </div>
+            </div>
+
+            <div id="map"></div>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text);">
+                {{CITY_DESCRIPTION}}
+            </p>
+        </div>
+
+        <!-- Housing & Rentals -->
+        <div class="section" id="housing">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🏠</span> Housing & Rentals</h2>
+                <a href="{{HOUSING_SEARCH_URL}}" target="_blank" class="btn btn-primary">Browse All Listings →</a>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('listing-1')">
+                        <span id="listing-1-fav">☆</span>
+                    </button>
+                    <div class="card-title">$1,500/mo</div>
+                    <div class="card-subtitle">Modern apartment in Alagoas</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2 bed</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1 bath</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">70 m²</span>
+                    </div>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Downtown • Posted 3 days ago</div>
+                    <a href="https://www.zillow.com/homes/Alagoas_rb/" target="_blank" class="card-link">See Listing →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('listing-2')">
+                        <span id="listing-2-fav">☆</span>
+                    </button>
+                    <div class="card-title">$1,800/mo</div>
+                    <div class="card-subtitle">Spacious apartment with great views</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">3 bed</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2 bath</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">95 m²</span>
+                    </div>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">City Center • Posted 1 week ago</div>
+                    <a href="https://www.zillow.com/homes/Alagoas_rb/" target="_blank" class="card-link">See Listing →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('listing-3')">
+                        <span id="listing-3-fav">☆</span>
+                    </button>
+                    <div class="card-title">$1,350/mo</div>
+                    <div class="card-subtitle">Cozy apartment near amenities</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1 bed</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1 bath</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">55 m²</span>
+                    </div>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Residential Area • Posted 5 days ago</div>
+                    <a href="https://www.zillow.com/homes/Alagoas_rb/" target="_blank" class="card-link">See Listing →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('listing-4')">
+                        <span id="listing-4-fav">☆</span>
+                    </button>
+                    <div class="card-title">$2,100/mo</div>
+                    <div class="card-subtitle">Luxury apartment with modern amenities</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">3 bed</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2.5 bath</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">110 m²</span>
+                    </div>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Upscale District • Posted 2 days ago</div>
+                    <a href="https://www.zillow.com/homes/Alagoas_rb/" target="_blank" class="card-link">See Listing →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('listing-5')">
+                        <span id="listing-5-fav">☆</span>
+                    </button>
+                    <div class="card-title">$1,650/mo</div>
+                    <div class="card-subtitle">Bright apartment in quiet neighborhood</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2 bed</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1.5 bath</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">80 m²</span>
+                    </div>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Suburbs • Posted 1 week ago</div>
+                    <a href="https://www.zillow.com/homes/Alagoas_rb/" target="_blank" class="card-link">See Listing →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('listing-6')">
+                        <span id="listing-6-fav">☆</span>
+                    </button>
+                    <div class="card-title">$1,200/mo</div>
+                    <div class="card-subtitle">Affordable studio apartment</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">Studio bed</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1 bath</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">40 m²</span>
+                    </div>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Student Area • Posted 4 days ago</div>
+                    <a href="https://www.zillow.com/homes/Alagoas_rb/" target="_blank" class="card-link">See Listing →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Employment & Jobs -->
+        <div class="section" id="employment">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">💼</span> Employment & Job Market</h2>
+                <a href="{{JOBS_SEARCH_URL}}" target="_blank" class="btn btn-primary">Search Jobs →</a>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Median Salary</div>
+                    <div class="list-item-subtitle">Annual income across all industries</div>
+                </div>
+                <div class="list-item-value">$50,000</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Unemployment Rate</div>
+                    <div class="list-item-subtitle">Current unemployment percentage</div>
+                </div>
+                <div class="list-item-value">4.5%</div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Top Industries</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('industry-1')">
+                        <span id="industry-1-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{INDUSTRY_1_NAME}}</div>
+                    <div class="card-subtitle">{{INDUSTRY_1_JOBS}} jobs • Avg salary: {{INDUSTRY_1_SALARY}}</div>
+                    <a href="{{INDUSTRY_1_URL}}" target="_blank" class="card-link">View Jobs →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('industry-2')">
+                        <span id="industry-2-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{INDUSTRY_2_NAME}}</div>
+                    <div class="card-subtitle">{{INDUSTRY_2_JOBS}} jobs • Avg salary: {{INDUSTRY_2_SALARY}}</div>
+                    <a href="{{INDUSTRY_2_URL}}" target="_blank" class="card-link">View Jobs →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('industry-3')">
+                        <span id="industry-3-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{INDUSTRY_3_NAME}}</div>
+                    <div class="card-subtitle">{{INDUSTRY_3_JOBS}} jobs • Avg salary: {{INDUSTRY_3_SALARY}}</div>
+                    <a href="{{INDUSTRY_3_URL}}" target="_blank" class="card-link">View Jobs →</a>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Major Employers</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('employer-1')">
+                        <span id="employer-1-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{EMPLOYER_1_NAME}}</div>
+                    <div class="card-subtitle">{{EMPLOYER_1_INDUSTRY}} • {{EMPLOYER_1_EMPLOYEES}} employees</div>
+                    <a href="{{EMPLOYER_1_URL}}" target="_blank" class="card-link">Visit Website →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('employer-2')">
+                        <span id="employer-2-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{EMPLOYER_2_NAME}}</div>
+                    <div class="card-subtitle">{{EMPLOYER_2_INDUSTRY}} • {{EMPLOYER_2_EMPLOYEES}} employees</div>
+                    <a href="{{EMPLOYER_2_URL}}" target="_blank" class="card-link">Visit Website →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('employer-3')">
+                        <span id="employer-3-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{EMPLOYER_3_NAME}}</div>
+                    <div class="card-subtitle">{{EMPLOYER_3_INDUSTRY}} • {{EMPLOYER_3_EMPLOYEES}} employees</div>
+                    <a href="{{EMPLOYER_3_URL}}" target="_blank" class="card-link">Visit Website →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cost of Living -->
+        <div class="section" id="cost">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">💰</span> Cost of Living</h2>
+                <a href="{{NUMBEO_URL}}" target="_blank" class="btn btn-outline">Compare Cities →</a>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Housing Costs</h3>
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">1BR Apartment (City Center)</div>
+                    <div class="list-item-subtitle">Average monthly rent</div>
+                </div>
+                <div class="list-item-value">{{COST_1BR_CENTER}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">1BR Apartment (Outside Center)</div>
+                    <div class="list-item-subtitle">Average monthly rent</div>
+                </div>
+                <div class="list-item-value">{{COST_1BR_OUTSIDE}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">3BR Apartment (City Center)</div>
+                    <div class="list-item-subtitle">Average monthly rent</div>
+                </div>
+                <div class="list-item-value">{{COST_3BR_CENTER}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">3BR Apartment (Outside Center)</div>
+                    <div class="list-item-subtitle">Average monthly rent</div>
+                </div>
+                <div class="list-item-value">{{COST_3BR_OUTSIDE}}</div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Food & Dining</h3>
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Meal at Inexpensive Restaurant</div>
+                </div>
+                <div class="list-item-value">{{COST_MEAL_CHEAP}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Three-Course Meal for 2</div>
+                    <div class="list-item-subtitle">Mid-range restaurant</div>
+                </div>
+                <div class="list-item-value">{{COST_MEAL_MID}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Monthly Groceries</div>
+                    <div class="list-item-subtitle">Average for one person</div>
+                </div>
+                <div class="list-item-value">{{COST_GROCERIES}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Cappuccino</div>
+                </div>
+                <div class="list-item-value">{{COST_COFFEE}}</div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Transportation</h3>
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Monthly Public Transport Pass</div>
+                </div>
+                <div class="list-item-value">{{COST_TRANSPORT_MONTH}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Single Ticket</div>
+                </div>
+                <div class="list-item-value">{{COST_TRANSPORT_TICKET}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Taxi (per km)</div>
+                </div>
+                <div class="list-item-value">{{COST_TAXI}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Gasoline (per liter)</div>
+                </div>
+                <div class="list-item-value">{{COST_GAS}}</div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Utilities</h3>
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Basic Utilities</div>
+                    <div class="list-item-subtitle">Electricity, heating, water, garbage (85m² apartment)</div>
+                </div>
+                <div class="list-item-value">{{COST_UTILITIES}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Internet</div>
+                    <div class="list-item-subtitle">60 Mbps or more, unlimited data</div>
+                </div>
+                <div class="list-item-value">{{COST_INTERNET}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Mobile Phone Plan</div>
+                    <div class="list-item-subtitle">Prepaid, calls and data</div>
+                </div>
+                <div class="list-item-value">{{COST_MOBILE}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Fitness Club</div>
+                    <div class="list-item-subtitle">Monthly membership</div>
+                </div>
+                <div class="list-item-value">{{COST_GYM}}</div>
+            </div>
+        </div>
+
+        <!-- Dining & Restaurants -->
+        <div class="section" id="dining">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🍽️</span> Dining & Restaurants</h2>
+                <a href="{{RESTAURANTS_URL}}" target="_blank" class="btn btn-primary">Explore More →</a>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('restaurant-1')">
+                        <span id="restaurant-1-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{RESTAURANT_1_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_1_CUISINE}} • {{RESTAURANT_1_PRICE}} • ⭐ {{RESTAURANT_1_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_1_DESC}}</p>
+                    <a href="{{RESTAURANT_1_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('restaurant-2')">
+                        <span id="restaurant-2-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{RESTAURANT_2_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_2_CUISINE}} • {{RESTAURANT_2_PRICE}} • ⭐ {{RESTAURANT_2_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_2_DESC}}</p>
+                    <a href="{{RESTAURANT_2_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('restaurant-3')">
+                        <span id="restaurant-3-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{RESTAURANT_3_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_3_CUISINE}} • {{RESTAURANT_3_PRICE}} • ⭐ {{RESTAURANT_3_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_3_DESC}}</p>
+                    <a href="{{RESTAURANT_3_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('restaurant-4')">
+                        <span id="restaurant-4-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{RESTAURANT_4_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_4_CUISINE}} • {{RESTAURANT_4_PRICE}} • ⭐ {{RESTAURANT_4_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_4_DESC}}</p>
+                    <a href="{{RESTAURANT_4_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('restaurant-5')">
+                        <span id="restaurant-5-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{RESTAURANT_5_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_5_CUISINE}} • {{RESTAURANT_5_PRICE}} • ⭐ {{RESTAURANT_5_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_5_DESC}}</p>
+                    <a href="{{RESTAURANT_5_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('restaurant-6')">
+                        <span id="restaurant-6-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{RESTAURANT_6_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_6_CUISINE}} • {{RESTAURANT_6_PRICE}} • ⭐ {{RESTAURANT_6_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_6_DESC}}</p>
+                    <a href="{{RESTAURANT_6_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Entertainment & Nightlife -->
+        <div class="section" id="entertainment">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🎭</span> Entertainment & Nightlife</h2>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('entertainment-1')">
+                        <span id="entertainment-1-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{ENTERTAINMENT_1_NAME}}</div>
+                    <div class="card-subtitle">{{ENTERTAINMENT_1_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{ENTERTAINMENT_1_DESC}}</p>
+                    <a href="{{ENTERTAINMENT_1_URL}}" target="_blank" class="card-link">Learn More →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('entertainment-2')">
+                        <span id="entertainment-2-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{ENTERTAINMENT_2_NAME}}</div>
+                    <div class="card-subtitle">{{ENTERTAINMENT_2_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{ENTERTAINMENT_2_DESC}}</p>
+                    <a href="{{ENTERTAINMENT_2_URL}}" target="_blank" class="card-link">Learn More →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('entertainment-3')">
+                        <span id="entertainment-3-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{ENTERTAINMENT_3_NAME}}</div>
+                    <div class="card-subtitle">{{ENTERTAINMENT_3_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{ENTERTAINMENT_3_DESC}}</p>
+                    <a href="{{ENTERTAINMENT_3_URL}}" target="_blank" class="card-link">Learn More →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('entertainment-4')">
+                        <span id="entertainment-4-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{ENTERTAINMENT_4_NAME}}</div>
+                    <div class="card-subtitle">{{ENTERTAINMENT_4_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{ENTERTAINMENT_4_DESC}}</p>
+                    <a href="{{ENTERTAINMENT_4_URL}}" target="_blank" class="card-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recreation & Outdoors -->
+        <div class="section" id="recreation">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🏖️</span> Recreation & Outdoors</h2>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('recreation-1')">
+                        <span id="recreation-1-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{RECREATION_1_NAME}}</div>
+                    <div class="card-subtitle">{{RECREATION_1_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RECREATION_1_DESC}}</p>
+                    <a href="{{RECREATION_1_URL}}" target="_blank" class="card-link">Get Directions →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('recreation-2')">
+                        <span id="recreation-2-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{RECREATION_2_NAME}}</div>
+                    <div class="card-subtitle">{{RECREATION_2_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RECREATION_2_DESC}}</p>
+                    <a href="{{RECREATION_2_URL}}" target="_blank" class="card-link">Get Directions →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('recreation-3')">
+                        <span id="recreation-3-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{RECREATION_3_NAME}}</div>
+                    <div class="card-subtitle">{{RECREATION_3_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RECREATION_3_DESC}}</p>
+                    <a href="{{RECREATION_3_URL}}" target="_blank" class="card-link">Get Directions →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('recreation-4')">
+                        <span id="recreation-4-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{RECREATION_4_NAME}}</div>
+                    <div class="card-subtitle">{{RECREATION_4_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RECREATION_4_DESC}}</p>
+                    <a href="{{RECREATION_4_URL}}" target="_blank" class="card-link">Get Directions →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demographics -->
+        <div class="section" id="demographics">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">📊</span> Demographics</h2>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">250,000</div>
+                    <div class="stat-label">Total Population</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">35</div>
+                    <div class="stat-label">Median Age</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{DIVERSITY_INDEX}}</div>
+                    <div class="stat-label">Diversity Index</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{EDUCATION_LEVEL}}</div>
+                    <div class="stat-label">College Educated</div>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Age Distribution</h3>
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Under 18</div>
+                </div>
+                <div class="list-item-value">{{AGE_UNDER_18}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">18-34 (Young Adults)</div>
+                </div>
+                <div class="list-item-value">{{AGE_18_34}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">35-64 (Working Age)</div>
+                </div>
+                <div class="list-item-value">{{AGE_35_64}}</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">65+ (Seniors)</div>
+                </div>
+                <div class="list-item-value">{{AGE_65_PLUS}}</div>
+            </div>
+        </div>
+
+        <!-- Healthcare -->
+        <div class="section" id="healthcare">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🏥</span> Healthcare</h2>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('hospital-1')">
+                        <span id="hospital-1-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{HOSPITAL_1_NAME}}</div>
+                    <div class="card-subtitle">{{HOSPITAL_1_TYPE}} • {{HOSPITAL_1_BEDS}} beds</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{HOSPITAL_1_DESC}}</p>
+                    <a href="{{HOSPITAL_1_URL}}" target="_blank" class="card-link">Visit Website →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('hospital-2')">
+                        <span id="hospital-2-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{HOSPITAL_2_NAME}}</div>
+                    <div class="card-subtitle">{{HOSPITAL_2_TYPE}} • {{HOSPITAL_2_BEDS}} beds</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{HOSPITAL_2_DESC}}</p>
+                    <a href="{{HOSPITAL_2_URL}}" target="_blank" class="card-link">Visit Website →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('hospital-3')">
+                        <span id="hospital-3-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{HOSPITAL_3_NAME}}</div>
+                    <div class="card-subtitle">{{HOSPITAL_3_TYPE}} • {{HOSPITAL_3_BEDS}} beds</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{HOSPITAL_3_DESC}}</p>
+                    <a href="{{HOSPITAL_3_URL}}" target="_blank" class="card-link">Visit Website →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section" id="education">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🎓</span> Education</h2>
+            </div>
+
+            <h3 style="margin: 0 0 1rem; font-size: 1.5rem;">Universities & Colleges</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('university-1')">
+                        <span id="university-1-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{UNIVERSITY_1_NAME}}</div>
+                    <div class="card-subtitle">{{UNIVERSITY_1_STUDENTS}} students • {{UNIVERSITY_1_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{UNIVERSITY_1_DESC}}</p>
+                    <a href="{{UNIVERSITY_1_URL}}" target="_blank" class="card-link">Visit Website →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('university-2')">
+                        <span id="university-2-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{UNIVERSITY_2_NAME}}</div>
+                    <div class="card-subtitle">{{UNIVERSITY_2_STUDENTS}} students • {{UNIVERSITY_2_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{UNIVERSITY_2_DESC}}</p>
+                    <a href="{{UNIVERSITY_2_URL}}" target="_blank" class="card-link">Visit Website →</a>
+                </div>
+
+                <div class="card">
+                    <button class="card-favorite" onclick="toggleFavorite('university-3')">
+                        <span id="university-3-fav">☆</span>
+                    </button>
+                    <div class="card-title">{{UNIVERSITY_3_NAME}}</div>
+                    <div class="card-subtitle">{{UNIVERSITY_3_STUDENTS}} students • {{UNIVERSITY_3_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{UNIVERSITY_3_DESC}}</p>
+                    <a href="{{UNIVERSITY_3_URL}}" target="_blank" class="card-link">Visit Website →</a>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">School Districts</h3>
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">{{SCHOOL_DISTRICT_1_NAME}}</div>
+                    <div class="list-item-subtitle">{{SCHOOL_DISTRICT_1_SCHOOLS}} schools • Rating: {{SCHOOL_DISTRICT_1_RATING}}/10</div>
+                </div>
+                <a href="{{SCHOOL_DISTRICT_1_URL}}" target="_blank" class="btn btn-outline">Learn More</a>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">{{SCHOOL_DISTRICT_2_NAME}}</div>
+                    <div class="list-item-subtitle">{{SCHOOL_DISTRICT_2_SCHOOLS}} schools • Rating: {{SCHOOL_DISTRICT_2_RATING}}/10</div>
+                </div>
+                <a href="{{SCHOOL_DISTRICT_2_URL}}" target="_blank" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Transportation -->
+        <div class="section" id="transportation">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🚗</span> Transportation</h2>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Walk Score</div>
+                    <div class="list-item-subtitle">Walkability rating</div>
+                </div>
+                <div class="list-item-value">{{WALK_SCORE}}/100</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Transit Score</div>
+                    <div class="list-item-subtitle">Public transportation quality</div>
+                </div>
+                <div class="list-item-value">{{TRANSIT_SCORE}}/100</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Bike Score</div>
+                    <div class="list-item-subtitle">Bikeability rating</div>
+                </div>
+                <div class="list-item-value">{{BIKE_SCORE}}/100</div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-content">
+                    <div class="list-item-title">Average Commute Time</div>
+                    <div class="list-item-subtitle">One-way to work</div>
+                </div>
+                <div class="list-item-value">{{COMMUTE_TIME}} min</div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Transportation Options</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-title">{{TRANSPORT_1_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{TRANSPORT_1_DESC}}</p>
+                    <a href="{{TRANSPORT_1_URL}}" target="_blank" class="card-link">Learn More →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">{{TRANSPORT_2_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{TRANSPORT_2_DESC}}</p>
+                    <a href="{{TRANSPORT_2_URL}}" target="_blank" class="card-link">Learn More →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">{{TRANSPORT_3_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{TRANSPORT_3_DESC}}</p>
+                    <a href="{{TRANSPORT_3_URL}}" target="_blank" class="card-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Climate -->
+        <div class="section" id="climate">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🌤️</span> Climate & Weather</h2>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">{{AVG_TEMP_HIGH}}°</div>
+                    <div class="stat-label">Avg High Temp</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{AVG_TEMP_LOW}}°</div>
+                    <div class="stat-label">Avg Low Temp</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{SUNNY_DAYS}}</div>
+                    <div class="stat-label">Sunny Days/Year</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{RAINFALL}}"</div>
+                    <div class="stat-label">Annual Rainfall</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text); margin-top: 2rem;">
+                {{CLIMATE_DESC}}
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize map
+        const map = L.map('map').setView([40.7128, -74.0060], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        L.marker([40.7128, -74.0060]).addTo(map)
+            .bindPopup('Alagoas')
+            .openPopup();
+
+        // Favorites system
+        function toggleFavorite(itemId) {
+            const icon = document.getElementById(itemId + '-fav');
+            if (!icon) {
+                const btn = document.getElementById(itemId + '-fav-icon');
+                if (btn) {
+                    btn.textContent = btn.textContent === '☆' ? '★' : '☆';
+                    const parentBtn = btn.parentElement;
+                    if (parentBtn) {
+                        parentBtn.classList.toggle('favorited');
+                    }
+                }
+                return;
+            }
+            
+            icon.textContent = icon.textContent === '☆' ? '★' : '☆';
+            const button = icon.parentElement;
+            if (button) {
+                button.classList.toggle('favorited');
+            }
+            
+            // Save to localStorage
+            const favorites = JSON.parse(localStorage.getItem('moving-to-favorites') || '{}');
+            const cityKey = 'Alagoas-{{COUNTRY}}';
+            if (!favorites[cityKey]) {
+                favorites[cityKey] = [];
+            }
+            
+            const index = favorites[cityKey].indexOf(itemId);
+            if (index > -1) {
+                favorites[cityKey].splice(index, 1);
+            } else {
+                favorites[cityKey].push(itemId);
+            }
+            
+            localStorage.setItem('moving-to-favorites', JSON.stringify(favorites));
+        }
+
+        // Load favorites on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const favorites = JSON.parse(localStorage.getItem('moving-to-favorites') || '{}');
+            const cityKey = 'Alagoas-{{COUNTRY}}';
+            if (favorites[cityKey]) {
+                favorites[cityKey].forEach(itemId => {
+                    const icon = document.getElementById(itemId + '-fav');
+                    if (icon) {
+                        icon.textContent = '★';
+                        icon.parentElement.classList.add('favorited');
+                    }
+                });
+            }
+        });
+
+        // Smooth scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Update active tab on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const scrollPos = window.scrollY + 200;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-tab').forEach(tab => {
+                        tab.classList.remove('active');
+                        if (tab.getAttribute('onclick').includes(sectionId)) {
+                            tab.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+

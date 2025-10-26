@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moving to Tel Aviv, Israel - Complete Guide | Moving.to</title>
-    <meta name="description" content="Comprehensive guide to moving to Tel Aviv, Israel. Housing, jobs, cost of living, entertainment, demographics, and everything you need to know.">
+    <title>Moving to Tel Aviv, {{COUNTRY}} - Complete Guide | Moving.to</title>
+    <meta name="description" content="Comprehensive guide to moving to Tel Aviv, {{COUNTRY}}. Housing, jobs, cost of living, entertainment, demographics, and everything you need to know.">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
@@ -383,7 +383,7 @@
     <div class="header">
         <div class="header-content">
             <h1>Moving to Tel Aviv</h1>
-            <p class="subtitle">Israel • Complete Relocation Guide</p>
+            <p class="subtitle">{{COUNTRY}} • Complete Relocation Guide</p>
             <button class="favorite-btn" onclick="toggleFavorite('city')">
                 <span id="city-fav-icon">☆</span> Favorite This City
             </button>
@@ -417,19 +417,19 @@
             
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value">460,000</div>
+                    <div class="stat-value">250,000</div>
                     <div class="stat-label">Population</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">36</div>
+                    <div class="stat-value">35</div>
                     <div class="stat-label">Median Age</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">$45,000</div>
+                    <div class="stat-value">$48,000</div>
                     <div class="stat-label">Median Income</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">4.2%</div>
+                    <div class="stat-value">4.5%</div>
                     <div class="stat-label">Unemployment</div>
                 </div>
             </div>
@@ -437,7 +437,7 @@
             <div id="map"></div>
 
             <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text);">
-                Tel Aviv is Israel's economic and technological center, known for its vibrant startup ecosystem, Mediterranean beaches, and cosmopolitan culture. The city combines modern architecture with Bauhaus heritage, offering a dynamic lifestyle with world-class dining, nightlife, and cultural attractions.
+                {{CITY_DESCRIPTION}}
             </p>
         </div>
 
@@ -445,7 +445,7 @@
         <div class="section" id="housing">
             <div class="section-header">
                 <h2 class="section-title"><span class="section-icon">🏠</span> Housing & Rentals</h2>
-                <a href="https://www.yad2.co.il/realestate/rent?city=5000" target="_blank" class="btn btn-primary">Browse All Listings →</a>
+                <a href="{{HOUSING_SEARCH_URL}}" target="_blank" class="btn btn-primary">Browse All Listings →</a>
             </div>
 
             <div class="cards-grid">
@@ -453,90 +453,90 @@
                     <button class="card-favorite" onclick="toggleFavorite('listing-1')">
                         <span id="listing-1-fav">☆</span>
                     </button>
-                    <div class="card-title">$1,800/mo</div>
-                    <div class="card-subtitle">Modern apartment in trendy Florentin neighborhood</div>
+                    <div class="card-title">$1,500/mo</div>
+                    <div class="card-subtitle">Modern apartment in Tel Aviv</div>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
                         <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2 bed</span>
                         <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1 bath</span>
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">65 m²</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">70 m²</span>
                     </div>
-                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Florentin • Posted 3 days ago</div>
-                    <a href="https://www.yad2.co.il/realestate/rent?city=5000&neighborhood=174" target="_blank" class="card-link">See Listing →</a>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Downtown • Posted 3 days ago</div>
+                    <a href="https://www.zillow.com/homes/Tel-Aviv_rb/" target="_blank" class="card-link">See Listing →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('listing-2')">
                         <span id="listing-2-fav">☆</span>
                     </button>
-                    <div class="card-title">$2,400/mo</div>
-                    <div class="card-subtitle">Luxury apartment with sea view in Neve Tzedek</div>
+                    <div class="card-title">$1,800/mo</div>
+                    <div class="card-subtitle">Spacious apartment with great views</div>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
                         <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">3 bed</span>
                         <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2 bath</span>
                         <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">95 m²</span>
                     </div>
-                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Neve Tzedek • Posted 1 week ago</div>
-                    <a href="https://www.yad2.co.il/realestate/rent?city=5000&neighborhood=169" target="_blank" class="card-link">See Listing →</a>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">City Center • Posted 1 week ago</div>
+                    <a href="https://www.zillow.com/homes/Tel-Aviv_rb/" target="_blank" class="card-link">See Listing →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('listing-3')">
                         <span id="listing-3-fav">☆</span>
                     </button>
-                    <div class="card-title">$2,100/mo</div>
-                    <div class="card-subtitle">Renovated apartment on Rothschild Boulevard</div>
+                    <div class="card-title">$1,350/mo</div>
+                    <div class="card-subtitle">Cozy apartment near amenities</div>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2 bed</span>
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1.5 bath</span>
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">75 m²</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1 bed</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1 bath</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">55 m²</span>
                     </div>
-                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Rothschild • Posted 5 days ago</div>
-                    <a href="https://www.yad2.co.il/realestate/rent?city=5000&neighborhood=175" target="_blank" class="card-link">See Listing →</a>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Residential Area • Posted 5 days ago</div>
+                    <a href="https://www.zillow.com/homes/Tel-Aviv_rb/" target="_blank" class="card-link">See Listing →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('listing-4')">
                         <span id="listing-4-fav">☆</span>
                     </button>
-                    <div class="card-title">$1,600/mo</div>
-                    <div class="card-subtitle">Cozy studio near Carmel Market</div>
+                    <div class="card-title">$2,100/mo</div>
+                    <div class="card-subtitle">Luxury apartment with modern amenities</div>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1 bed</span>
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1 bath</span>
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">45 m²</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">3 bed</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2.5 bath</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">110 m²</span>
                     </div>
-                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Carmel Market • Posted 2 days ago</div>
-                    <a href="https://www.yad2.co.il/realestate/rent?city=5000&neighborhood=170" target="_blank" class="card-link">See Listing →</a>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Upscale District • Posted 2 days ago</div>
+                    <a href="https://www.zillow.com/homes/Tel-Aviv_rb/" target="_blank" class="card-link">See Listing →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('listing-5')">
                         <span id="listing-5-fav">☆</span>
                     </button>
-                    <div class="card-title">$2,800/mo</div>
-                    <div class="card-subtitle">Penthouse with rooftop terrace in Old North</div>
+                    <div class="card-title">$1,650/mo</div>
+                    <div class="card-subtitle">Bright apartment in quiet neighborhood</div>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">3 bed</span>
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2 bath</span>
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">110 m²</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2 bed</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1.5 bath</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">80 m²</span>
                     </div>
-                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Old North • Posted 1 week ago</div>
-                    <a href="https://www.yad2.co.il/realestate/rent?city=5000&neighborhood=171" target="_blank" class="card-link">See Listing →</a>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Suburbs • Posted 1 week ago</div>
+                    <a href="https://www.zillow.com/homes/Tel-Aviv_rb/" target="_blank" class="card-link">See Listing →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('listing-6')">
                         <span id="listing-6-fav">☆</span>
                     </button>
-                    <div class="card-title">$1,950/mo</div>
-                    <div class="card-subtitle">Bright apartment near Dizengoff Center</div>
+                    <div class="card-title">$1,200/mo</div>
+                    <div class="card-subtitle">Affordable studio apartment</div>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">2 bed</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">Studio bed</span>
                         <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">1 bath</span>
-                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">70 m²</span>
+                        <span style="background: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem;">40 m²</span>
                     </div>
-                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Dizengoff • Posted 4 days ago</div>
-                    <a href="https://www.yad2.co.il/realestate/rent?city=5000&neighborhood=172" target="_blank" class="card-link">See Listing →</a>
+                    <div style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem;">Student Area • Posted 4 days ago</div>
+                    <a href="https://www.zillow.com/homes/Tel-Aviv_rb/" target="_blank" class="card-link">See Listing →</a>
                 </div>
             </div>
         </div>
@@ -545,7 +545,7 @@
         <div class="section" id="employment">
             <div class="section-header">
                 <h2 class="section-title"><span class="section-icon">💼</span> Employment & Job Market</h2>
-                <a href="https://www.linkedin.com/jobs/search/?location=Tel%20Aviv" target="_blank" class="btn btn-primary">Search Jobs →</a>
+                <a href="{{JOBS_SEARCH_URL}}" target="_blank" class="btn btn-primary">Search Jobs →</a>
             </div>
 
             <div class="list-item">
@@ -553,7 +553,7 @@
                     <div class="list-item-title">Median Salary</div>
                     <div class="list-item-subtitle">Annual income across all industries</div>
                 </div>
-                <div class="list-item-value">$52,000</div>
+                <div class="list-item-value">$50,000</div>
             </div>
 
             <div class="list-item">
@@ -561,7 +561,7 @@
                     <div class="list-item-title">Unemployment Rate</div>
                     <div class="list-item-subtitle">Current unemployment percentage</div>
                 </div>
-                <div class="list-item-value">4.2%</div>
+                <div class="list-item-value">4.5%</div>
             </div>
 
             <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Top Industries</h3>
@@ -570,27 +570,27 @@
                     <button class="card-favorite" onclick="toggleFavorite('industry-1')">
                         <span id="industry-1-fav">☆</span>
                     </button>
-                    <div class="card-title">Technology & Software</div>
-                    <div class="card-subtitle">15,000+ jobs • Avg salary: $75,000</div>
-                    <a href="https://www.linkedin.com/jobs/search/?keywords=software&location=Tel%20Aviv" target="_blank" class="card-link">View Jobs →</a>
+                    <div class="card-title">{{INDUSTRY_1_NAME}}</div>
+                    <div class="card-subtitle">{{INDUSTRY_1_JOBS}} jobs • Avg salary: {{INDUSTRY_1_SALARY}}</div>
+                    <a href="{{INDUSTRY_1_URL}}" target="_blank" class="card-link">View Jobs →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('industry-2')">
                         <span id="industry-2-fav">☆</span>
                     </button>
-                    <div class="card-title">Finance & Banking</div>
-                    <div class="card-subtitle">8,000+ jobs • Avg salary: $65,000</div>
-                    <a href="https://www.linkedin.com/jobs/search/?keywords=finance&location=Tel%20Aviv" target="_blank" class="card-link">View Jobs →</a>
+                    <div class="card-title">{{INDUSTRY_2_NAME}}</div>
+                    <div class="card-subtitle">{{INDUSTRY_2_JOBS}} jobs • Avg salary: {{INDUSTRY_2_SALARY}}</div>
+                    <a href="{{INDUSTRY_2_URL}}" target="_blank" class="card-link">View Jobs →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('industry-3')">
                         <span id="industry-3-fav">☆</span>
                     </button>
-                    <div class="card-title">Healthcare</div>
-                    <div class="card-subtitle">6,500+ jobs • Avg salary: $58,000</div>
-                    <a href="https://www.linkedin.com/jobs/search/?keywords=healthcare&location=Tel%20Aviv" target="_blank" class="card-link">View Jobs →</a>
+                    <div class="card-title">{{INDUSTRY_3_NAME}}</div>
+                    <div class="card-subtitle">{{INDUSTRY_3_JOBS}} jobs • Avg salary: {{INDUSTRY_3_SALARY}}</div>
+                    <a href="{{INDUSTRY_3_URL}}" target="_blank" class="card-link">View Jobs →</a>
                 </div>
             </div>
 
@@ -600,27 +600,27 @@
                     <button class="card-favorite" onclick="toggleFavorite('employer-1')">
                         <span id="employer-1-fav">☆</span>
                     </button>
-                    <div class="card-title">Intel Israel</div>
-                    <div class="card-subtitle">Technology • 10,000+ employees</div>
-                    <a href="https://www.intel.com/content/www/us/en/jobs/locations/israel.html" target="_blank" class="card-link">Visit Website →</a>
+                    <div class="card-title">{{EMPLOYER_1_NAME}}</div>
+                    <div class="card-subtitle">{{EMPLOYER_1_INDUSTRY}} • {{EMPLOYER_1_EMPLOYEES}} employees</div>
+                    <a href="{{EMPLOYER_1_URL}}" target="_blank" class="card-link">Visit Website →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('employer-2')">
                         <span id="employer-2-fav">☆</span>
                     </button>
-                    <div class="card-title">Bank Hapoalim</div>
-                    <div class="card-subtitle">Banking • 8,500+ employees</div>
-                    <a href="https://www.bankhapoalim.com/en" target="_blank" class="card-link">Visit Website →</a>
+                    <div class="card-title">{{EMPLOYER_2_NAME}}</div>
+                    <div class="card-subtitle">{{EMPLOYER_2_INDUSTRY}} • {{EMPLOYER_2_EMPLOYEES}} employees</div>
+                    <a href="{{EMPLOYER_2_URL}}" target="_blank" class="card-link">Visit Website →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('employer-3')">
                         <span id="employer-3-fav">☆</span>
                     </button>
-                    <div class="card-title">Teva Pharmaceuticals</div>
-                    <div class="card-subtitle">Pharmaceuticals • 7,000+ employees</div>
-                    <a href="https://www.tevapharm.com/careers/" target="_blank" class="card-link">Visit Website →</a>
+                    <div class="card-title">{{EMPLOYER_3_NAME}}</div>
+                    <div class="card-subtitle">{{EMPLOYER_3_INDUSTRY}} • {{EMPLOYER_3_EMPLOYEES}} employees</div>
+                    <a href="{{EMPLOYER_3_URL}}" target="_blank" class="card-link">Visit Website →</a>
                 </div>
             </div>
         </div>
@@ -629,7 +629,7 @@
         <div class="section" id="cost">
             <div class="section-header">
                 <h2 class="section-title"><span class="section-icon">💰</span> Cost of Living</h2>
-                <a href="https://www.numbeo.com/cost-of-living/in/Tel-Aviv" target="_blank" class="btn btn-outline">Compare Cities →</a>
+                <a href="{{NUMBEO_URL}}" target="_blank" class="btn btn-outline">Compare Cities →</a>
             </div>
 
             <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Housing Costs</h3>
@@ -638,7 +638,7 @@
                     <div class="list-item-title">1BR Apartment (City Center)</div>
                     <div class="list-item-subtitle">Average monthly rent</div>
                 </div>
-                <div class="list-item-value">$1,600</div>
+                <div class="list-item-value">{{COST_1BR_CENTER}}</div>
             </div>
 
             <div class="list-item">
@@ -646,7 +646,7 @@
                     <div class="list-item-title">1BR Apartment (Outside Center)</div>
                     <div class="list-item-subtitle">Average monthly rent</div>
                 </div>
-                <div class="list-item-value">$1,200</div>
+                <div class="list-item-value">{{COST_1BR_OUTSIDE}}</div>
             </div>
 
             <div class="list-item">
@@ -654,7 +654,7 @@
                     <div class="list-item-title">3BR Apartment (City Center)</div>
                     <div class="list-item-subtitle">Average monthly rent</div>
                 </div>
-                <div class="list-item-value">$2,800</div>
+                <div class="list-item-value">{{COST_3BR_CENTER}}</div>
             </div>
 
             <div class="list-item">
@@ -662,7 +662,7 @@
                     <div class="list-item-title">3BR Apartment (Outside Center)</div>
                     <div class="list-item-subtitle">Average monthly rent</div>
                 </div>
-                <div class="list-item-value">$2,100</div>
+                <div class="list-item-value">{{COST_3BR_OUTSIDE}}</div>
             </div>
 
             <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Food & Dining</h3>
@@ -670,7 +670,7 @@
                 <div class="list-item-content">
                     <div class="list-item-title">Meal at Inexpensive Restaurant</div>
                 </div>
-                <div class="list-item-value">$15</div>
+                <div class="list-item-value">{{COST_MEAL_CHEAP}}</div>
             </div>
 
             <div class="list-item">
@@ -678,7 +678,7 @@
                     <div class="list-item-title">Three-Course Meal for 2</div>
                     <div class="list-item-subtitle">Mid-range restaurant</div>
                 </div>
-                <div class="list-item-value">$70</div>
+                <div class="list-item-value">{{COST_MEAL_MID}}</div>
             </div>
 
             <div class="list-item">
@@ -686,14 +686,14 @@
                     <div class="list-item-title">Monthly Groceries</div>
                     <div class="list-item-subtitle">Average for one person</div>
                 </div>
-                <div class="list-item-value">$350</div>
+                <div class="list-item-value">{{COST_GROCERIES}}</div>
             </div>
 
             <div class="list-item">
                 <div class="list-item-content">
                     <div class="list-item-title">Cappuccino</div>
                 </div>
-                <div class="list-item-value">$4.50</div>
+                <div class="list-item-value">{{COST_COFFEE}}</div>
             </div>
 
             <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Transportation</h3>
@@ -701,28 +701,28 @@
                 <div class="list-item-content">
                     <div class="list-item-title">Monthly Public Transport Pass</div>
                 </div>
-                <div class="list-item-value">$60</div>
+                <div class="list-item-value">{{COST_TRANSPORT_MONTH}}</div>
             </div>
 
             <div class="list-item">
                 <div class="list-item-content">
                     <div class="list-item-title">Single Ticket</div>
                 </div>
-                <div class="list-item-value">$1.80</div>
+                <div class="list-item-value">{{COST_TRANSPORT_TICKET}}</div>
             </div>
 
             <div class="list-item">
                 <div class="list-item-content">
                     <div class="list-item-title">Taxi (per km)</div>
                 </div>
-                <div class="list-item-value">$1.20</div>
+                <div class="list-item-value">{{COST_TAXI}}</div>
             </div>
 
             <div class="list-item">
                 <div class="list-item-content">
                     <div class="list-item-title">Gasoline (per liter)</div>
                 </div>
-                <div class="list-item-value">$2.10</div>
+                <div class="list-item-value">{{COST_GAS}}</div>
             </div>
 
             <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Utilities</h3>
@@ -731,7 +731,7 @@
                     <div class="list-item-title">Basic Utilities</div>
                     <div class="list-item-subtitle">Electricity, heating, water, garbage (85m² apartment)</div>
                 </div>
-                <div class="list-item-value">$180</div>
+                <div class="list-item-value">{{COST_UTILITIES}}</div>
             </div>
 
             <div class="list-item">
@@ -739,7 +739,7 @@
                     <div class="list-item-title">Internet</div>
                     <div class="list-item-subtitle">60 Mbps or more, unlimited data</div>
                 </div>
-                <div class="list-item-value">$35</div>
+                <div class="list-item-value">{{COST_INTERNET}}</div>
             </div>
 
             <div class="list-item">
@@ -747,7 +747,7 @@
                     <div class="list-item-title">Mobile Phone Plan</div>
                     <div class="list-item-subtitle">Prepaid, calls and data</div>
                 </div>
-                <div class="list-item-value">$25</div>
+                <div class="list-item-value">{{COST_MOBILE}}</div>
             </div>
 
             <div class="list-item">
@@ -755,7 +755,7 @@
                     <div class="list-item-title">Fitness Club</div>
                     <div class="list-item-subtitle">Monthly membership</div>
                 </div>
-                <div class="list-item-value">$65</div>
+                <div class="list-item-value">{{COST_GYM}}</div>
             </div>
         </div>
 
@@ -763,7 +763,7 @@
         <div class="section" id="dining">
             <div class="section-header">
                 <h2 class="section-title"><span class="section-icon">🍽️</span> Dining & Restaurants</h2>
-                <a href="https://www.tripadvisor.com/Restaurants-g293984-Tel_Aviv_Tel_Aviv_District.html" target="_blank" class="btn btn-primary">Explore More →</a>
+                <a href="{{RESTAURANTS_URL}}" target="_blank" class="btn btn-primary">Explore More →</a>
             </div>
 
             <div class="cards-grid">
@@ -771,60 +771,60 @@
                     <button class="card-favorite" onclick="toggleFavorite('restaurant-1')">
                         <span id="restaurant-1-fav">☆</span>
                     </button>
-                    <div class="card-title">Ouzeria</div>
-                    <div class="card-subtitle">Mediterranean • $$-$$$ • ⭐ 4.6</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Upscale Greek-Israeli fusion with fresh seafood and mezze platters in a stylish setting.</p>
-                    <a href="https://www.tripadvisor.com/Restaurant_Review-g293984-d1886643-Reviews-Ouzeria-Tel_Aviv_Tel_Aviv_District.html" target="_blank" class="card-link">View Menu & Reviews →</a>
+                    <div class="card-title">{{RESTAURANT_1_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_1_CUISINE}} • {{RESTAURANT_1_PRICE}} • ⭐ {{RESTAURANT_1_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_1_DESC}}</p>
+                    <a href="{{RESTAURANT_1_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('restaurant-2')">
                         <span id="restaurant-2-fav">☆</span>
                     </button>
-                    <div class="card-title">Port Said</div>
-                    <div class="card-subtitle">Middle Eastern • $$ • ⭐ 4.5</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Trendy spot serving creative Israeli street food and cocktails in a vibrant atmosphere.</p>
-                    <a href="https://www.tripadvisor.com/Restaurant_Review-g293984-d3852124-Reviews-Port_Said-Tel_Aviv_Tel_Aviv_District.html" target="_blank" class="card-link">View Menu & Reviews →</a>
+                    <div class="card-title">{{RESTAURANT_2_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_2_CUISINE}} • {{RESTAURANT_2_PRICE}} • ⭐ {{RESTAURANT_2_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_2_DESC}}</p>
+                    <a href="{{RESTAURANT_2_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('restaurant-3')">
                         <span id="restaurant-3-fav">☆</span>
                     </button>
-                    <div class="card-title">Taizu</div>
-                    <div class="card-subtitle">Asian Fusion • $$$ • ⭐ 4.7</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Innovative Asian cuisine blending Thai, Chinese, Vietnamese, and Indian flavors.</p>
-                    <a href="https://www.tripadvisor.com/Restaurant_Review-g293984-d3211897-Reviews-Taizu-Tel_Aviv_Tel_Aviv_District.html" target="_blank" class="card-link">View Menu & Reviews →</a>
+                    <div class="card-title">{{RESTAURANT_3_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_3_CUISINE}} • {{RESTAURANT_3_PRICE}} • ⭐ {{RESTAURANT_3_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_3_DESC}}</p>
+                    <a href="{{RESTAURANT_3_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('restaurant-4')">
                         <span id="restaurant-4-fav">☆</span>
                     </button>
-                    <div class="card-title">Shila</div>
-                    <div class="card-subtitle">Seafood • $$$-$$$$ • ⭐ 4.8</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Elegant seafood restaurant with Mediterranean-inspired dishes and stunning port views.</p>
-                    <a href="https://www.tripadvisor.com/Restaurant_Review-g293984-d1886644-Reviews-Shila-Tel_Aviv_Tel_Aviv_District.html" target="_blank" class="card-link">View Menu & Reviews →</a>
+                    <div class="card-title">{{RESTAURANT_4_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_4_CUISINE}} • {{RESTAURANT_4_PRICE}} • ⭐ {{RESTAURANT_4_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_4_DESC}}</p>
+                    <a href="{{RESTAURANT_4_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('restaurant-5')">
                         <span id="restaurant-5-fav">☆</span>
                     </button>
-                    <div class="card-title">HaBasta</div>
-                    <div class="card-subtitle">Israeli • $$-$$$ • ⭐ 4.6</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Market-to-table restaurant featuring seasonal Israeli cuisine in Carmel Market.</p>
-                    <a href="https://www.tripadvisor.com/Restaurant_Review-g293984-d4494851-Reviews-HaBasta-Tel_Aviv_Tel_Aviv_District.html" target="_blank" class="card-link">View Menu & Reviews →</a>
+                    <div class="card-title">{{RESTAURANT_5_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_5_CUISINE}} • {{RESTAURANT_5_PRICE}} • ⭐ {{RESTAURANT_5_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_5_DESC}}</p>
+                    <a href="{{RESTAURANT_5_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('restaurant-6')">
                         <span id="restaurant-6-fav">☆</span>
                     </button>
-                    <div class="card-title">Miznon</div>
-                    <div class="card-subtitle">Israeli Street Food • $ • ⭐ 4.4</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Famous pita bar serving creative stuffed pitas with local ingredients and bold flavors.</p>
-                    <a href="https://www.tripadvisor.com/Restaurant_Review-g293984-d3852125-Reviews-Miznon-Tel_Aviv_Tel_Aviv_District.html" target="_blank" class="card-link">View Menu & Reviews →</a>
+                    <div class="card-title">{{RESTAURANT_6_NAME}}</div>
+                    <div class="card-subtitle">{{RESTAURANT_6_CUISINE}} • {{RESTAURANT_6_PRICE}} • ⭐ {{RESTAURANT_6_RATING}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RESTAURANT_6_DESC}}</p>
+                    <a href="{{RESTAURANT_6_URL}}" target="_blank" class="card-link">View Menu & Reviews →</a>
                 </div>
             </div>
         </div>
@@ -840,40 +840,40 @@
                     <button class="card-favorite" onclick="toggleFavorite('entertainment-1')">
                         <span id="entertainment-1-fav">☆</span>
                     </button>
-                    <div class="card-title">Habima Theatre</div>
-                    <div class="card-subtitle">National Theatre</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Israel's national theatre featuring Hebrew-language plays, musicals, and performances.</p>
-                    <a href="https://www.habima.co.il/en/" target="_blank" class="card-link">Learn More →</a>
+                    <div class="card-title">{{ENTERTAINMENT_1_NAME}}</div>
+                    <div class="card-subtitle">{{ENTERTAINMENT_1_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{ENTERTAINMENT_1_DESC}}</p>
+                    <a href="{{ENTERTAINMENT_1_URL}}" target="_blank" class="card-link">Learn More →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('entertainment-2')">
                         <span id="entertainment-2-fav">☆</span>
                     </button>
-                    <div class="card-title">The Block Club</div>
-                    <div class="card-subtitle">Nightclub</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Underground electronic music venue with international DJs and cutting-edge sound system.</p>
-                    <a href="https://www.facebook.com/theblockclub/" target="_blank" class="card-link">Learn More →</a>
+                    <div class="card-title">{{ENTERTAINMENT_2_NAME}}</div>
+                    <div class="card-subtitle">{{ENTERTAINMENT_2_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{ENTERTAINMENT_2_DESC}}</p>
+                    <a href="{{ENTERTAINMENT_2_URL}}" target="_blank" class="card-link">Learn More →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('entertainment-3')">
                         <span id="entertainment-3-fav">☆</span>
                     </button>
-                    <div class="card-title">Cinematheque Tel Aviv</div>
-                    <div class="card-subtitle">Art House Cinema</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Independent cinema showcasing international films, documentaries, and film festivals.</p>
-                    <a href="https://www.cinema.co.il/en/" target="_blank" class="card-link">Learn More →</a>
+                    <div class="card-title">{{ENTERTAINMENT_3_NAME}}</div>
+                    <div class="card-subtitle">{{ENTERTAINMENT_3_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{ENTERTAINMENT_3_DESC}}</p>
+                    <a href="{{ENTERTAINMENT_3_URL}}" target="_blank" class="card-link">Learn More →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('entertainment-4')">
                         <span id="entertainment-4-fav">☆</span>
                     </button>
-                    <div class="card-title">Barby Club</div>
-                    <div class="card-subtitle">Live Music Venue</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Popular concert hall hosting local and international rock, indie, and alternative acts.</p>
-                    <a href="https://www.barby.co.il/" target="_blank" class="card-link">Learn More →</a>
+                    <div class="card-title">{{ENTERTAINMENT_4_NAME}}</div>
+                    <div class="card-subtitle">{{ENTERTAINMENT_4_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{ENTERTAINMENT_4_DESC}}</p>
+                    <a href="{{ENTERTAINMENT_4_URL}}" target="_blank" class="card-link">Learn More →</a>
                 </div>
             </div>
         </div>
@@ -889,40 +889,40 @@
                     <button class="card-favorite" onclick="toggleFavorite('recreation-1')">
                         <span id="recreation-1-fav">☆</span>
                     </button>
-                    <div class="card-title">Gordon Beach</div>
-                    <div class="card-subtitle">Beach</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Popular city beach with volleyball courts, cafes, and stunning Mediterranean sunsets.</p>
-                    <a href="https://www.google.com/maps/place/Gordon+Beach/@32.0790,34.7697,17z" target="_blank" class="card-link">Get Directions →</a>
+                    <div class="card-title">{{RECREATION_1_NAME}}</div>
+                    <div class="card-subtitle">{{RECREATION_1_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RECREATION_1_DESC}}</p>
+                    <a href="{{RECREATION_1_URL}}" target="_blank" class="card-link">Get Directions →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('recreation-2')">
                         <span id="recreation-2-fav">☆</span>
                     </button>
-                    <div class="card-title">Yarkon Park</div>
-                    <div class="card-subtitle">Urban Park</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Massive green space with bike paths, gardens, sports facilities, and boat rentals.</p>
-                    <a href="https://www.google.com/maps/place/Yarkon+Park/@32.1088,34.7973,15z" target="_blank" class="card-link">Get Directions →</a>
+                    <div class="card-title">{{RECREATION_2_NAME}}</div>
+                    <div class="card-subtitle">{{RECREATION_2_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RECREATION_2_DESC}}</p>
+                    <a href="{{RECREATION_2_URL}}" target="_blank" class="card-link">Get Directions →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('recreation-3')">
                         <span id="recreation-3-fav">☆</span>
                     </button>
-                    <div class="card-title">Tel Aviv Port</div>
-                    <div class="card-subtitle">Waterfront Promenade</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Renovated port area with restaurants, shops, and wooden boardwalk along the sea.</p>
-                    <a href="https://www.google.com/maps/place/Tel+Aviv+Port/@32.1137,34.7986,17z" target="_blank" class="card-link">Get Directions →</a>
+                    <div class="card-title">{{RECREATION_3_NAME}}</div>
+                    <div class="card-subtitle">{{RECREATION_3_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RECREATION_3_DESC}}</p>
+                    <a href="{{RECREATION_3_URL}}" target="_blank" class="card-link">Get Directions →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('recreation-4')">
                         <span id="recreation-4-fav">☆</span>
                     </button>
-                    <div class="card-title">Sarona Market</div>
-                    <div class="card-subtitle">Food Market</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Upscale indoor market with gourmet food stalls, restaurants, and specialty shops.</p>
-                    <a href="https://www.saronamarket.co.il/en/" target="_blank" class="card-link">Get Directions →</a>
+                    <div class="card-title">{{RECREATION_4_NAME}}</div>
+                    <div class="card-subtitle">{{RECREATION_4_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{RECREATION_4_DESC}}</p>
+                    <a href="{{RECREATION_4_URL}}" target="_blank" class="card-link">Get Directions →</a>
                 </div>
             </div>
         </div>
@@ -935,19 +935,19 @@
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value">460,000</div>
+                    <div class="stat-value">250,000</div>
                     <div class="stat-label">Total Population</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">36</div>
+                    <div class="stat-value">35</div>
                     <div class="stat-label">Median Age</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">72</div>
+                    <div class="stat-value">{{DIVERSITY_INDEX}}</div>
                     <div class="stat-label">Diversity Index</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">58%</div>
+                    <div class="stat-value">{{EDUCATION_LEVEL}}</div>
                     <div class="stat-label">College Educated</div>
                 </div>
             </div>
@@ -957,28 +957,28 @@
                 <div class="list-item-content">
                     <div class="list-item-title">Under 18</div>
                 </div>
-                <div class="list-item-value">22%</div>
+                <div class="list-item-value">{{AGE_UNDER_18}}</div>
             </div>
 
             <div class="list-item">
                 <div class="list-item-content">
                     <div class="list-item-title">18-34 (Young Adults)</div>
                 </div>
-                <div class="list-item-value">35%</div>
+                <div class="list-item-value">{{AGE_18_34}}</div>
             </div>
 
             <div class="list-item">
                 <div class="list-item-content">
                     <div class="list-item-title">35-64 (Working Age)</div>
                 </div>
-                <div class="list-item-value">35%</div>
+                <div class="list-item-value">{{AGE_35_64}}</div>
             </div>
 
             <div class="list-item">
                 <div class="list-item-content">
                     <div class="list-item-title">65+ (Seniors)</div>
                 </div>
-                <div class="list-item-value">8%</div>
+                <div class="list-item-value">{{AGE_65_PLUS}}</div>
             </div>
         </div>
 
@@ -993,30 +993,30 @@
                     <button class="card-favorite" onclick="toggleFavorite('hospital-1')">
                         <span id="hospital-1-fav">☆</span>
                     </button>
-                    <div class="card-title">Ichilov Hospital</div>
-                    <div class="card-subtitle">General Hospital • 1,000 beds</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Major medical center providing comprehensive healthcare services and emergency care.</p>
-                    <a href="https://www.tasmc.org.il/sites/en/Pages/default.aspx" target="_blank" class="card-link">Visit Website →</a>
+                    <div class="card-title">{{HOSPITAL_1_NAME}}</div>
+                    <div class="card-subtitle">{{HOSPITAL_1_TYPE}} • {{HOSPITAL_1_BEDS}} beds</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{HOSPITAL_1_DESC}}</p>
+                    <a href="{{HOSPITAL_1_URL}}" target="_blank" class="card-link">Visit Website →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('hospital-2')">
                         <span id="hospital-2-fav">☆</span>
                     </button>
-                    <div class="card-title">Assuta Medical Center</div>
-                    <div class="card-subtitle">Private Hospital • 600 beds</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Leading private hospital offering advanced medical treatments and surgical procedures.</p>
-                    <a href="https://www.assuta.co.il/en/" target="_blank" class="card-link">Visit Website →</a>
+                    <div class="card-title">{{HOSPITAL_2_NAME}}</div>
+                    <div class="card-subtitle">{{HOSPITAL_2_TYPE}} • {{HOSPITAL_2_BEDS}} beds</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{HOSPITAL_2_DESC}}</p>
+                    <a href="{{HOSPITAL_2_URL}}" target="_blank" class="card-link">Visit Website →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('hospital-3')">
                         <span id="hospital-3-fav">☆</span>
                     </button>
-                    <div class="card-title">Wolfson Medical Center</div>
-                    <div class="card-subtitle">Teaching Hospital • 850 beds</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">University-affiliated hospital specializing in trauma care and medical research.</p>
-                    <a href="https://www.wolfson.health.gov.il/en/" target="_blank" class="card-link">Visit Website →</a>
+                    <div class="card-title">{{HOSPITAL_3_NAME}}</div>
+                    <div class="card-subtitle">{{HOSPITAL_3_TYPE}} • {{HOSPITAL_3_BEDS}} beds</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{HOSPITAL_3_DESC}}</p>
+                    <a href="{{HOSPITAL_3_URL}}" target="_blank" class="card-link">Visit Website →</a>
                 </div>
             </div>
         </div>
@@ -1033,48 +1033,48 @@
                     <button class="card-favorite" onclick="toggleFavorite('university-1')">
                         <span id="university-1-fav">☆</span>
                     </button>
-                    <div class="card-title">Tel Aviv University</div>
-                    <div class="card-subtitle">30,000 students • Public Research University</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Israel's largest university offering programs in sciences, humanities, arts, and medicine.</p>
-                    <a href="https://english.tau.ac.il/" target="_blank" class="card-link">Visit Website →</a>
+                    <div class="card-title">{{UNIVERSITY_1_NAME}}</div>
+                    <div class="card-subtitle">{{UNIVERSITY_1_STUDENTS}} students • {{UNIVERSITY_1_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{UNIVERSITY_1_DESC}}</p>
+                    <a href="{{UNIVERSITY_1_URL}}" target="_blank" class="card-link">Visit Website →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('university-2')">
                         <span id="university-2-fav">☆</span>
                     </button>
-                    <div class="card-title">Reichman University</div>
-                    <div class="card-subtitle">9,000 students • Private University</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Private institution known for law, business, and government programs.</p>
-                    <a href="https://www.runi.ac.il/en/" target="_blank" class="card-link">Visit Website →</a>
+                    <div class="card-title">{{UNIVERSITY_2_NAME}}</div>
+                    <div class="card-subtitle">{{UNIVERSITY_2_STUDENTS}} students • {{UNIVERSITY_2_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{UNIVERSITY_2_DESC}}</p>
+                    <a href="{{UNIVERSITY_2_URL}}" target="_blank" class="card-link">Visit Website →</a>
                 </div>
 
                 <div class="card">
                     <button class="card-favorite" onclick="toggleFavorite('university-3')">
                         <span id="university-3-fav">☆</span>
                     </button>
-                    <div class="card-title">Shenkar College</div>
-                    <div class="card-subtitle">3,500 students • Art & Design College</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Premier college for engineering, design, and arts education.</p>
-                    <a href="https://www.shenkar.ac.il/en" target="_blank" class="card-link">Visit Website →</a>
+                    <div class="card-title">{{UNIVERSITY_3_NAME}}</div>
+                    <div class="card-subtitle">{{UNIVERSITY_3_STUDENTS}} students • {{UNIVERSITY_3_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{UNIVERSITY_3_DESC}}</p>
+                    <a href="{{UNIVERSITY_3_URL}}" target="_blank" class="card-link">Visit Website →</a>
                 </div>
             </div>
 
             <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">School Districts</h3>
             <div class="list-item">
                 <div class="list-item-content">
-                    <div class="list-item-title">Tel Aviv-Yafo Municipality Schools</div>
-                    <div class="list-item-subtitle">180+ schools • Rating: 7.5/10</div>
+                    <div class="list-item-title">{{SCHOOL_DISTRICT_1_NAME}}</div>
+                    <div class="list-item-subtitle">{{SCHOOL_DISTRICT_1_SCHOOLS}} schools • Rating: {{SCHOOL_DISTRICT_1_RATING}}/10</div>
                 </div>
-                <a href="https://www.tel-aviv.gov.il/en/Pages/default.aspx" target="_blank" class="btn btn-outline">Learn More</a>
+                <a href="{{SCHOOL_DISTRICT_1_URL}}" target="_blank" class="btn btn-outline">Learn More</a>
             </div>
 
             <div class="list-item">
                 <div class="list-item-content">
-                    <div class="list-item-title">North Tel Aviv Schools</div>
-                    <div class="list-item-subtitle">45 schools • Rating: 8.2/10</div>
+                    <div class="list-item-title">{{SCHOOL_DISTRICT_2_NAME}}</div>
+                    <div class="list-item-subtitle">{{SCHOOL_DISTRICT_2_SCHOOLS}} schools • Rating: {{SCHOOL_DISTRICT_2_RATING}}/10</div>
                 </div>
-                <a href="https://www.tel-aviv.gov.il/en/Pages/default.aspx" target="_blank" class="btn btn-outline">Learn More</a>
+                <a href="{{SCHOOL_DISTRICT_2_URL}}" target="_blank" class="btn btn-outline">Learn More</a>
             </div>
         </div>
 
@@ -1089,7 +1089,7 @@
                     <div class="list-item-title">Walk Score</div>
                     <div class="list-item-subtitle">Walkability rating</div>
                 </div>
-                <div class="list-item-value">88/100</div>
+                <div class="list-item-value">{{WALK_SCORE}}/100</div>
             </div>
 
             <div class="list-item">
@@ -1097,7 +1097,7 @@
                     <div class="list-item-title">Transit Score</div>
                     <div class="list-item-subtitle">Public transportation quality</div>
                 </div>
-                <div class="list-item-value">75/100</div>
+                <div class="list-item-value">{{TRANSIT_SCORE}}/100</div>
             </div>
 
             <div class="list-item">
@@ -1105,7 +1105,7 @@
                     <div class="list-item-title">Bike Score</div>
                     <div class="list-item-subtitle">Bikeability rating</div>
                 </div>
-                <div class="list-item-value">82/100</div>
+                <div class="list-item-value">{{BIKE_SCORE}}/100</div>
             </div>
 
             <div class="list-item">
@@ -1113,27 +1113,27 @@
                     <div class="list-item-title">Average Commute Time</div>
                     <div class="list-item-subtitle">One-way to work</div>
                 </div>
-                <div class="list-item-value">28 min</div>
+                <div class="list-item-value">{{COMMUTE_TIME}} min</div>
             </div>
 
             <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Transportation Options</h3>
             <div class="cards-grid">
                 <div class="card">
-                    <div class="card-title">Light Rail</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Modern light rail system connecting major neighborhoods and business districts.</p>
-                    <a href="https://www.tel-aviv.gov.il/en/Pages/default.aspx" target="_blank" class="card-link">Learn More →</a>
+                    <div class="card-title">{{TRANSPORT_1_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{TRANSPORT_1_DESC}}</p>
+                    <a href="{{TRANSPORT_1_URL}}" target="_blank" class="card-link">Learn More →</a>
                 </div>
 
                 <div class="card">
-                    <div class="card-title">Bus Network</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Extensive bus system operated by Dan and Egged with frequent service throughout the city.</p>
-                    <a href="https://www.dan.co.il/english" target="_blank" class="card-link">Learn More →</a>
+                    <div class="card-title">{{TRANSPORT_2_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{TRANSPORT_2_DESC}}</p>
+                    <a href="{{TRANSPORT_2_URL}}" target="_blank" class="card-link">Learn More →</a>
                 </div>
 
                 <div class="card">
-                    <div class="card-title">Bike Share</div>
-                    <p style="margin: 1rem 0; color: var(--text-light);">Tel-O-Fun bike sharing system with 200+ stations across the city.</p>
-                    <a href="https://www.tel-o-fun.co.il/en/" target="_blank" class="card-link">Learn More →</a>
+                    <div class="card-title">{{TRANSPORT_3_TYPE}}</div>
+                    <p style="margin: 1rem 0; color: var(--text-light);">{{TRANSPORT_3_DESC}}</p>
+                    <a href="{{TRANSPORT_3_URL}}" target="_blank" class="card-link">Learn More →</a>
                 </div>
             </div>
         </div>
@@ -1146,36 +1146,36 @@
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value">26°</div>
+                    <div class="stat-value">{{AVG_TEMP_HIGH}}°</div>
                     <div class="stat-label">Avg High Temp</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">17°</div>
+                    <div class="stat-value">{{AVG_TEMP_LOW}}°</div>
                     <div class="stat-label">Avg Low Temp</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">300</div>
+                    <div class="stat-value">{{SUNNY_DAYS}}</div>
                     <div class="stat-label">Sunny Days/Year</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">20"</div>
+                    <div class="stat-value">{{RAINFALL}}"</div>
                     <div class="stat-label">Annual Rainfall</div>
                 </div>
             </div>
 
             <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text); margin-top: 2rem;">
-                Tel Aviv enjoys a Mediterranean climate with hot, humid summers and mild, rainy winters. The city experiences over 300 sunny days per year, with most rainfall occurring between November and March. Summer temperatures average 26-30°C (79-86°F), while winter temperatures rarely drop below 10°C (50°F). The coastal location provides refreshing sea breezes year-round.
+                {{CLIMATE_DESC}}
             </p>
         </div>
     </div>
 
     <script>
         // Initialize map
-        const map = L.map('map').setView([32.0853, 34.7818], 12);
+        const map = L.map('map').setView([40.7128, -74.0060], 12);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
-        L.marker([32.0853, 34.7818]).addTo(map)
+        L.marker([40.7128, -74.0060]).addTo(map)
             .bindPopup('Tel Aviv')
             .openPopup();
 
@@ -1202,7 +1202,7 @@
             
             // Save to localStorage
             const favorites = JSON.parse(localStorage.getItem('moving-to-favorites') || '{}');
-            const cityKey = 'Tel Aviv-Israel';
+            const cityKey = 'Tel Aviv-{{COUNTRY}}';
             if (!favorites[cityKey]) {
                 favorites[cityKey] = [];
             }
@@ -1220,7 +1220,7 @@
         // Load favorites on page load
         window.addEventListener('DOMContentLoaded', () => {
             const favorites = JSON.parse(localStorage.getItem('moving-to-favorites') || '{}');
-            const cityKey = 'Tel Aviv-Israel';
+            const cityKey = 'Tel Aviv-{{COUNTRY}}';
             if (favorites[cityKey]) {
                 favorites[cityKey].forEach(itemId => {
                     const icon = document.getElementById(itemId + '-fav');
