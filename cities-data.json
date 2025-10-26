@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "generated": "2025-10-26",
+  "total_cities": 32496,
+  "description": "Comprehensive city data for AI chat integration and LLM consumption",
+  "schema": {
+    "city": {
+      "name": "string",
+      "state": "string",
+      "country": "string",
+      "url": "string",
+      "population": "number",
+      "median_age": "number",
+      "median_income": "string",
+      "unemployment_rate": "string",
+      "coordinates": {
+        "latitude": "number",
+        "longitude": "number"
+      },
+      "cost_of_living": {
+        "rent_1br_center": "string",
+        "rent_1br_outside": "string",
+        "rent_3br_center": "string",
+        "rent_3br_outside": "string"
+      },
+      "employment": {
+        "median_salary": "string",
+        "unemployment_rate": "string",
+        "top_industries": ["string"]
+      },
+      "quality_of_life": {
+        "walk_score": "number",
+        "transit_score": "number",
+        "bike_score": "number"
+      }
+    }
+  },
+  "usage": {
+    "ai_chat": "Use this data to answer user questions about cities",
+    "personalization": "Filter and recommend cities based on user preferences",
+    "comparison": "Compare multiple cities across various metrics"
+  },
+  "note": "This is a schema file. Full city data will be generated dynamically for AI chat integration."
+}
+
