@@ -530,10 +530,10 @@
             <a href="/" class="logo">Moving.to</a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="#overview">Overview</a></li>
-                    <li><a href="#neighborhoods">Neighborhoods</a></li>
-                    <li><a href="#cost">Cost of Living</a></li>
+                    <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="goToRandomCity(); return false;"><i class="fas fa-random"></i> Random City</a></li>
+                    <li><a href="#" onclick="showSimilarCities(); return false;"><i class="fas fa-city"></i> Similar Cities</a></li>
+                    <li><a href="#" onclick="showFavorites(); return false;"><i class="fas fa-star"></i> Favorites</a></li>
                 </ul>
             </nav>
         </div>
@@ -605,19 +605,19 @@
                     <div class="info-grid">
                         <div class="info-item">
                             <div class="info-item-label">Climate</div>
-                            <div class="info-item-value">{{CLIMATE}}</div>
+                            <div class="info-item-value">{{CLIMATE_DESC}}</div>
                         </div>
                         <div class="info-item">
                             <div class="info-item-label">Time Zone</div>
-                            <div class="info-item-value">{{TIMEZONE}}</div>
+                            <div class="info-item-value">{{TIMEZONE_NAME}}</div>
                         </div>
                         <div class="info-item">
                             <div class="info-item-label">Language</div>
-                            <div class="info-item-value">{{LANGUAGE}}</div>
+                            <div class="info-item-value">{{LANGUAGE_NAME}}</div>
                         </div>
                         <div class="info-item">
                             <div class="info-item-label">Currency</div>
-                            <div class="info-item-value">{{CURRENCY}}</div>
+                            <div class="info-item-value">{{CURRENCY_NAME}}</div>
                         </div>
                     </div>
                 </div>
@@ -635,41 +635,7 @@
                     </p>
                     
                     <div class="neighborhoods-grid">
-                        <div class="neighborhood-card">
-                            <div class="neighborhood-name">Downtown</div>
-                            <div class="neighborhood-description">
-                                The heart of the city with excellent walkability, restaurants, and entertainment.
-                            </div>
-                            <div class="neighborhood-tags">
-                                <span class="tag">Urban</span>
-                                <span class="tag">Walkable</span>
-                                <span class="tag">Nightlife</span>
-                            </div>
-                        </div>
-                        
-                        <div class="neighborhood-card">
-                            <div class="neighborhood-name">Suburbs</div>
-                            <div class="neighborhood-description">
-                                Family-friendly areas with good schools, parks, and quiet residential streets.
-                            </div>
-                            <div class="neighborhood-tags">
-                                <span class="tag">Family-Friendly</span>
-                                <span class="tag">Schools</span>
-                                <span class="tag">Parks</span>
-                            </div>
-                        </div>
-                        
-                        <div class="neighborhood-card">
-                            <div class="neighborhood-name">Historic District</div>
-                            <div class="neighborhood-description">
-                                Charming area with historic architecture, local boutiques, and cultural attractions.
-                            </div>
-                            <div class="neighborhood-tags">
-                                <span class="tag">Historic</span>
-                                <span class="tag">Culture</span>
-                                <span class="tag">Shopping</span>
-                            </div>
-                        </div>
+                        {{NEIGHBORHOODS_HTML}}
                     </div>
                 </div>
 
@@ -866,7 +832,7 @@
                     </ul>
                     
                     <div style="margin-top: 2rem;">
-                        <a href="https://www.airbnb.com/s/{{CITY_NAME}}--{{STATE_NAME}}--{{COUNTRY_NAME}}" target="_blank" class="cta-button" style="display: block;">
+                        <a href="{{AIRBNB_LINK}}" target="_blank" class="cta-button" style="display: block;">
                             <i class="fab fa-airbnb"></i> Find Accommodations
                         </a>
                     </div>
@@ -876,7 +842,7 @@
     </div>
 
     <!-- LLM Version Link -->
-    <a href="./llm.html" class="llm-version-link">
+    <a href="./llm-optimized.html" class="llm-version-link">
         <i class="fas fa-robot"></i>
         LLM-Optimized Version
     </a>
@@ -904,6 +870,25 @@
             .addTo(map)
             .bindPopup('<b>{{CITY_NAME}}</b><br>{{STATE_NAME}}, {{COUNTRY_NAME}}')
             .openPopup();
+        
+        // Navigation functions
+        function goToRandomCity() {
+            // Redirect to homepage with random parameter
+            window.location.href = '/?random=true';
+        }
+        
+        function showSimilarCities() {
+            alert('Similar cities feature coming soon! This will show cities with similar population and cost of living.');
+        }
+        
+        function showFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('favoriteCities') || '[]');
+            if (favorites.length === 0) {
+                alert('You haven\'t favorited any cities yet. Click the star button on city pages to save your favorites!');
+            } else {
+                alert('Your favorite cities:\n\n' + favorites.join('\n'));
+            }
+        }
     </script>
 </body>
 </html>

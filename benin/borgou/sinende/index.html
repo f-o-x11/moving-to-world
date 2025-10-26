@@ -521,6 +521,75 @@
         .llm-version-link:hover {
             transform: scale(1.05);
         }
+        
+        /* Rental Listings */
+        .listing-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s;
+        }
+        
+        .listing-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .listing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        
+        .listing-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+        
+        .listing-details {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .listing-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .listing-description {
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .listing-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .listing-rating {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+        
+        .listing-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .listing-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -530,10 +599,10 @@
             <a href="/" class="logo">Moving.to</a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="#overview">Overview</a></li>
-                    <li><a href="#neighborhoods">Neighborhoods</a></li>
-                    <li><a href="#cost">Cost of Living</a></li>
+                    <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="goToRandomCity(); return false;"><i class="fas fa-random"></i> Random City</a></li>
+                    <li><a href="#" onclick="showSimilarCities(); return false;"><i class="fas fa-city"></i> Similar Cities</a></li>
+                    <li><a href="#" onclick="showFavorites(); return false;"><i class="fas fa-star"></i> Favorites</a></li>
                 </ul>
             </nav>
         </div>
@@ -557,7 +626,7 @@
                     <span class="stat-label">Population</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">$660</span>
+                    <span class="stat-value">$1500</span>
                     <span class="stat-label">Avg. Rent</span>
                 </div>
                 <div class="stat">
@@ -609,7 +678,7 @@
                         </div>
                         <div class="info-item">
                             <div class="info-item-label">Time Zone</div>
-                            <div class="info-item-value">Local Time</div>
+                            <div class="info-item-value">UTC</div>
                         </div>
                         <div class="info-item">
                             <div class="info-item-label">Language</div>
@@ -635,39 +704,34 @@
                     </p>
                     
                     <div class="neighborhoods-grid">
-                        <div class="neighborhood-card">
-                            <div class="neighborhood-name">Downtown</div>
-                            <div class="neighborhood-description">
-                                The heart of the city with excellent walkability, restaurants, and entertainment.
-                            </div>
-                            <div class="neighborhood-tags">
-                                <span class="tag">Urban</span>
-                                <span class="tag">Walkable</span>
-                                <span class="tag">Nightlife</span>
-                            </div>
-                        </div>
                         
                         <div class="neighborhood-card">
-                            <div class="neighborhood-name">Suburbs</div>
+                            <div class="neighborhood-name">City Center</div>
                             <div class="neighborhood-description">
-                                Family-friendly areas with good schools, parks, and quiet residential streets.
+                                The main commercial and administrative hub with shops and services.
                             </div>
                             <div class="neighborhood-tags">
-                                <span class="tag">Family-Friendly</span>
-                                <span class="tag">Schools</span>
-                                <span class="tag">Parks</span>
+                                <span class="tag">Central</span><span class="tag">Convenient</span><span class="tag">Shopping</span>
                             </div>
                         </div>
-                        
+
                         <div class="neighborhood-card">
-                            <div class="neighborhood-name">Historic District</div>
+                            <div class="neighborhood-name">Residential District</div>
                             <div class="neighborhood-description">
-                                Charming area with historic architecture, local boutiques, and cultural attractions.
+                                Quiet neighborhoods with family homes and local amenities.
                             </div>
                             <div class="neighborhood-tags">
-                                <span class="tag">Historic</span>
-                                <span class="tag">Culture</span>
-                                <span class="tag">Shopping</span>
+                                <span class="tag">Residential</span><span class="tag">Quiet</span><span class="tag">Family-Friendly</span>
+                            </div>
+                        </div>
+
+                        <div class="neighborhood-card">
+                            <div class="neighborhood-name">Historic Quarter</div>
+                            <div class="neighborhood-description">
+                                Area with traditional architecture and local character.
+                            </div>
+                            <div class="neighborhood-tags">
+                                <span class="tag">Historic</span><span class="tag">Traditional</span><span class="tag">Charming</span>
                             </div>
                         </div>
                     </div>
@@ -726,6 +790,185 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Collapsible Rental Listings -->
+                    <details style="margin-top: 2rem;">
+                        <summary style="cursor: pointer; font-weight: 600; padding: 1rem; background: var(--bg-light); border-radius: 8px; user-select: none;">
+                            <i class="fas fa-home"></i> View 10 Sample Rental Listings
+                        </summary>
+                        <div class="rental-listings" style="margin-top: 1rem;">
+                            
+                        <div class="listing-item">
+                            <div class="listing-header">
+                                <div>
+                                    <div class="listing-title">1-Bedroom Apartment in Sinende</div>
+                                    <div class="listing-details">
+                                        1 bed • 1 bath • 50 m²
+                                    </div>
+                                </div>
+                                <div class="listing-price">$1200/mo</div>
+                            </div>
+                            <div class="listing-description">Modern 1-bedroom apartment with great amenities and location.</div>
+                            <div class="listing-footer">
+                                <span class="listing-rating">⭐ 4.2</span>
+                                <a href="https://www.airbnb.com/s/Sinende/homes" target="_blank" class="listing-link">View Listing →</a>
+                            </div>
+                        </div>
+
+                        <div class="listing-item">
+                            <div class="listing-header">
+                                <div>
+                                    <div class="listing-title">2-Bedroom Apartment in Sinende</div>
+                                    <div class="listing-details">
+                                        2 bed • 2 bath • 65 m²
+                                    </div>
+                                </div>
+                                <div class="listing-price">$1275/mo</div>
+                            </div>
+                            <div class="listing-description">Modern 2-bedroom apartment with great amenities and location.</div>
+                            <div class="listing-footer">
+                                <span class="listing-rating">⭐ 4.3</span>
+                                <a href="https://www.airbnb.com/s/Sinende/homes" target="_blank" class="listing-link">View Listing →</a>
+                            </div>
+                        </div>
+
+                        <div class="listing-item">
+                            <div class="listing-header">
+                                <div>
+                                    <div class="listing-title">3-Bedroom Apartment in Sinende</div>
+                                    <div class="listing-details">
+                                        3 bed • 1 bath • 80 m²
+                                    </div>
+                                </div>
+                                <div class="listing-price">$1350/mo</div>
+                            </div>
+                            <div class="listing-description">Modern 3-bedroom apartment with great amenities and location.</div>
+                            <div class="listing-footer">
+                                <span class="listing-rating">⭐ 4.4</span>
+                                <a href="https://www.airbnb.com/s/Sinende/homes" target="_blank" class="listing-link">View Listing →</a>
+                            </div>
+                        </div>
+
+                        <div class="listing-item">
+                            <div class="listing-header">
+                                <div>
+                                    <div class="listing-title">1-Bedroom Apartment in Sinende</div>
+                                    <div class="listing-details">
+                                        1 bed • 2 bath • 95 m²
+                                    </div>
+                                </div>
+                                <div class="listing-price">$1425/mo</div>
+                            </div>
+                            <div class="listing-description">Modern 1-bedroom apartment with great amenities and location.</div>
+                            <div class="listing-footer">
+                                <span class="listing-rating">⭐ 4.5</span>
+                                <a href="https://www.airbnb.com/s/Sinende/homes" target="_blank" class="listing-link">View Listing →</a>
+                            </div>
+                        </div>
+
+                        <div class="listing-item">
+                            <div class="listing-header">
+                                <div>
+                                    <div class="listing-title">2-Bedroom Apartment in Sinende</div>
+                                    <div class="listing-details">
+                                        2 bed • 1 bath • 110 m²
+                                    </div>
+                                </div>
+                                <div class="listing-price">$1500/mo</div>
+                            </div>
+                            <div class="listing-description">Modern 2-bedroom apartment with great amenities and location.</div>
+                            <div class="listing-footer">
+                                <span class="listing-rating">⭐ 4.6</span>
+                                <a href="https://www.airbnb.com/s/Sinende/homes" target="_blank" class="listing-link">View Listing →</a>
+                            </div>
+                        </div>
+
+                        <div class="listing-item">
+                            <div class="listing-header">
+                                <div>
+                                    <div class="listing-title">3-Bedroom Apartment in Sinende</div>
+                                    <div class="listing-details">
+                                        3 bed • 2 bath • 125 m²
+                                    </div>
+                                </div>
+                                <div class="listing-price">$1575/mo</div>
+                            </div>
+                            <div class="listing-description">Modern 3-bedroom apartment with great amenities and location.</div>
+                            <div class="listing-footer">
+                                <span class="listing-rating">⭐ 4.7</span>
+                                <a href="https://www.airbnb.com/s/Sinende/homes" target="_blank" class="listing-link">View Listing →</a>
+                            </div>
+                        </div>
+
+                        <div class="listing-item">
+                            <div class="listing-header">
+                                <div>
+                                    <div class="listing-title">1-Bedroom Apartment in Sinende</div>
+                                    <div class="listing-details">
+                                        1 bed • 1 bath • 140 m²
+                                    </div>
+                                </div>
+                                <div class="listing-price">$1650/mo</div>
+                            </div>
+                            <div class="listing-description">Modern 1-bedroom apartment with great amenities and location.</div>
+                            <div class="listing-footer">
+                                <span class="listing-rating">⭐ 4.8</span>
+                                <a href="https://www.airbnb.com/s/Sinende/homes" target="_blank" class="listing-link">View Listing →</a>
+                            </div>
+                        </div>
+
+                        <div class="listing-item">
+                            <div class="listing-header">
+                                <div>
+                                    <div class="listing-title">2-Bedroom Apartment in Sinende</div>
+                                    <div class="listing-details">
+                                        2 bed • 2 bath • 155 m²
+                                    </div>
+                                </div>
+                                <div class="listing-price">$1725/mo</div>
+                            </div>
+                            <div class="listing-description">Modern 2-bedroom apartment with great amenities and location.</div>
+                            <div class="listing-footer">
+                                <span class="listing-rating">⭐ 4.9</span>
+                                <a href="https://www.airbnb.com/s/Sinende/homes" target="_blank" class="listing-link">View Listing →</a>
+                            </div>
+                        </div>
+
+                        <div class="listing-item">
+                            <div class="listing-header">
+                                <div>
+                                    <div class="listing-title">3-Bedroom Apartment in Sinende</div>
+                                    <div class="listing-details">
+                                        3 bed • 1 bath • 170 m²
+                                    </div>
+                                </div>
+                                <div class="listing-price">$1800/mo</div>
+                            </div>
+                            <div class="listing-description">Modern 3-bedroom apartment with great amenities and location.</div>
+                            <div class="listing-footer">
+                                <span class="listing-rating">⭐ 4.2</span>
+                                <a href="https://www.airbnb.com/s/Sinende/homes" target="_blank" class="listing-link">View Listing →</a>
+                            </div>
+                        </div>
+
+                        <div class="listing-item">
+                            <div class="listing-header">
+                                <div>
+                                    <div class="listing-title">1-Bedroom Apartment in Sinende</div>
+                                    <div class="listing-details">
+                                        1 bed • 2 bath • 185 m²
+                                    </div>
+                                </div>
+                                <div class="listing-price">$1875/mo</div>
+                            </div>
+                            <div class="listing-description">Modern 1-bedroom apartment with great amenities and location.</div>
+                            <div class="listing-footer">
+                                <span class="listing-rating">⭐ 4.3</span>
+                                <a href="https://www.airbnb.com/s/Sinende/homes" target="_blank" class="listing-link">View Listing →</a>
+                            </div>
+                        </div>
+                        </div>
+                    </details>
                 </div>
 
                 <!-- Walk Score -->
@@ -866,7 +1109,7 @@
                     </ul>
                     
                     <div style="margin-top: 2rem;">
-                        <a href="https://www.airbnb.com/s/Sinende--Borgou--Benin" target="_blank" class="cta-button" style="display: block;">
+                        <a href="https://www.airbnb.com/s/Sinende%2C-Benin/homes" target="_blank" class="cta-button" style="display: block;">
                             <i class="fab fa-airbnb"></i> Find Accommodations
                         </a>
                     </div>
@@ -876,7 +1119,7 @@
     </div>
 
     <!-- LLM Version Link -->
-    <a href="./llm.html" class="llm-version-link">
+    <a href="./llm-optimized.html" class="llm-version-link">
         <i class="fas fa-robot"></i>
         LLM-Optimized Version
     </a>
@@ -904,6 +1147,25 @@
             .addTo(map)
             .bindPopup('<b>Sinende</b><br>Borgou, Benin')
             .openPopup();
+        
+        // Navigation functions
+        function goToRandomCity() {
+            // Redirect to homepage with random parameter
+            window.location.href = '/?random=true';
+        }
+        
+        function showSimilarCities() {
+            alert('Similar cities feature coming soon! This will show cities with similar population and cost of living.');
+        }
+        
+        function showFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('favoriteCities') || '[]');
+            if (favorites.length === 0) {
+                alert('You haven\'t favorited any cities yet. Click the star button on city pages to save your favorites!');
+            } else {
+                alert('Your favorite cities:\n\n' + favorites.join('\n'));
+            }
+        }
     </script>
 </body>
 </html>

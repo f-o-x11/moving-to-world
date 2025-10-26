@@ -1,0 +1,236 @@
+{
+  "Tel Aviv": {
+    "country": "Israel",
+    "latitude": 32.0853,
+    "longitude": 34.7818,
+    "neighborhoods": [
+      {
+        "name": "Florentin",
+        "description": "Trendy neighborhood known for street art, nightlife, and young creative community.",
+        "tags": ["Trendy", "Nightlife", "Arts"]
+      },
+      {
+        "name": "Kerem Hateimanim",
+        "description": "Historic Yemenite quarter with authentic restaurants and traditional architecture.",
+        "tags": ["Historic", "Authentic", "Dining"]
+      },
+      {
+        "name": "Neve Tzedek",
+        "description": "Charming historic neighborhood with boutique shops, galleries, and cafes.",
+        "tags": ["Historic", "Boutique", "Culture"]
+      },
+      {
+        "name": "Tel Aviv Port (Namal)",
+        "description": "Waterfront area with restaurants, bars, and weekend markets along the Mediterranean.",
+        "tags": ["Waterfront", "Dining", "Recreation"]
+      },
+      {
+        "name": "Rothschild Boulevard",
+        "description": "Tree-lined boulevard with Bauhaus architecture, cafes, and central location.",
+        "tags": ["Central", "Bauhaus", "Walkable"]
+      }
+    ]
+  },
+  "Netanya": {
+    "country": "Israel",
+    "latitude": 32.3333,
+    "longitude": 34.8500,
+    "neighborhoods": [
+      {
+        "name": "City Center",
+        "description": "Main commercial area with shops, restaurants, and easy access to the beach.",
+        "tags": ["Central", "Shopping", "Beach Access"]
+      },
+      {
+        "name": "Kiryat Hasharon",
+        "description": "Residential neighborhood with parks and family-friendly atmosphere.",
+        "tags": ["Residential", "Family-Friendly", "Parks"]
+      },
+      {
+        "name": "Ir Yamim",
+        "description": "Upscale neighborhood near the beach with modern apartments.",
+        "tags": ["Upscale", "Beachfront", "Modern"]
+      }
+    ]
+  },
+  "Paris": {
+    "country": "France",
+    "latitude": 48.8566,
+    "longitude": 2.3522,
+    "neighborhoods": [
+      {
+        "name": "Le Marais",
+        "description": "Historic district with trendy boutiques, galleries, and vibrant nightlife.",
+        "tags": ["Historic", "Trendy", "Culture"]
+      },
+      {
+        "name": "Montmartre",
+        "description": "Artistic hilltop neighborhood with Sacré-Cœur and charming streets.",
+        "tags": ["Artistic", "Historic", "Scenic"]
+      },
+      {
+        "name": "Latin Quarter",
+        "description": "Student area with universities, bookshops, and lively atmosphere.",
+        "tags": ["Student-Friendly", "Historic", "Lively"]
+      },
+      {
+        "name": "Saint-Germain-des-Prés",
+        "description": "Upscale Left Bank neighborhood with cafes, galleries, and luxury shopping.",
+        "tags": ["Upscale", "Culture", "Shopping"]
+      }
+    ]
+  },
+  "Tokyo": {
+    "country": "Japan",
+    "latitude": 35.6762,
+    "longitude": 139.6503,
+    "neighborhoods": [
+      {
+        "name": "Shibuya",
+        "description": "Vibrant district famous for the scramble crossing, shopping, and nightlife.",
+        "tags": ["Urban", "Shopping", "Nightlife"]
+      },
+      {
+        "name": "Shinjuku",
+        "description": "Major commercial hub with skyscrapers, entertainment, and transport links.",
+        "tags": ["Central", "Business", "Entertainment"]
+      },
+      {
+        "name": "Asakusa",
+        "description": "Traditional area with Senso-ji Temple and old Tokyo atmosphere.",
+        "tags": ["Traditional", "Historic", "Culture"]
+      },
+      {
+        "name": "Harajuku",
+        "description": "Youth culture center known for fashion, cafes, and Meiji Shrine.",
+        "tags": ["Fashion", "Youth", "Culture"]
+      }
+    ]
+  },
+  "London": {
+    "country": "United Kingdom",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "neighborhoods": [
+      {
+        "name": "Shoreditch",
+        "description": "Trendy East London area with street art, tech startups, and nightlife.",
+        "tags": ["Trendy", "Tech", "Nightlife"]
+      },
+      {
+        "name": "Notting Hill",
+        "description": "Charming area with colorful houses, Portobello Market, and cafes.",
+        "tags": ["Charming", "Market", "Residential"]
+      },
+      {
+        "name": "Camden",
+        "description": "Alternative neighborhood famous for markets, music venues, and canal.",
+        "tags": ["Alternative", "Markets", "Music"]
+      },
+      {
+        "name": "South Kensington",
+        "description": "Upscale area with museums, Victorian architecture, and green spaces.",
+        "tags": ["Upscale", "Culture", "Museums"]
+      }
+    ]
+  },
+  "New York": {
+    "country": "United States",
+    "latitude": 40.7128,
+    "longitude": -74.0060,
+    "neighborhoods": [
+      {
+        "name": "Manhattan",
+        "description": "The heart of NYC with iconic landmarks, business districts, and culture.",
+        "tags": ["Urban", "Business", "Culture"]
+      },
+      {
+        "name": "Brooklyn",
+        "description": "Diverse borough with trendy neighborhoods, parks, and waterfront views.",
+        "tags": ["Trendy", "Diverse", "Waterfront"]
+      },
+      {
+        "name": "Williamsburg",
+        "description": "Hip Brooklyn neighborhood with art scene, music venues, and cafes.",
+        "tags": ["Hip", "Arts", "Nightlife"]
+      },
+      {
+        "name": "Upper West Side",
+        "description": "Family-friendly Manhattan area with Central Park and cultural institutions.",
+        "tags": ["Family-Friendly", "Culture", "Parks"]
+      }
+    ]
+  },
+  "Sydney": {
+    "country": "Australia",
+    "latitude": -33.8688,
+    "longitude": 151.2093,
+    "neighborhoods": [
+      {
+        "name": "Surry Hills",
+        "description": "Trendy inner-city area with cafes, restaurants, and boutique shopping.",
+        "tags": ["Trendy", "Dining", "Shopping"]
+      },
+      {
+        "name": "Bondi",
+        "description": "Famous beach suburb with surf culture, coastal walks, and cafes.",
+        "tags": ["Beach", "Surf", "Lifestyle"]
+      },
+      {
+        "name": "The Rocks",
+        "description": "Historic waterfront area with cobblestone streets and weekend markets.",
+        "tags": ["Historic", "Waterfront", "Markets"]
+      },
+      {
+        "name": "Newtown",
+        "description": "Alternative neighborhood with diverse dining, vintage shops, and arts.",
+        "tags": ["Alternative", "Diverse", "Arts"]
+      }
+    ]
+  },
+  "Mumbai": {
+    "country": "India",
+    "latitude": 19.0760,
+    "longitude": 72.8777,
+    "neighborhoods": [
+      {
+        "name": "Bandra",
+        "description": "Upscale neighborhood with trendy cafes, boutiques, and nightlife.",
+        "tags": ["Upscale", "Trendy", "Nightlife"]
+      },
+      {
+        "name": "Colaba",
+        "description": "Historic waterfront area with Gateway of India and colonial architecture.",
+        "tags": ["Historic", "Waterfront", "Tourist"]
+      },
+      {
+        "name": "Andheri",
+        "description": "Commercial hub with mix of residential, business, and entertainment.",
+        "tags": ["Commercial", "Diverse", "Central"]
+      }
+    ]
+  },
+  "Dubai": {
+    "country": "United Arab Emirates",
+    "latitude": 25.2048,
+    "longitude": 55.2708,
+    "neighborhoods": [
+      {
+        "name": "Downtown Dubai",
+        "description": "Iconic area with Burj Khalifa, Dubai Mall, and luxury living.",
+        "tags": ["Luxury", "Iconic", "Central"]
+      },
+      {
+        "name": "Dubai Marina",
+        "description": "Waterfront community with skyscrapers, restaurants, and beach access.",
+        "tags": ["Waterfront", "Modern", "Lifestyle"]
+      },
+      {
+        "name": "Jumeirah",
+        "description": "Upscale residential area along the coast with villas and beaches.",
+        "tags": ["Upscale", "Beachfront", "Residential"]
+      }
+    ]
+  }
+}
+
