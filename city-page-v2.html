@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moving to Tel Aviv, Israel | Complete Relocation Guide</title>
-    <meta name="description" content="Everything you need to know about moving to Tel Aviv. Tax calculators, cost of living, neighborhoods, moving checklist, and personalized recommendations.">
+    <title>Moving to {{CITY_NAME}}, {{COUNTRY}} | Complete Relocation Guide</title>
+    <meta name="description" content="Everything you need to know about moving to {{CITY_NAME}}. Tax calculators, cost of living, neighborhoods, moving checklist, and personalized recommendations.">
     <style>
         * {
             margin: 0;
@@ -489,11 +489,11 @@
 <body>
     <!-- Hero Section -->
     <div class="hero">
-        <img src="https://source.unsplash.com/1600x900/?Tel Aviv,cityscape" alt="Tel Aviv" class="hero-image">
+        <img src="https://source.unsplash.com/1600x900/?{{CITY_NAME}},cityscape" alt="{{CITY_NAME}}" class="hero-image">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Moving to Tel Aviv</h1>
-            <p class="hero-subtitle">Israel • Your complete relocation guide</p>
+            <h1>Moving to {{CITY_NAME}}</h1>
+            <p class="hero-subtitle">{{COUNTRY}} • Your complete relocation guide</p>
             <div class="hero-actions">
                 <a href="#calculator" class="btn btn-primary">Calculate Tax Savings</a>
                 <a href="#checklist" class="btn btn-secondary">Get Moving Checklist</a>
@@ -506,19 +506,19 @@
         <div class="quick-stats">
             <div class="stats-grid">
                 <div class="stat">
-                    <div class="stat-value">85</div>
+                    <div class="stat-value">{{COST_INDEX}}</div>
                     <div class="stat-label">Cost of Living Index</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">$2,100</div>
+                    <div class="stat-value">{{AVG_RENT}}</div>
                     <div class="stat-label">Avg. Monthly Rent</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">47%</div>
+                    <div class="stat-value">{{TAX_RATE}}%</div>
                     <div class="stat-label">Income Tax Rate</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">78</div>
+                    <div class="stat-value">{{WALK_SCORE}}</div>
                     <div class="stat-label">Walk Score</div>
                 </div>
             </div>
@@ -530,7 +530,7 @@
         <div class="section" id="calculator">
             <div class="calculator-card">
                 <h2 class="calculator-title">💰 Tax Savings Calculator</h2>
-                <p style="margin-bottom: 2rem; opacity: 0.9;">See how much you'll save (or pay) by moving to Tel Aviv</p>
+                <p style="margin-bottom: 2rem; opacity: 0.9;">See how much you'll save (or pay) by moving to {{CITY_NAME}}</p>
                 
                 <div class="calculator-form">
                     <div class="form-group">
@@ -565,32 +565,32 @@
                 <div class="info-card">
                     <div class="info-card-icon">📋</div>
                     <h3 class="info-card-title">Visa & Immigration</h3>
-                    <p class="info-card-text">Israel offers various visa options including work visas, student visas, and the popular B/1 work visa for skilled professionals. EU citizens can stay up to 90 days visa-free. The process typically takes 4-8 weeks.</p>
+                    <p class="info-card-text">{{VISA_INFO}}</p>
                 </div>
                 <div class="info-card">
                     <div class="info-card-icon">🏠</div>
                     <h3 class="info-card-title">Housing Market</h3>
-                    <p class="info-card-text">Tel Aviv has a competitive rental market with average 1BR apartments costing $1,800-$2,500/month. Popular neighborhoods include Florentin (hip and artistic), Neve Tzedek (upscale and historic), and Rothschild Boulevard (central and trendy).</p>
+                    <p class="info-card-text">{{HOUSING_INFO}}</p>
                 </div>
                 <div class="info-card">
                     <div class="info-card-icon">💼</div>
                     <h3 class="info-card-title">Job Market</h3>
-                    <p class="info-card-text">Known as the "Startup Nation," Tel Aviv has a thriving tech scene with opportunities in cybersecurity, fintech, and software development. Average tech salary ranges from $80,000-$150,000. English is widely spoken in the workplace.</p>
+                    <p class="info-card-text">{{JOB_INFO}}</p>
                 </div>
                 <div class="info-card">
                     <div class="info-card-icon">🏥</div>
                     <h3 class="info-card-title">Healthcare</h3>
-                    <p class="info-card-text">Israel has universal healthcare with excellent quality. Residents must register with one of four health funds (Kupat Holim). Healthcare costs are covered through national insurance contributions.</p>
+                    <p class="info-card-text">{{HEALTHCARE_INFO}}</p>
                 </div>
                 <div class="info-card">
                     <div class="info-card-icon">🎭</div>
                     <h3 class="info-card-title">Lifestyle</h3>
-                    <p class="info-card-text">Tel Aviv offers a vibrant Mediterranean lifestyle with year-round sunshine, beautiful beaches, world-class dining, and an active nightlife. The city is known for its liberal, cosmopolitan culture and LGBTQ+ friendliness.</p>
+                    <p class="info-card-text">{{LIFESTYLE_INFO}}</p>
                 </div>
                 <div class="info-card">
                     <div class="info-card-icon">🎓</div>
                     <h3 class="info-card-title">Education</h3>
-                    <p class="info-card-text">Tel Aviv has excellent international schools including the American International School and British International School. Tel Aviv University is one of Israel's top universities. Public schools teach in Hebrew.</p>
+                    <p class="info-card-text">{{EDUCATION_INFO}}</p>
                 </div>
             </div>
         </div>
@@ -715,7 +715,7 @@
                     <div class="timeline-item">
                         <div class="timeline-header">
                             <div class="timeline-icon">✓</div>
-                            <div class="timeline-title">First Week in Tel Aviv</div>
+                            <div class="timeline-title">First Week in {{CITY_NAME}}</div>
                         </div>
                         <div class="timeline-tasks">
                             <div class="task">
@@ -756,10 +756,10 @@
             <p class="section-subtitle">Based on cost of living, climate, and lifestyle</p>
             
             <div class="cities-grid">
-                <div class="city-card" onclick="window.location.href='/spain/barcelona/'">
-                    <img src="https://source.unsplash.com/600x400/?Barcelona,city" alt="Barcelona" class="city-image">
+                <div class="city-card" onclick="window.location.href='{{SIMILAR_CITY_1_URL}}'">
+                    <img src="https://source.unsplash.com/600x400/?{{SIMILAR_CITY_1}},city" alt="{{SIMILAR_CITY_1}}" class="city-image">
                     <div class="city-content">
-                        <h3 class="city-name">Barcelona</h3>
+                        <h3 class="city-name">{{SIMILAR_CITY_1}}</h3>
                         <p class="city-match">92% Match</p>
                         <div class="city-features">
                             <span class="feature-tag">Similar Cost</span>
@@ -769,10 +769,10 @@
                     </div>
                 </div>
 
-                <div class="city-card" onclick="window.location.href='/united-states/florida/miami/'">
-                    <img src="https://source.unsplash.com/600x400/?Miami,city" alt="Miami" class="city-image">
+                <div class="city-card" onclick="window.location.href='{{SIMILAR_CITY_2_URL}}'">
+                    <img src="https://source.unsplash.com/600x400/?{{SIMILAR_CITY_2}},city" alt="{{SIMILAR_CITY_2}}" class="city-image">
                     <div class="city-content">
-                        <h3 class="city-name">Miami</h3>
+                        <h3 class="city-name">{{SIMILAR_CITY_2}}</h3>
                         <p class="city-match">88% Match</p>
                         <div class="city-features">
                             <span class="feature-tag">Beach Life</span>
@@ -782,10 +782,10 @@
                     </div>
                 </div>
 
-                <div class="city-card" onclick="window.location.href='/portugal/lisbon/'">
-                    <img src="https://source.unsplash.com/600x400/?Lisbon,city" alt="Lisbon" class="city-image">
+                <div class="city-card" onclick="window.location.href='{{SIMILAR_CITY_3_URL}}'">
+                    <img src="https://source.unsplash.com/600x400/?{{SIMILAR_CITY_3}},city" alt="{{SIMILAR_CITY_3}}" class="city-image">
                     <div class="city-content">
-                        <h3 class="city-name">Lisbon</h3>
+                        <h3 class="city-name">{{SIMILAR_CITY_3}}</h3>
                         <p class="city-match">85% Match</p>
                         <div class="city-features">
                             <span class="feature-tag">Walkable</span>
@@ -816,7 +816,7 @@
 
             // Simplified tax calculation (would use real data in production)
             const currentTaxRate = 0.08; // Example: 8% state tax
-            const newTaxRate = 47 / 100;
+            const newTaxRate = {{TAX_RATE}} / 100;
             
             const currentTax = income * currentTaxRate;
             const newTax = income * newTaxRate;
@@ -827,7 +827,7 @@
             document.getElementById('savingsLabel').textContent = 
                 savings >= 0 ? 'Annual Tax Savings' : 'Additional Annual Tax';
             document.getElementById('savingsDetails').textContent = 
-                `Moving from ${currentCity} to Tel Aviv with $${income.toLocaleString()} income`;
+                `Moving from ${currentCity} to {{CITY_NAME}} with $${income.toLocaleString()} income`;
             document.getElementById('savingsResult').style.display = 'block';
         }
 
@@ -840,8 +840,8 @@
             // Save to localStorage
             const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
             const cityData = {
-                name: 'Tel Aviv',
-                country: 'Israel',
+                name: '{{CITY_NAME}}',
+                country: '{{COUNTRY}}',
                 url: window.location.href
             };
             
@@ -858,7 +858,7 @@
         // Check if already favorited
         window.addEventListener('DOMContentLoaded', () => {
             const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-            const isFavorite = favorites.some(f => f.name === 'Tel Aviv');
+            const isFavorite = favorites.some(f => f.name === '{{CITY_NAME}}');
             if (isFavorite) {
                 document.getElementById('favoriteBtn').classList.add('active');
                 document.getElementById('favoriteBtn').textContent = '♥';
