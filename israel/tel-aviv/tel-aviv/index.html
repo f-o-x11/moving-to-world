@@ -261,6 +261,24 @@
             color: var(--text-light);
         }
 
+        .listing-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .listing-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
         /* Airbnb Preview */
         .airbnb-preview {
             background: linear-gradient(135deg, #FF385C 0%, #E61E4D 100%);
@@ -486,6 +504,7 @@
                             <span class="feature-badge">75 m²</span>
                         </div>
                         <div class="listing-source">Florentin • Posted 5 days ago</div>
+                        <a href="{{LISTING_1_URL}}" target="_blank" class="listing-link">See Listing →</a>
                     </div>
                 </div>
 
@@ -500,6 +519,7 @@
                             <span class="feature-badge">90 m²</span>
                         </div>
                         <div class="listing-source">Neve Tzedek • Posted 2 days ago</div>
+                        <a href="{{LISTING_2_URL}}" target="_blank" class="listing-link">See Listing →</a>
                     </div>
                 </div>
 
@@ -514,6 +534,52 @@
                             <span class="feature-badge">55 m²</span>
                         </div>
                         <div class="listing-source">Rothschild • Posted 1 week ago</div>
+                        <a href="{{LISTING_3_URL}}" target="_blank" class="listing-link">See Listing →</a>
+                    </div>
+                </div>
+
+                <div class="listing-card">
+                    <img src="https://placehold.co/600x400/f59e0b/white?text=Spacious+Apartment" alt="Apartment" class="listing-image">
+                    <div class="listing-content">
+                        <div class="listing-price">{{LISTING_4_PRICE}}/mo</div>
+                        <div class="listing-details">{{LISTING_4_DETAILS}}</div>
+                        <div class="listing-features">
+                            <span class="feature-badge">{{LISTING_4_BEDS}} bed</span>
+                            <span class="feature-badge">{{LISTING_4_BATHS}} bath</span>
+                            <span class="feature-badge">{{LISTING_4_SIZE}} m²</span>
+                        </div>
+                        <div class="listing-source">{{LISTING_4_NEIGHBORHOOD}} • Posted {{LISTING_4_DATE}}</div>
+                        <a href="{{LISTING_4_URL}}" target="_blank" class="listing-link">See Listing →</a>
+                    </div>
+                </div>
+
+                <div class="listing-card">
+                    <img src="https://placehold.co/600x400/ec4899/white?text=Bright+Apartment" alt="Apartment" class="listing-image">
+                    <div class="listing-content">
+                        <div class="listing-price">{{LISTING_5_PRICE}}/mo</div>
+                        <div class="listing-details">{{LISTING_5_DETAILS}}</div>
+                        <div class="listing-features">
+                            <span class="feature-badge">{{LISTING_5_BEDS}} bed</span>
+                            <span class="feature-badge">{{LISTING_5_BATHS}} bath</span>
+                            <span class="feature-badge">{{LISTING_5_SIZE}} m²</span>
+                        </div>
+                        <div class="listing-source">{{LISTING_5_NEIGHBORHOOD}} • Posted {{LISTING_5_DATE}}</div>
+                        <a href="{{LISTING_5_URL}}" target="_blank" class="listing-link">See Listing →</a>
+                    </div>
+                </div>
+
+                <div class="listing-card">
+                    <img src="https://placehold.co/600x400/14b8a6/white?text=Stylish+Apartment" alt="Apartment" class="listing-image">
+                    <div class="listing-content">
+                        <div class="listing-price">{{LISTING_6_PRICE}}/mo</div>
+                        <div class="listing-details">{{LISTING_6_DETAILS}}</div>
+                        <div class="listing-features">
+                            <span class="feature-badge">{{LISTING_6_BEDS}} bed</span>
+                            <span class="feature-badge">{{LISTING_6_BATHS}} bath</span>
+                            <span class="feature-badge">{{LISTING_6_SIZE}} m²</span>
+                        </div>
+                        <div class="listing-source">{{LISTING_6_NEIGHBORHOOD}} • Posted {{LISTING_6_DATE}}</div>
+                        <a href="{{LISTING_6_URL}}" target="_blank" class="listing-link">See Listing →</a>
                     </div>
                 </div>
             </div>
