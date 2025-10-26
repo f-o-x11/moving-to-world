@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moving to Tel Aviv, Israel | Complete Relocation Guide</title>
-    <meta name="description" content="Everything you need to know about moving to Tel Aviv. Tax calculators, cost of living, neighborhoods, moving checklist, and personalized recommendations.">
+    <title>Moving to {{CITY_NAME}}, {{COUNTRY}} | Complete Relocation Guide</title>
+    <meta name="description" content="Everything you need to know about moving to {{CITY_NAME}}. Tax calculators, cost of living, neighborhoods, moving checklist, and personalized recommendations.">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * {
@@ -354,11 +354,11 @@
 <body>
     <!-- Hero Section -->
     <div class="hero">
-        <img src="https://source.unsplash.com/1600x900/?Tel Aviv,cityscape" alt="Tel Aviv" class="hero-image">
+        <img src="https://source.unsplash.com/1600x900/?{{CITY_NAME}},cityscape" alt="{{CITY_NAME}}" class="hero-image">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Moving to Tel Aviv</h1>
-            <p class="hero-subtitle">Israel • Your complete relocation guide</p>
+            <h1>Moving to {{CITY_NAME}}</h1>
+            <p class="hero-subtitle">{{COUNTRY}} • Your complete relocation guide</p>
             <div class="hero-actions">
                 <a href="#rentals" class="btn btn-primary">View Rentals</a>
                 <a href="#cost-of-living" class="btn btn-secondary">Cost of Living</a>
@@ -380,19 +380,19 @@
                     </h3>
                     <div class="cost-item">
                         <span class="cost-label">1BR City Center</span>
-                        <span class="cost-value">$1,800</span>
+                        <span class="cost-value">{{RENT_1BR_CENTER}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">1BR Outside Center</span>
-                        <span class="cost-value">$1,400</span>
+                        <span class="cost-value">{{RENT_1BR_OUTSIDE}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">3BR City Center</span>
-                        <span class="cost-value">$3,200</span>
+                        <span class="cost-value">{{RENT_3BR_CENTER}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">3BR Outside Center</span>
-                        <span class="cost-value">$2,400</span>
+                        <span class="cost-value">{{RENT_3BR_OUTSIDE}}</span>
                     </div>
                 </div>
 
@@ -403,19 +403,19 @@
                     </h3>
                     <div class="cost-item">
                         <span class="cost-label">Meal, Inexpensive Restaurant</span>
-                        <span class="cost-value">$18</span>
+                        <span class="cost-value">{{MEAL_CHEAP}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">Meal for 2, Mid-range</span>
-                        <span class="cost-value">$80</span>
+                        <span class="cost-value">{{MEAL_MID}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">Groceries (Monthly)</span>
-                        <span class="cost-value">$450</span>
+                        <span class="cost-value">{{GROCERIES}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">Coffee</span>
-                        <span class="cost-value">$4.50</span>
+                        <span class="cost-value">{{COFFEE}}</span>
                     </div>
                 </div>
 
@@ -426,19 +426,19 @@
                     </h3>
                     <div class="cost-item">
                         <span class="cost-label">Monthly Pass</span>
-                        <span class="cost-value">$65</span>
+                        <span class="cost-value">{{TRANSPORT_PASS}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">Single Ticket</span>
-                        <span class="cost-value">$1.80</span>
+                        <span class="cost-value">{{TRANSPORT_TICKET}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">Taxi (1km)</span>
-                        <span class="cost-value">$1.20</span>
+                        <span class="cost-value">{{TAXI_1KM}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">Gasoline (1L)</span>
-                        <span class="cost-value">$1.90</span>
+                        <span class="cost-value">{{GAS_PRICE}}</span>
                     </div>
                 </div>
 
@@ -449,19 +449,19 @@
                     </h3>
                     <div class="cost-item">
                         <span class="cost-label">Basic Utilities (85m²)</span>
-                        <span class="cost-value">$180</span>
+                        <span class="cost-value">{{UTILITIES}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">Internet</span>
-                        <span class="cost-value">$35</span>
+                        <span class="cost-value">{{INTERNET}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">Mobile Plan</span>
-                        <span class="cost-value">$25</span>
+                        <span class="cost-value">{{MOBILE}}</span>
                     </div>
                     <div class="cost-item">
                         <span class="cost-label">Gym Membership</span>
-                        <span class="cost-value">$70</span>
+                        <span class="cost-value">{{GYM}}</span>
                     </div>
                 </div>
             </div>
@@ -478,42 +478,42 @@
                 <div class="listing-card">
                     <img src="https://source.unsplash.com/600x400/?apartment,modern" alt="Apartment" class="listing-image">
                     <div class="listing-content">
-                        <div class="listing-price">$2,100/mo</div>
-                        <div class="listing-details">Modern 2BR in Florentin with balcony</div>
+                        <div class="listing-price">{{LISTING_1_PRICE}}/mo</div>
+                        <div class="listing-details">{{LISTING_1_DETAILS}}</div>
                         <div class="listing-features">
-                            <span class="feature-badge">2 bed</span>
-                            <span class="feature-badge">1 bath</span>
-                            <span class="feature-badge">75 m²</span>
+                            <span class="feature-badge">{{LISTING_1_BEDS}} bed</span>
+                            <span class="feature-badge">{{LISTING_1_BATHS}} bath</span>
+                            <span class="feature-badge">{{LISTING_1_SIZE}} m²</span>
                         </div>
-                        <div class="listing-source">Florentin • Posted 5 days ago</div>
+                        <div class="listing-source">{{LISTING_1_NEIGHBORHOOD}} • Posted {{LISTING_1_DATE}}</div>
                     </div>
                 </div>
 
                 <div class="listing-card">
                     <img src="https://source.unsplash.com/600x400/?apartment,luxury" alt="Apartment" class="listing-image">
                     <div class="listing-content">
-                        <div class="listing-price">$2,800/mo</div>
-                        <div class="listing-details">Luxury 2BR in Neve Tzedek, renovated</div>
+                        <div class="listing-price">{{LISTING_2_PRICE}}/mo</div>
+                        <div class="listing-details">{{LISTING_2_DETAILS}}</div>
                         <div class="listing-features">
-                            <span class="feature-badge">2 bed</span>
-                            <span class="feature-badge">2 bath</span>
-                            <span class="feature-badge">90 m²</span>
+                            <span class="feature-badge">{{LISTING_2_BEDS}} bed</span>
+                            <span class="feature-badge">{{LISTING_2_BATHS}} bath</span>
+                            <span class="feature-badge">{{LISTING_2_SIZE}} m²</span>
                         </div>
-                        <div class="listing-source">Neve Tzedek • Posted 2 days ago</div>
+                        <div class="listing-source">{{LISTING_2_NEIGHBORHOOD}} • Posted {{LISTING_2_DATE}}</div>
                     </div>
                 </div>
 
                 <div class="listing-card">
                     <img src="https://source.unsplash.com/600x400/?apartment,cozy" alt="Apartment" class="listing-image">
                     <div class="listing-content">
-                        <div class="listing-price">$1,600/mo</div>
-                        <div class="listing-details">Cozy 1BR near Rothschild Boulevard</div>
+                        <div class="listing-price">{{LISTING_3_PRICE}}/mo</div>
+                        <div class="listing-details">{{LISTING_3_DETAILS}}</div>
                         <div class="listing-features">
-                            <span class="feature-badge">1 bed</span>
-                            <span class="feature-badge">1 bath</span>
-                            <span class="feature-badge">55 m²</span>
+                            <span class="feature-badge">{{LISTING_3_BEDS}} bed</span>
+                            <span class="feature-badge">{{LISTING_3_BATHS}} bath</span>
+                            <span class="feature-badge">{{LISTING_3_SIZE}} m²</span>
                         </div>
-                        <div class="listing-source">Rothschild • Posted 1 week ago</div>
+                        <div class="listing-source">{{LISTING_3_NEIGHBORHOOD}} • Posted {{LISTING_3_DATE}}</div>
                     </div>
                 </div>
             </div>
@@ -523,32 +523,32 @@
     <!-- Airbnb Preview -->
     <div class="container">
         <div class="airbnb-preview">
-            <h2 class="airbnb-title">Short-term Stays in Tel Aviv</h2>
+            <h2 class="airbnb-title">Short-term Stays in {{CITY_NAME}}</h2>
             <p style="margin-bottom: 2rem; opacity: 0.9;">Preview of Airbnb options for your first month</p>
             
             <div class="airbnb-grid">
                 <div class="airbnb-card">
                     <div class="airbnb-card-title">Entire Apartment • City Center</div>
-                    <div class="airbnb-price">$180/night</div>
-                    <div class="airbnb-rating">⭐ 4.92 (127 reviews)</div>
-                    <p style="opacity: 0.9; font-size: 0.9rem;">2 bedrooms, 1.5 bathrooms. Walking distance to beach, restaurants, and nightlife. Fully equipped kitchen.</p>
-                    <a href="https://www.airbnb.com/s/Tel Aviv" target="_blank" class="airbnb-link">View on Airbnb</a>
+                    <div class="airbnb-price">${{AIRBNB_1_PRICE}}/night</div>
+                    <div class="airbnb-rating">⭐ {{AIRBNB_1_RATING}} ({{AIRBNB_1_REVIEWS}} reviews)</div>
+                    <p style="opacity: 0.9; font-size: 0.9rem;">{{AIRBNB_1_DESC}}</p>
+                    <a href="https://www.airbnb.com/s/{{CITY_NAME}}" target="_blank" class="airbnb-link">View on Airbnb</a>
                 </div>
 
                 <div class="airbnb-card">
                     <div class="airbnb-card-title">Modern Studio • Near Beach</div>
-                    <div class="airbnb-price">$145/night</div>
-                    <div class="airbnb-rating">⭐ 4.88 (93 reviews)</div>
-                    <p style="opacity: 0.9; font-size: 0.9rem;">Studio with ocean view. 5 min walk to beach. Perfect for solo travelers or couples. High-speed WiFi.</p>
-                    <a href="https://www.airbnb.com/s/Tel Aviv" target="_blank" class="airbnb-link">View on Airbnb</a>
+                    <div class="airbnb-price">${{AIRBNB_2_PRICE}}/night</div>
+                    <div class="airbnb-rating">⭐ {{AIRBNB_2_RATING}} ({{AIRBNB_2_REVIEWS}} reviews)</div>
+                    <p style="opacity: 0.9; font-size: 0.9rem;">{{AIRBNB_2_DESC}}</p>
+                    <a href="https://www.airbnb.com/s/{{CITY_NAME}}" target="_blank" class="airbnb-link">View on Airbnb</a>
                 </div>
 
                 <div class="airbnb-card">
                     <div class="airbnb-card-title">Cozy 2BR • Residential Area</div>
-                    <div class="airbnb-price">$220/night</div>
-                    <div class="airbnb-rating">⭐ 4.95 (156 reviews)</div>
-                    <p style="opacity: 0.9; font-size: 0.9rem;">2 bedrooms, 2 bathrooms in quiet residential area. Family-friendly with playground nearby. Parking included.</p>
-                    <a href="https://www.airbnb.com/s/Tel Aviv" target="_blank" class="airbnb-link">View on Airbnb</a>
+                    <div class="airbnb-price">${{AIRBNB_3_PRICE}}/night</div>
+                    <div class="airbnb-rating">⭐ {{AIRBNB_3_RATING}} ({{AIRBNB_3_REVIEWS}} reviews)</div>
+                    <p style="opacity: 0.9; font-size: 0.9rem;">{{AIRBNB_3_DESC}}</p>
+                    <a href="https://www.airbnb.com/s/{{CITY_NAME}}" target="_blank" class="airbnb-link">View on Airbnb</a>
                 </div>
             </div>
         </div>
@@ -557,7 +557,7 @@
     <!-- Map -->
     <div class="container">
         <div class="section">
-            <h2 class="section-title">Explore Tel Aviv</h2>
+            <h2 class="section-title">Explore {{CITY_NAME}}</h2>
             <p class="section-subtitle">Interactive map with neighborhoods and points of interest</p>
             <div id="map"></div>
         </div>
@@ -566,16 +566,16 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         // Initialize map
-        const map = L.map('map').setView([32.0853, 34.7818], 12);
+        const map = L.map('map').setView([{{LATITUDE}}, {{LONGITUDE}}], 12);
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
         // Add city marker
-        L.marker([32.0853, 34.7818])
+        L.marker([{{LATITUDE}}, {{LONGITUDE}}])
             .addTo(map)
-            .bindPopup('<b>Tel Aviv</b><br>Israel')
+            .bindPopup('<b>{{CITY_NAME}}</b><br>{{COUNTRY}}')
             .openPopup();
     </script>
 </body>
