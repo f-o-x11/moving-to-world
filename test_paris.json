@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Paris",
+    "state": "Ile De France",
+    "country": "France",
+    "url": "/france/ile-de-france/paris/index.html",
+    "latitude": 0,
+    "longitude": 0,
+    "population": 2102650,
+    "cost_index": 96,
+    "median_age": 48,
+    "unemployment_rate": 12.6,
+    "rent_1br_center": 1920,
+    "rent_1br_outside": 1344,
+    "rent_3br_center": 4224,
+    "rent_3br_outside": 2956,
+    "monthly_cost_single": 1824,
+    "monthly_cost_family": 5664
+  }
+]

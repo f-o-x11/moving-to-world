@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving to Ala Moana   Kakaako, Hawaii, United States - Complete Guide 2025</title>
+    <meta name="description" content="Complete guide to moving to Ala Moana   Kakaako. Find neighborhoods, average rent, cost of living, things to do, and everything you need to know before relocating.">
+    
+    <!-- Leaflet CSS for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* Map */
+        #map {
+            height: 400px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-item {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-item-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .info-item-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* Neighborhoods */
+        .neighborhoods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .neighborhood-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .neighborhood-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .neighborhood-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .neighborhood-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .neighborhood-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Photos Gallery */
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            background: var(--bg-light);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Rent Comparison */
+        .rent-bars {
+            margin-top: 1.5rem;
+        }
+
+        .rent-bar-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .rent-bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .rent-bar-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .rent-bar-value {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .rent-bar-track {
+            height: 8px;
+            background: var(--bg-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .rent-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+
+        /* Walk Score */
+        .walk-score-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .score-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
+        .score-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .score-label {
+            text-align: center;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Links Section */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .link-button:hover {
+            border-color: var(--primary-color);
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        .link-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .link-text {
+            font-weight: 600;
+        }
+
+        /* Sidebar */
+        .sidebar-card {
+            position: sticky;
+            top: 100px;
+        }
+
+        .quick-facts {
+            list-style: none;
+        }
+
+        .quick-fact {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quick-fact:last-child {
+            border-bottom: none;
+        }
+
+        .fact-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .fact-value {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* LLM-Optimized Version Link */
+        .llm-version-link {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .llm-version-link:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">Moving.to</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#neighborhoods">Neighborhoods</a></li>
+                    <li><a href="#cost">Cost of Living</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <a href="/">Home</a> / 
+                <a href="/united-states/">United States</a> / 
+                <a href="/united-states/hawaii/">Hawaii</a> / 
+                <span>Ala Moana   Kakaako</span>
+            </div>
+            <h1>Moving to Ala Moana   Kakaako</h1>
+            <p style="font-size: 1.25rem; opacity: 0.95;">Your complete guide to relocating to Ala Moana   Kakaako, Hawaii</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value">217K</span>
+                    <span class="stat-label">Population</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">$1,360</span>
+                    <span class="stat-label">Avg. Rent</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">65</span>
+                    <span class="stat-label">Walk Score</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="grid">
+            <!-- Main Column -->
+            <div class="main-content">
+                <!-- Map -->
+                <div class="card" id="overview">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h2 class="card-title">Location & Map</h2>
+                    </div>
+                    <div id="map"></div>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">
+                        <i class="fas fa-info-circle"></i> Interactive map showing Ala Moana   Kakaako and surrounding areas
+                    </p>
+                </div>
+
+                <!-- Overview -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h2 class="card-title">City Overview</h2>
+                    </div>
+                    <p style="line-height: 1.8; color: var(--text-dark);">
+                        Ala Moana   Kakaako is a vibrant city in Hawaii, United States. Known for its unique culture, 
+                        diverse neighborhoods, and quality of life, it attracts people from around the world looking to 
+                        relocate. Whether you're moving for work, education, or lifestyle, this guide will help you 
+                        understand everything you need to know about living in Ala Moana   Kakaako.
+                    </p>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-item-label">Climate</div>
+                            <div class="info-item-value">Temperate</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-label">Time Zone</div>
+                            <div class="info-item-value">Local Time</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-label">Language</div>
+                            <div class="info-item-value">Local Language</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-label">Currency</div>
+                            <div class="info-item-value">Local Currency</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Neighborhoods -->
+                <div class="card" id="neighborhoods">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h2 class="card-title">Popular Neighborhoods</h2>
+                    </div>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+                        Explore the best neighborhoods in Ala Moana   Kakaako to find your perfect home.
+                    </p>
+                    
+                    <div class="neighborhoods-grid">
+                        <div class="neighborhood-card">
+                            <div class="neighborhood-name">Downtown</div>
+                            <div class="neighborhood-description">
+                                The heart of the city with excellent walkability, restaurants, and entertainment.
+                            </div>
+                            <div class="neighborhood-tags">
+                                <span class="tag">Urban</span>
+                                <span class="tag">Walkable</span>
+                                <span class="tag">Nightlife</span>
+                            </div>
+                        </div>
+                        
+                        <div class="neighborhood-card">
+                            <div class="neighborhood-name">Suburbs</div>
+                            <div class="neighborhood-description">
+                                Family-friendly areas with good schools, parks, and quiet residential streets.
+                            </div>
+                            <div class="neighborhood-tags">
+                                <span class="tag">Family-Friendly</span>
+                                <span class="tag">Schools</span>
+                                <span class="tag">Parks</span>
+                            </div>
+                        </div>
+                        
+                        <div class="neighborhood-card">
+                            <div class="neighborhood-name">Historic District</div>
+                            <div class="neighborhood-description">
+                                Charming area with historic architecture, local boutiques, and cultural attractions.
+                            </div>
+                            <div class="neighborhood-tags">
+                                <span class="tag">Historic</span>
+                                <span class="tag">Culture</span>
+                                <span class="tag">Shopping</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost of Living -->
+                <div class="card" id="cost">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h2 class="card-title">Average Rent Prices</h2>
+                    </div>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+                        Typical monthly rent prices in Ala Moana   Kakaako by property type.
+                    </p>
+                    
+                    <div class="rent-bars">
+                        <div class="rent-bar-item">
+                            <div class="rent-bar-header">
+                                <span class="rent-bar-label">Studio Apartment</span>
+                                <span class="rent-bar-value">$1,200/mo</span>
+                            </div>
+                            <div class="rent-bar-track">
+                                <div class="rent-bar-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="rent-bar-item">
+                            <div class="rent-bar-header">
+                                <span class="rent-bar-label">1 Bedroom</span>
+                                <span class="rent-bar-value">$1,800/mo</span>
+                            </div>
+                            <div class="rent-bar-track">
+                                <div class="rent-bar-fill" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="rent-bar-item">
+                            <div class="rent-bar-header">
+                                <span class="rent-bar-label">2 Bedroom</span>
+                                <span class="rent-bar-value">$2,500/mo</span>
+                            </div>
+                            <div class="rent-bar-track">
+                                <div class="rent-bar-fill" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="rent-bar-item">
+                            <div class="rent-bar-header">
+                                <span class="rent-bar-label">3 Bedroom</span>
+                                <span class="rent-bar-value">$3,200/mo</span>
+                            </div>
+                            <div class="rent-bar-track">
+                                <div class="rent-bar-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Walk Score -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <h2 class="card-title">Walkability & Transportation</h2>
+                    </div>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+                        How easy is it to get around Ala Moana   Kakaako without a car?
+                    </p>
+                    
+                    <div class="walk-score-display">
+                        <div>
+                            <div class="score-circle">
+                                <svg width="120" height="120">
+                                    <circle cx="60" cy="60" r="54" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+                                    <circle cx="60" cy="60" r="54" fill="none" stroke="url(#gradient)" stroke-width="8" 
+                                            stroke-dasharray="339.3" stroke-dashoffset="67.9" 
+                                            transform="rotate(-90 60 60)" stroke-linecap="round"/>
+                                    <defs>
+                                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="score-value">65</div>
+                            </div>
+                            <div class="score-label">Walk Score</div>
+                        </div>
+                        
+                        <div style="flex: 1; max-width: 400px;">
+                            <h4 style="margin-bottom: 1rem;">Transportation Options</h4>
+                            <ul style="list-style: none; color: var(--text-dark);">
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-subway" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Public Transit</li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-bicycle" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Bike Lanes</li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-car" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Car-Friendly</li>
+                                <li style="padding: 0.5rem 0;"><i class="fas fa-plane" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Airport Access</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photos -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <h2 class="card-title">City Photos</h2>
+                    </div>
+                    <div class="photos-grid">
+                        <div class="photo-item">
+                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400" alt="Ala Moana   Kakaako skyline">
+                        </div>
+                        <div class="photo-item">
+                            <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400" alt="Ala Moana   Kakaako street">
+                        </div>
+                        <div class="photo-item">
+                            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400" alt="Ala Moana   Kakaako architecture">
+                        </div>
+                        <div class="photo-item">
+                            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=400" alt="Ala Moana   Kakaako park">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Useful Links -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h2 class="card-title">Useful Resources</h2>
+                    </div>
+                    <div class="links-grid">
+                        <a href="https://www.airbnb.com/s/Ala Moana   Kakaako--Hawaii--United States" target="_blank" class="link-button">
+                            <i class="fab fa-airbnb link-icon"></i>
+                            <span class="link-text">Find on Airbnb</span>
+                        </a>
+                        <a href="https://www.zillow.com/Ala Moana   Kakaako-Hawaii/" target="_blank" class="link-button">
+                            <i class="fas fa-home link-icon"></i>
+                            <span class="link-text">Browse Homes</span>
+                        </a>
+                        <a href="https://www.indeed.com/jobs?q=&l=Ala Moana   Kakaako" target="_blank" class="link-button">
+                            <i class="fas fa-briefcase link-icon"></i>
+                            <span class="link-text">Find Jobs</span>
+                        </a>
+                        <a href="https://www.tripadvisor.com/Search?q=Ala Moana   Kakaako" target="_blank" class="link-button">
+                            <i class="fas fa-map-signs link-icon"></i>
+                            <span class="link-text">Things to Do</span>
+                        </a>
+                        <a href="https://www.numbeo.com/cost-of-living/in/Ala Moana   Kakaako" target="_blank" class="link-button">
+                            <i class="fas fa-calculator link-icon"></i>
+                            <span class="link-text">Cost Calculator</span>
+                        </a>
+                        <a href="https://www.google.com/maps/place/Ala Moana   Kakaako" target="_blank" class="link-button">
+                            <i class="fas fa-map link-icon"></i>
+                            <span class="link-text">Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside>
+                <div class="card sidebar-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-list-ul"></i>
+                        </div>
+                        <h3 class="card-title">Quick Facts</h3>
+                    </div>
+                    <ul class="quick-facts">
+                        <li class="quick-fact">
+                            <span class="fact-label">Country</span>
+                            <span class="fact-value">United States</span>
+                        </li>
+                        <li class="quick-fact">
+                            <span class="fact-label">State/Region</span>
+                            <span class="fact-value">Hawaii</span>
+                        </li>
+                        <li class="quick-fact">
+                            <span class="fact-label">Population</span>
+                            <span class="fact-value">217K</span>
+                        </li>
+                        <li class="quick-fact">
+                            <span class="fact-label">Area</span>
+                            <span class="fact-value">N/A</span>
+                        </li>
+                        <li class="quick-fact">
+                            <span class="fact-label">Founded</span>
+                            <span class="fact-value">Historic</span>
+                        </li>
+                    </ul>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="https://www.airbnb.com/s/Ala Moana   Kakaako--Hawaii--United States" target="_blank" class="cta-button" style="display: block;">
+                            <i class="fab fa-airbnb"></i> Find Accommodations
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- LLM Version Link -->
+    <a href="./llm.html" class="llm-version-link">
+        <i class="fas fa-robot"></i>
+        LLM-Optimized Version
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Moving.to - Your Complete Relocation Guide</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">Information updated regularly. Always verify details with official sources.</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Initialize map
+        const map = L.map('map').setView([0, 0], 12);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+        
+        // Add marker
+        L.marker([0, 0])
+            .addTo(map)
+            .bindPopup('<b>Ala Moana   Kakaako</b><br>Hawaii, United States')
+            .openPopup();
+    </script>
+</body>
+</html>
+
