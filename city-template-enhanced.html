@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moving to London, England, United Kingdom - Complete Guide 2025</title>
-    <meta name="description" content="Complete guide to moving to London. Find neighborhoods, average rent, cost of living, things to do, and everything you need to know before relocating.">
+    <title>Moving to {{CITY_NAME}}, {{STATE_NAME}}, {{COUNTRY_NAME}} - Complete Guide 2025</title>
+    <meta name="description" content="Complete guide to moving to {{CITY_NAME}}. Find neighborhoods, average rent, cost of living, things to do, and everything you need to know before relocating.">
     
     <!-- Leaflet CSS for maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -544,24 +544,24 @@
         <div class="hero-content">
             <div class="breadcrumb">
                 <a href="/">Home</a> / 
-                <a href="/united-kingdom/">United Kingdom</a> / 
-                <a href="/united-kingdom/england/">England</a> / 
-                <span>London</span>
+                <a href="/{{COUNTRY_SLUG}}/">{{COUNTRY_NAME}}</a> / 
+                <a href="/{{COUNTRY_SLUG}}/{{STATE_SLUG}}/">{{STATE_NAME}}</a> / 
+                <span>{{CITY_NAME}}</span>
             </div>
-            <h1>Moving to London</h1>
-            <p style="font-size: 1.25rem; opacity: 0.95;">Your complete guide to relocating to London, England</p>
+            <h1>Moving to {{CITY_NAME}}</h1>
+            <p style="font-size: 1.25rem; opacity: 0.95;">Your complete guide to relocating to {{CITY_NAME}}, {{STATE_NAME}}</p>
             
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-value">9.0M</span>
+                    <span class="stat-value">{{POPULATION}}</span>
                     <span class="stat-label">Population</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">£2,200</span>
+                    <span class="stat-value">{{AVG_RENT}}</span>
                     <span class="stat-label">Avg. Rent</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">88</span>
+                    <span class="stat-value">{{WALK_SCORE}}</span>
                     <span class="stat-label">Walk Score</span>
                 </div>
             </div>
@@ -583,7 +583,7 @@
                     </div>
                     <div id="map"></div>
                     <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">
-                        <i class="fas fa-info-circle"></i> Interactive map showing London and surrounding areas
+                        <i class="fas fa-info-circle"></i> Interactive map showing {{CITY_NAME}} and surrounding areas
                     </p>
                 </div>
 
@@ -596,28 +596,28 @@
                         <h2 class="card-title">City Overview</h2>
                     </div>
                     <p style="line-height: 1.8; color: var(--text-dark);">
-                        London is a vibrant city in England, United Kingdom. Known for its unique culture, 
+                        {{CITY_NAME}} is a vibrant city in {{STATE_NAME}}, {{COUNTRY_NAME}}. Known for its unique culture, 
                         diverse neighborhoods, and quality of life, it attracts people from around the world looking to 
                         relocate. Whether you're moving for work, education, or lifestyle, this guide will help you 
-                        understand everything you need to know about living in London.
+                        understand everything you need to know about living in {{CITY_NAME}}.
                     </p>
                     
                     <div class="info-grid">
                         <div class="info-item">
                             <div class="info-item-label">Climate</div>
-                            <div class="info-item-value">Temperate</div>
+                            <div class="info-item-value">{{CLIMATE}}</div>
                         </div>
                         <div class="info-item">
                             <div class="info-item-label">Time Zone</div>
-                            <div class="info-item-value">GMT (UTC+0)</div>
+                            <div class="info-item-value">{{TIMEZONE}}</div>
                         </div>
                         <div class="info-item">
                             <div class="info-item-label">Language</div>
-                            <div class="info-item-value">English</div>
+                            <div class="info-item-value">{{LANGUAGE}}</div>
                         </div>
                         <div class="info-item">
                             <div class="info-item-label">Currency</div>
-                            <div class="info-item-value">GBP (£)</div>
+                            <div class="info-item-value">{{CURRENCY}}</div>
                         </div>
                     </div>
                 </div>
@@ -631,7 +631,7 @@
                         <h2 class="card-title">Popular Neighborhoods</h2>
                     </div>
                     <p style="margin-bottom: 1.5rem; color: var(--text-light);">
-                        Explore the best neighborhoods in London to find your perfect home.
+                        Explore the best neighborhoods in {{CITY_NAME}} to find your perfect home.
                     </p>
                     
                     <div class="neighborhoods-grid">
@@ -682,7 +682,7 @@
                         <h2 class="card-title">Average Rent Prices</h2>
                     </div>
                     <p style="margin-bottom: 1.5rem; color: var(--text-light);">
-                        Typical monthly rent prices in London by property type.
+                        Typical monthly rent prices in {{CITY_NAME}} by property type.
                     </p>
                     
                     <div class="rent-bars">
@@ -737,7 +737,7 @@
                         <h2 class="card-title">Walkability & Transportation</h2>
                     </div>
                     <p style="margin-bottom: 1.5rem; color: var(--text-light);">
-                        How easy is it to get around London without a car?
+                        How easy is it to get around {{CITY_NAME}} without a car?
                     </p>
                     
                     <div class="walk-score-display">
@@ -755,7 +755,7 @@
                                         </linearGradient>
                                     </defs>
                                 </svg>
-                                <div class="score-value">88</div>
+                                <div class="score-value">{{WALK_SCORE}}</div>
                             </div>
                             <div class="score-label">Walk Score</div>
                         </div>
@@ -782,16 +782,16 @@
                     </div>
                     <div class="photos-grid">
                         <div class="photo-item">
-                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400" alt="London skyline">
+                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400" alt="{{CITY_NAME}} skyline">
                         </div>
                         <div class="photo-item">
-                            <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400" alt="London street">
+                            <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400" alt="{{CITY_NAME}} street">
                         </div>
                         <div class="photo-item">
-                            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400" alt="London architecture">
+                            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400" alt="{{CITY_NAME}} architecture">
                         </div>
                         <div class="photo-item">
-                            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=400" alt="London park">
+                            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=400" alt="{{CITY_NAME}} park">
                         </div>
                     </div>
                 </div>
@@ -805,27 +805,27 @@
                         <h2 class="card-title">Useful Resources</h2>
                     </div>
                     <div class="links-grid">
-                        <a href="https://www.airbnb.com/s/London--England--United Kingdom" target="_blank" class="link-button">
+                        <a href="https://www.airbnb.com/s/{{CITY_NAME}}--{{STATE_NAME}}--{{COUNTRY_NAME}}" target="_blank" class="link-button">
                             <i class="fab fa-airbnb link-icon"></i>
                             <span class="link-text">Find on Airbnb</span>
                         </a>
-                        <a href="https://www.zillow.com/London-England/" target="_blank" class="link-button">
+                        <a href="https://www.zillow.com/{{CITY_NAME}}-{{STATE_NAME}}/" target="_blank" class="link-button">
                             <i class="fas fa-home link-icon"></i>
                             <span class="link-text">Browse Homes</span>
                         </a>
-                        <a href="https://www.indeed.com/jobs?q=&l=London" target="_blank" class="link-button">
+                        <a href="https://www.indeed.com/jobs?q=&l={{CITY_NAME}}" target="_blank" class="link-button">
                             <i class="fas fa-briefcase link-icon"></i>
                             <span class="link-text">Find Jobs</span>
                         </a>
-                        <a href="https://www.tripadvisor.com/Search?q=London" target="_blank" class="link-button">
+                        <a href="https://www.tripadvisor.com/Search?q={{CITY_NAME}}" target="_blank" class="link-button">
                             <i class="fas fa-map-signs link-icon"></i>
                             <span class="link-text">Things to Do</span>
                         </a>
-                        <a href="https://www.numbeo.com/cost-of-living/in/London" target="_blank" class="link-button">
+                        <a href="https://www.numbeo.com/cost-of-living/in/{{CITY_NAME}}" target="_blank" class="link-button">
                             <i class="fas fa-calculator link-icon"></i>
                             <span class="link-text">Cost Calculator</span>
                         </a>
-                        <a href="https://www.google.com/maps/place/London" target="_blank" class="link-button">
+                        <a href="https://www.google.com/maps/place/{{CITY_NAME}}" target="_blank" class="link-button">
                             <i class="fas fa-map link-icon"></i>
                             <span class="link-text">Google Maps</span>
                         </a>
@@ -845,28 +845,28 @@
                     <ul class="quick-facts">
                         <li class="quick-fact">
                             <span class="fact-label">Country</span>
-                            <span class="fact-value">United Kingdom</span>
+                            <span class="fact-value">{{COUNTRY_NAME}}</span>
                         </li>
                         <li class="quick-fact">
                             <span class="fact-label">State/Region</span>
-                            <span class="fact-value">England</span>
+                            <span class="fact-value">{{STATE_NAME}}</span>
                         </li>
                         <li class="quick-fact">
                             <span class="fact-label">Population</span>
-                            <span class="fact-value">9.0M</span>
+                            <span class="fact-value">{{POPULATION}}</span>
                         </li>
                         <li class="quick-fact">
                             <span class="fact-label">Area</span>
-                            <span class="fact-value">607 sq mi</span>
+                            <span class="fact-value">{{AREA}}</span>
                         </li>
                         <li class="quick-fact">
                             <span class="fact-label">Founded</span>
-                            <span class="fact-value">43 AD</span>
+                            <span class="fact-value">{{FOUNDED}}</span>
                         </li>
                     </ul>
                     
                     <div style="margin-top: 2rem;">
-                        <a href="https://www.airbnb.com/s/London--England--United Kingdom" target="_blank" class="cta-button" style="display: block;">
+                        <a href="https://www.airbnb.com/s/{{CITY_NAME}}--{{STATE_NAME}}--{{COUNTRY_NAME}}" target="_blank" class="cta-button" style="display: block;">
                             <i class="fab fa-airbnb"></i> Find Accommodations
                         </a>
                     </div>
@@ -892,7 +892,7 @@
     
     <script>
         // Initialize map
-        const map = L.map('map').setView([51.5074, -0.1278], 12);
+        const map = L.map('map').setView([{{LATITUDE}}, {{LONGITUDE}}], 12);
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors',
@@ -900,9 +900,9 @@
         }).addTo(map);
         
         // Add marker
-        L.marker([51.5074, -0.1278])
+        L.marker([{{LATITUDE}}, {{LONGITUDE}}])
             .addTo(map)
-            .bindPopup('<b>London</b><br>England, United Kingdom')
+            .bindPopup('<b>{{CITY_NAME}}</b><br>{{STATE_NAME}}, {{COUNTRY_NAME}}')
             .openPopup();
     </script>
 </body>
