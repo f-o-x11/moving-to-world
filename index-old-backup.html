@@ -4,476 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moving.to - Your Complete Guide to Moving Anywhere in the World</title>
-    <meta name="description" content="Discover your next home from 32,496 cities worldwide. Get tax calculators, moving checklists, cost comparisons, and personalized recommendations.">
+    <meta name="description" content="Comprehensive moving guides for 32,496 cities worldwide. Find housing, jobs, cost of living, and everything you need to relocate successfully.">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --success: #10b981;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --bg: #ffffff;
-            --bg-light: #f9fafb;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .header {
-            padding: 2rem;
-            text-align: center;
-            color: white;
-        }
-
-        .logo {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .tagline {
-            font-size: 1.3rem;
-            opacity: 0.95;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 4rem;
-        }
-
-        .search-section {
-            background: white;
-            border-radius: 24px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .search-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .search-box {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1.2rem 3.5rem 1.2rem 1.5rem;
-            font-size: 1.1rem;
-            border: 3px solid var(--primary);
-            border-radius: 16px;
-            outline: none;
-            transition: all 0.3s;
-        }
-
-        .search-input:focus {
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .autocomplete {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-height: 400px;
-            overflow-y: auto;
-            margin-top: 0.5rem;
-            display: none;
-            z-index: 1000;
-        }
-
-        .autocomplete-item {
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            border-bottom: 1px solid var(--bg-light);
-            transition: background 0.2s;
-        }
-
-        .autocomplete-item:hover {
-            background: var(--bg-light);
-        }
-
-        .autocomplete-item:last-child {
-            border-bottom: none;
-        }
-
-        .city-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .city-location {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .quick-tools {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .tool-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .tool-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tool-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .tool-description {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        .favorites-section {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 2rem;
-            display: none;
-        }
-
-        .favorites-section.has-favorites {
-            display: block;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .favorites-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .favorite-item {
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .favorite-info {
-            flex: 1;
-        }
-
-        .favorite-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .favorite-country {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .remove-favorite {
-            background: var(--danger);
-            color: white;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .stat-value {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-
-            .tagline {
-                font-size: 1.1rem;
-            }
-
-            .search-section {
-                padding: 2rem 1.5rem;
-            }
-
-            .search-title {
-                font-size: 1.5rem;
-            }
-
-            .tool-card {
-                padding: 1.5rem;
-            }
-
-            .stat-value {
-                font-size: 2.5rem;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; text-align: center; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 700; }
+        .hero p { font-size: 1.3rem; margin-bottom: 40px; opacity: 0.95; }
+        .search-container { max-width: 700px; width: 100%; position: relative; margin: 0 auto; }
+        .search-box { width: 100%; padding: 20px 25px; font-size: 1.1rem; border: none; border-radius: 50px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); outline: none; }
+        .search-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); max-height: 400px; overflow-y: auto; margin-top: 10px; display: none; z-index: 1000; }
+        .search-results.active { display: block; }
+        .search-result-item { padding: 15px 25px; cursor: pointer; border-bottom: 1px solid #f0f0f0; transition: background 0.2s; color: #333; text-decoration: none; display: block; }
+        .search-result-item:hover { background: #f8f9fa; }
+        .result-name { font-weight: 600; font-size: 1.1rem; color: #667eea; }
+        .result-path { font-size: 0.9rem; color: #666; margin-top: 3px; }
+        .stats { background: #f8f9fa; padding: 60px 20px; text-align: center; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .stat-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: #667eea; margin-bottom: 10px; }
+        .stat-label { color: #666; font-size: 1rem; }
+        .features { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .features h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .feature-card { text-align: center; padding: 30px; }
+        .feature-icon { font-size: 3rem; margin-bottom: 20px; }
+        .feature-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .feature-card p { color: #666; line-height: 1.8; }
+        footer { background: #2d3748; color: white; padding: 40px 20px; text-align: center; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .search-box { font-size: 1rem; padding: 15px 20px; } }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">🌍 Moving.to</div>
-        <p class="tagline">Your Complete Guide to Moving Anywhere in the World</p>
-    </div>
-
-    <div class="container">
-        <!-- Search Section -->
-        <div class="search-section">
-            <h2 class="search-title">Where do you want to move?</h2>
-            <div class="search-box">
-                <input 
-                    type="text" 
-                    class="search-input" 
-                    id="citySearch" 
-                    placeholder="Search 32,496 cities worldwide... (e.g., Tel Aviv, Barcelona, Miami)"
-                    autocomplete="off"
-                >
-                <span class="search-icon">🔍</span>
-                <div class="autocomplete" id="autocomplete"></div>
-            </div>
-        </div>
-
-        <!-- Favorites Section -->
-        <div class="favorites-section" id="favoritesSection">
-            <h2 class="section-title">❤️ Your Favorites</h2>
-            <div class="favorites-grid" id="favoritesGrid"></div>
-        </div>
-
-        <!-- Quick Tools -->
-        <div class="quick-tools">
-            <div class="tool-card" onclick="scrollToSearch()">
-                <div class="tool-icon">🔍</div>
-                <h3 class="tool-title">Find Your City</h3>
-                <p class="tool-description">Search through 32,496 cities across 195+ countries to find your perfect destination</p>
-            </div>
-
-            <div class="tool-card" onclick="window.location.href='/compare.html'">
-                <div class="tool-icon">⚖️</div>
-                <h3 class="tool-title">Compare Cities</h3>
-                <p class="tool-description">Side-by-side comparison of cost of living, taxes, climate, and quality of life</p>
-            </div>
-
-            <div class="tool-card" onclick="window.location.href='/tax-calculator.html'">
-                <div class="tool-icon">💰</div>
-                <h3 class="tool-title">Tax Calculator</h3>
-                <p class="tool-description">Calculate your tax savings when moving between cities and states</p>
-            </div>
-
-            <div class="tool-card" onclick="window.location.href='/checklist.html'">
-                <div class="tool-icon">✅</div>
-                <h3 class="tool-title">Moving Checklist</h3>
-                <p class="tool-description">Personalized timeline and tasks to organize your international move</p>
-            </div>
-
-            <div class="tool-card" onclick="window.location.href='/visa-guide.html'">
-                <div class="tool-icon">📋</div>
-                <h3 class="tool-title">Visa Guide</h3>
-                <p class="tool-description">Comprehensive visa requirements and immigration procedures for every country</p>
-            </div>
-
-            <div class="tool-card" onclick="window.location.href='/cost-of-living.html'">
-                <div class="tool-icon">💵</div>
-                <h3 class="tool-title">Cost of Living</h3>
-                <p class="tool-description">Detailed breakdowns of housing, food, transportation, and utilities costs</p>
-            </div>
-        </div>
-
-        <!-- Stats -->
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-value">32,496</div>
-                <div class="stat-label">Cities Covered</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">195+</div>
-                <div class="stat-label">Countries</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">100%</div>
-                <div class="stat-label">Free Resources</div>
-            </div>
+    <div class="hero">
+        <h1>Your Complete Guide to Moving Anywhere in the World</h1>
+        <p>Discover housing, jobs, cost of living, and everything you need for your next move</p>
+        <div class="search-container">
+            <input type="text" class="search-box" id="citySearch" placeholder="Search for any city... (e.g., Los Angeles, Tokyo, Netanya)" autocomplete="off">
+            <div class="search-results" id="searchResults"></div>
         </div>
     </div>
-
-    <script src="/locations.json"></script>
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-number">32,496</div><div class="stat-label">Cities Covered</div></div>
+            <div class="stat-card"><div class="stat-number">195+</div><div class="stat-label">Countries</div></div>
+            <div class="stat-card"><div class="stat-number">12</div><div class="stat-label">Information Categories</div></div>
+            <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Free to Use</div></div>
+        </div>
+    </div>
+    <div class="features">
+        <h2>Everything You Need to Know</h2>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-icon">🏠</div><h3>Housing & Rentals</h3><p>Find apartments, rental prices, neighborhoods, and housing market insights for every city.</p></div>
+            <div class="feature-card"><div class="feature-icon">💼</div><h3>Jobs & Employment</h3><p>Explore job markets, top industries, major employers, and salary expectations.</p></div>
+            <div class="feature-card"><div class="feature-icon">💰</div><h3>Cost of Living</h3><p>Compare housing, food, transportation, and utility costs to plan your budget.</p></div>
+            <div class="feature-card"><div class="feature-icon">🍽️</div><h3>Dining & Entertainment</h3><p>Discover restaurants, nightlife, cultural attractions, and recreational activities.</p></div>
+            <div class="feature-card"><div class="feature-icon">🏥</div><h3>Healthcare & Education</h3><p>Learn about hospitals, medical facilities, schools, and universities.</p></div>
+            <div class="feature-card"><div class="feature-icon">🚗</div><h3>Transportation & Climate</h3><p>Get walkability scores, transit options, commute times, and weather information.</p></div>
+        </div>
+    </div>
+    <footer><p>&copy; 2025 Moving.to - Your Complete Relocation Guide</p></footer>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
     <script>
-        const searchInput = document.getElementById('citySearch');
-        const autocomplete = document.getElementById('autocomplete');
-        let locations = [];
-
-        // Load locations data
-        fetch('/locations.json')
-            .then(response => response.json())
-            .then(data => {
-                locations = data;
-            });
-
-        // Search functionality
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            
-            if (query.length < 2) {
-                autocomplete.style.display = 'none';
-                return;
-            }
-
-            const results = locations
-                .filter(loc => loc.name.toLowerCase().includes(query))
-                .slice(0, 10);
-
-            if (results.length === 0) {
-                autocomplete.style.display = 'none';
-                return;
-            }
-
-            autocomplete.innerHTML = results.map(result => `
-                <div class="autocomplete-item" onclick="navigateToCity('${result.url}')">
-                    <div class="city-name">${result.name}</div>
-                    <div class="city-location">${result.path}</div>
-                </div>
-            `).join('');
-
-            autocomplete.style.display = 'block';
+        let fuse = null;
+        const searchBox = document.getElementById('citySearch');
+        const searchResults = document.getElementById('searchResults');
+        fetch('/locations.json').then(r => r.json()).then(data => {
+            fuse = new Fuse(data, { keys: ['name', 'state', 'country'], threshold: 0.3, distance: 100, minMatchCharLength: 2, includeScore: true });
         });
-
-        // Close autocomplete when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.search-box')) {
-                autocomplete.style.display = 'none';
-            }
+        searchBox.addEventListener('input', function() {
+            const query = this.value.trim();
+            if (query.length < 2) { searchResults.classList.remove('active'); return; }
+            if (!fuse) { searchResults.innerHTML = '<div style="padding:20px;text-align:center;color:#666;">Loading...</div>'; searchResults.classList.add('active'); return; }
+            const results = fuse.search(query, { limit: 10 });
+            if (results.length === 0) { searchResults.innerHTML = '<div style="padding:20px;text-align:center;color:#666;">No cities found</div>'; searchResults.classList.add('active'); return; }
+            searchResults.innerHTML = results.map(r => {
+                const c = r.item;
+                const path = [c.name, c.state, c.country].filter(Boolean).join(', ');
+                return `<a href="${c.url}" class="search-result-item"><div class="result-name">${c.name}</div><div class="result-path">${path}</div></a>`;
+            }).join('');
+            searchResults.classList.add('active');
         });
-
-        function navigateToCity(url) {
-            window.location.href = url;
-        }
-
-        function scrollToSearch() {
-            searchInput.focus();
-        }
-
-        // Load and display favorites
-        function loadFavorites() {
-            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-            const favoritesSection = document.getElementById('favoritesSection');
-            const favoritesGrid = document.getElementById('favoritesGrid');
-
-            if (favorites.length === 0) {
-                favoritesSection.classList.remove('has-favorites');
-                return;
-            }
-
-            favoritesSection.classList.add('has-favorites');
-            favoritesGrid.innerHTML = favorites.map((fav, index) => `
-                <div class="favorite-item">
-                    <div class="favorite-info" onclick="window.location.href='${fav.url}'">
-                        <div class="favorite-name">${fav.name}</div>
-                        <div class="favorite-country">${fav.country}</div>
-                    </div>
-                    <button class="remove-favorite" onclick="removeFavorite(${index})">×</button>
-                </div>
-            `).join('');
-        }
-
-        function removeFavorite(index) {
-            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-            favorites.splice(index, 1);
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            loadFavorites();
-        }
-
-        // Load favorites on page load
-        window.addEventListener('DOMContentLoaded', loadFavorites);
+        document.addEventListener('click', e => { if (!searchBox.contains(e.target) && !searchResults.contains(e.target)) searchResults.classList.remove('active'); });
+        searchBox.addEventListener('keydown', e => { if (e.key === 'Escape') { searchResults.classList.remove('active'); searchBox.blur(); } });
     </script>
 </body>
 </html>
-
