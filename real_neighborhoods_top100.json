@@ -1,0 +1,103 @@
+{
+  "Tel Aviv": {
+    "country": "Israel",
+    "neighborhoods": [
+      {"name": "Florentin", "description": "Trendy arts district with street art, cafes, and nightlife", "tags": ["Artsy", "Nightlife", "Young"]},
+      {"name": "Kerem Hateimanim", "description": "Historic Yemenite quarter with authentic restaurants", "tags": ["Historic", "Food", "Cultural"]},
+      {"name": "Neve Tzedek", "description": "Upscale neighborhood with boutiques and galleries", "tags": ["Upscale", "Shopping", "Quiet"]},
+      {"name": "Tel Aviv Port", "description": "Waterfront area with restaurants and entertainment", "tags": ["Waterfront", "Dining", "Recreation"]},
+      {"name": "Rothschild Boulevard", "description": "Tree-lined street with Bauhaus architecture and cafes", "tags": ["Central", "Historic", "Walkable"]}
+    ]
+  },
+  "Paris": {
+    "country": "France",
+    "neighborhoods": [
+      {"name": "Le Marais", "description": "Historic district with medieval streets, galleries, and Jewish quarter", "tags": ["Historic", "Cultural", "Shopping"]},
+      {"name": "Saint-Germain-des-Prés", "description": "Intellectual hub with cafes, bookshops, and art galleries", "tags": ["Cultural", "Upscale", "Literary"]},
+      {"name": "Montmartre", "description": "Hilltop village with Sacré-Cœur and artistic heritage", "tags": ["Artsy", "Touristy", "Views"]},
+      {"name": "Latin Quarter", "description": "Student area with Sorbonne University and bookshops", "tags": ["Student", "Historic", "Lively"]},
+      {"name": "Canal Saint-Martin", "description": "Trendy waterfront with cafes and boutiques", "tags": ["Trendy", "Waterfront", "Young"]}
+    ]
+  },
+  "Tokyo": {
+    "country": "Japan",
+    "neighborhoods": [
+      {"name": "Shibuya", "description": "Youth culture hub with famous crossing and shopping", "tags": ["Shopping", "Nightlife", "Bustling"]},
+      {"name": "Shinjuku", "description": "Business district with skyscrapers and entertainment", "tags": ["Business", "Nightlife", "Central"]},
+      {"name": "Harajuku", "description": "Fashion district known for youth culture and Takeshita Street", "tags": ["Fashion", "Young", "Trendy"]},
+      {"name": "Ginza", "description": "Upscale shopping district with luxury brands", "tags": ["Upscale", "Shopping", "Dining"]},
+      {"name": "Asakusa", "description": "Traditional area with Sensō-ji temple", "tags": ["Traditional", "Cultural", "Touristy"]}
+    ]
+  },
+  "London": {
+    "country": "United Kingdom",
+    "neighborhoods": [
+      {"name": "Shoreditch", "description": "Creative hub with street art, tech startups, and nightlife", "tags": ["Artsy", "Tech", "Nightlife"]},
+      {"name": "Camden", "description": "Alternative culture with markets and live music", "tags": ["Alternative", "Markets", "Music"]},
+      {"name": "Notting Hill", "description": "Colorful area with Portobello Market and Victorian houses", "tags": ["Upscale", "Markets", "Residential"]},
+      {"name": "Soho", "description": "Entertainment district with theaters, restaurants, and nightlife", "tags": ["Entertainment", "Dining", "Central"]},
+      {"name": "Greenwich", "description": "Historic maritime area with parks and observatory", "tags": ["Historic", "Parks", "Waterfront"]}
+    ]
+  },
+  "New York": {
+    "country": "United States",
+    "neighborhoods": [
+      {"name": "Williamsburg", "description": "Brooklyn's hipster haven with art galleries and cafes", "tags": ["Hipster", "Artsy", "Trendy"]},
+      {"name": "Greenwich Village", "description": "Historic bohemian neighborhood with jazz clubs", "tags": ["Historic", "Cultural", "Nightlife"]},
+      {"name": "Upper East Side", "description": "Affluent area with museums and Central Park access", "tags": ["Upscale", "Museums", "Residential"]},
+      {"name": "Harlem", "description": "Historic African American neighborhood with soul food and jazz", "tags": ["Historic", "Cultural", "Music"]},
+      {"name": "DUMBO", "description": "Waterfront area with cobblestone streets and tech companies", "tags": ["Waterfront", "Tech", "Trendy"]}
+    ]
+  },
+  "Mumbai": {
+    "country": "India",
+    "neighborhoods": [
+      {"name": "Bandra", "description": "Upscale suburb with Bollywood celebrities and cafes", "tags": ["Upscale", "Entertainment", "Coastal"]},
+      {"name": "Colaba", "description": "Historic area with Gateway of India and colonial architecture", "tags": ["Historic", "Touristy", "Waterfront"]},
+      {"name": "Andheri", "description": "Suburban hub with film studios and business centers", "tags": ["Business", "Entertainment", "Residential"]},
+      {"name": "Juhu", "description": "Beach area popular with celebrities and tourists", "tags": ["Beach", "Upscale", "Recreation"]},
+      {"name": "Fort", "description": "Business district with historic buildings and markets", "tags": ["Business", "Historic", "Central"]}
+    ]
+  },
+  "Dubai": {
+    "country": "United Arab Emirates",
+    "neighborhoods": [
+      {"name": "Downtown Dubai", "description": "Modern area with Burj Khalifa and Dubai Mall", "tags": ["Modern", "Luxury", "Shopping"]},
+      {"name": "Dubai Marina", "description": "Waterfront community with skyscrapers and promenade", "tags": ["Waterfront", "Modern", "Upscale"]},
+      {"name": "Jumeirah", "description": "Beachfront area with luxury villas and resorts", "tags": ["Beach", "Luxury", "Residential"]},
+      {"name": "Deira", "description": "Historic trading area with souks and traditional markets", "tags": ["Historic", "Markets", "Traditional"]},
+      {"name": "Business Bay", "description": "Commercial district with modern towers and canal", "tags": ["Business", "Modern", "Central"]}
+    ]
+  },
+  "Sydney": {
+    "country": "Australia",
+    "neighborhoods": [
+      {"name": "Surry Hills", "description": "Trendy area with cafes, restaurants, and boutiques", "tags": ["Trendy", "Dining", "Shopping"]},
+      {"name": "Bondi", "description": "Famous beach suburb with surf culture", "tags": ["Beach", "Recreation", "Touristy"]},
+      {"name": "Newtown", "description": "Bohemian neighborhood with alternative culture", "tags": ["Alternative", "Artsy", "Diverse"]},
+      {"name": "The Rocks", "description": "Historic area with cobblestone streets and markets", "tags": ["Historic", "Touristy", "Waterfront"]},
+      {"name": "Manly", "description": "Beach suburb accessible by ferry", "tags": ["Beach", "Residential", "Relaxed"]}
+    ]
+  },
+  "Berlin": {
+    "country": "Germany",
+    "neighborhoods": [
+      {"name": "Kreuzberg", "description": "Multicultural area with Turkish markets and nightlife", "tags": ["Diverse", "Nightlife", "Alternative"]},
+      {"name": "Prenzlauer Berg", "description": "Gentrified area with cafes and family-friendly vibe", "tags": ["Family-Friendly", "Cafes", "Residential"]},
+      {"name": "Mitte", "description": "Central district with museums and historic sites", "tags": ["Central", "Historic", "Cultural"]},
+      {"name": "Friedrichshain", "description": "Young area with East Side Gallery and clubs", "tags": ["Young", "Nightlife", "Artsy"]},
+      {"name": "Charlottenburg", "description": "Upscale western district with shopping and palace", "tags": ["Upscale", "Shopping", "Historic"]}
+    ]
+  },
+  "Barcelona": {
+    "country": "Spain",
+    "neighborhoods": [
+      {"name": "Gothic Quarter", "description": "Medieval center with narrow streets and historic buildings", "tags": ["Historic", "Central", "Touristy"]},
+      {"name": "El Born", "description": "Trendy area with boutiques, tapas bars, and Picasso Museum", "tags": ["Trendy", "Dining", "Cultural"]},
+      {"name": "Gràcia", "description": "Village-like neighborhood with local charm and plazas", "tags": ["Local", "Residential", "Charming"]},
+      {"name": "Barceloneta", "description": "Beach neighborhood with seafood restaurants", "tags": ["Beach", "Dining", "Touristy"]},
+      {"name": "Eixample", "description": "Grid-planned district with Gaudí architecture", "tags": ["Modern", "Architecture", "Central"]}
+    ]
+  }
+}
+

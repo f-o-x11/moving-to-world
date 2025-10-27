@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moving to Janin, West Bank, Palestine State Of - Complete Guide 2025</title>
-    <meta name="description" content="Complete guide to moving to Janin. Find neighborhoods, average rent, cost of living, things to do, and everything you need to know before relocating.">
+    <title>Moving to Janin, West Bank, Palestine State Of</title>
+    <meta name="description" content="Complete guide to relocating to Janin. Population: 231K, Average rent: $1,000, Climate: Temperate.">
     
-    <!-- Leaflet CSS for maps -->
+    <!-- Leaflet for maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <style>
         * {
@@ -18,1153 +16,691 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #7c3aed;
-            --accent-color: #f59e0b;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f9fafb;
-            --bg-white: #ffffff;
-            --border-color: #e5e7eb;
-            --success-color: #10b981;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-        }
-
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--bg-light);
+            color: #333;
+            background: #f5f5f5;
         }
-
+        
         /* Header */
-        .header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1rem 0;
-            box-shadow: var(--shadow-md);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
-            color: white;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 4rem 2rem;
+            padding: 2rem 1rem;
             text-align: center;
         }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-
+        
         .breadcrumb {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
         }
-
+        
         .breadcrumb a {
-            color: rgba(255, 255, 255, 0.9);
+            color: white;
             text-decoration: none;
         }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
-
-        .hero-stats {
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .quick-stats {
             display: flex;
             justify-content: center;
             gap: 3rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
-
+        
         .stat {
             text-align: center;
         }
-
+        
         .stat-value {
             font-size: 2rem;
-            font-weight: 700;
-            display: block;
+            font-weight: bold;
         }
-
+        
         .stat-label {
             font-size: 0.9rem;
             opacity: 0.9;
         }
-
+        
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+        
+        .nav-btn {
+            padding: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            color: #667eea;
+        }
+        
+        .nav-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
         /* Container */
         .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
-
-        /* Grid Layout */
-        .grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            margin-bottom: 3rem;
+        
+        /* Tabs */
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-
-        @media (max-width: 1024px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
+        
+        .tab-content.active {
+            display: block;
         }
-
+        
         /* Cards */
         .card {
-            background: var(--bg-white);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 2rem;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--border-color);
         }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-        }
-
+        
         .card-title {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        /* Map */
-        #map {
-            height: 400px;
-            border-radius: 12px;
             margin-bottom: 1rem;
+            color: #667eea;
         }
-
-        /* Info Grid */
-        .info-grid {
+        
+        /* Grid */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .info-item {
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .info-item-label {
-            font-size: 0.875rem;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .info-item-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        /* Neighborhoods */
-        .neighborhoods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
             margin-top: 1.5rem;
         }
-
-        .neighborhood-card {
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .neighborhood-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .neighborhood-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .neighborhood-description {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .neighborhood-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-        }
-
-        /* Photos Gallery */
-        .photos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .photo-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            aspect-ratio: 16/10;
-            background: var(--bg-light);
-        }
-
-        .photo-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .photo-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Rent Comparison */
-        .rent-bars {
-            margin-top: 1.5rem;
-        }
-
-        .rent-bar-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .rent-bar-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .rent-bar-label {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .rent-bar-value {
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .rent-bar-track {
-            height: 8px;
-            background: var(--bg-light);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .rent-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 4px;
-            transition: width 0.6s ease;
-        }
-
-        /* Walk Score */
-        .walk-score-display {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .score-circle {
-            position: relative;
-            width: 120px;
-            height: 120px;
-        }
-
-        .score-value {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        .score-label {
-            text-align: center;
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-
-        /* Links Section */
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .link-button {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+        
+        /* Info boxes */
+        .info-box {
+            background: #f8f9fa;
             padding: 1rem;
-            background: var(--bg-light);
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--text-dark);
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .link-button:hover {
-            border-color: var(--primary-color);
-            background: white;
-            transform: translateY(-2px);
-        }
-
-        .link-icon {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        .link-text {
-            font-weight: 600;
-        }
-
-        /* Sidebar */
-        .sidebar-card {
-            position: sticky;
-            top: 100px;
-        }
-
-        .quick-facts {
-            list-style: none;
-        }
-
-        .quick-fact {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .quick-fact:last-child {
-            border-bottom: none;
-        }
-
-        .fact-label {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .fact-value {
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-stats {
-                gap: 1.5rem;
-            }
-
-            .stat-value {
-                font-size: 1.5rem;
-            }
-
-            .container {
-                padding: 2rem 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-
-        /* LLM-Optimized Version Link */
-        .llm-version-link {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--accent-color);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: transform 0.3s;
-        }
-
-        .llm-version-link:hover {
-            transform: scale(1.05);
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
         }
         
-        /* Rental Listings */
-        .listing-item {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: box-shadow 0.3s;
-        }
-        
-        .listing-item:hover {
-            box-shadow: var(--shadow-md);
-        }
-        
-        .listing-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.75rem;
-        }
-        
-        .listing-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--text-dark);
+        .info-label {
+            font-size: 0.85rem;
+            color: #666;
             margin-bottom: 0.25rem;
         }
         
-        .listing-details {
-            font-size: 0.9rem;
-            color: var(--text-light);
+        .info-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* Map */
+        #map {
+            height: 400px;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        /* Neighborhoods */
+        .neighborhood {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .neighborhood-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .neighborhood-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.75rem;
+        }
+        
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        /* Collapsible */
+        .collapsible {
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            padding: 1rem;
+            border: none;
+            text-align: left;
+            width: 100%;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+        
+        .collapsible:hover {
+            background: #5568d3;
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .collapsible-content.active {
+            max-height: 2000px;
+        }
+        
+        /* Listings */
+        .listing {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        
+        .listing-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
         
         .listing-price {
+            color: #667eea;
             font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-weight: bold;
         }
         
-        .listing-description {
-            color: var(--text-dark);
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-        }
-        
-        .listing-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .listing-rating {
+        .listing-details {
+            color: #666;
             font-size: 0.9rem;
-            color: var(--text-dark);
+            margin: 0.5rem 0;
         }
         
         .listing-link {
-            color: var(--primary-color);
+            color: #667eea;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 500;
         }
         
-        .listing-link:hover {
-            text-decoration: underline;
+        /* Buttons */
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .quick-stats {
+                gap: 1.5rem;
+            }
+            
+            .nav-container {
+                overflow-x: auto;
+            }
+            
+            .nav-btn {
+                white-space: nowrap;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <a href="/" class="logo">Moving.to</a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#" onclick="goToRandomCity(); return false;"><i class="fas fa-random"></i> Random City</a></li>
-                    <li><a href="#" onclick="showSimilarCities(); return false;"><i class="fas fa-city"></i> Similar Cities</a></li>
-                    <li><a href="#" onclick="showFavorites(); return false;"><i class="fas fa-star"></i> Favorites</a></li>
-                </ul>
-            </nav>
+    <header>
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <a href="/{{COUNTRY_SLUG}}">Palestine State Of</a> / <a href="/{{COUNTRY_SLUG}}/{{REGION_SLUG}}">West Bank</a> / Janin
+        </div>
+        
+        <h1>Moving to Janin</h1>
+        <p class="subtitle">Your complete guide to relocating to Janin, West Bank, Palestine State Of</p>
+        
+        <div class="quick-stats">
+            <div class="stat">
+                <div class="stat-value">{{POPULATION_FORMATTED}}</div>
+                <div class="stat-label">Population</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">$1,000</div>
+                <div class="stat-label">Avg. Rent</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">55</div>
+                <div class="stat-label">Walk Score</div>
+            </div>
         </div>
     </header>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="breadcrumb">
-                <a href="/">Home</a> / 
-                <a href="/palestine-state-of/">Palestine State Of</a> / 
-                <a href="/palestine-state-of/west-bank/">West Bank</a> / 
-                <span>Janin</span>
-            </div>
-            <h1>Moving to Janin</h1>
-            <p style="font-size: 1.25rem; opacity: 0.95;">Your complete guide to relocating to Janin, West Bank</p>
+    
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showTab('overview')">Overview</button>
+            <button class="nav-btn" onclick="showTab('weather')">Weather</button>
+            <button class="nav-btn" onclick="showTab('housing')">Housing</button>
+            <button class="nav-btn" onclick="showTab('employment')">Employment</button>
+            <button class="nav-btn" onclick="showTab('attractions')">Attractions</button>
+            <button class="nav-btn" onclick="showTab('food')">Food</button>
+            <button class="nav-btn" onclick="showTab('transport')">Transport</button>
+            <button class="nav-btn" onclick="showTab('education')">Education</button>
+            <button class="nav-btn" onclick="showTab('healthcare')">Healthcare</button>
+            <button class="nav-btn" onclick="showTab('cost')">Cost of Living</button>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <h2 class="card-title">City Overview</h2>
+            <p>{{CITY_DESCRIPTION}}</p>
             
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-value">231K</span>
-                    <span class="stat-label">Population</span>
+            <div id="map"></div>
+            
+            <div class="grid">
+                <div class="info-box">
+                    <div class="info-label">Climate</div>
+                    <div class="info-value">Temperate</div>
                 </div>
-                <div class="stat">
-                    <span class="stat-value">$1500</span>
-                    <span class="stat-label">Avg. Rent</span>
+                <div class="info-box">
+                    <div class="info-label">Time Zone</div>
+                    <div class="info-value">{{TIMEZONE_NAME}}</div>
                 </div>
-                <div class="stat">
-                    <span class="stat-value">65</span>
-                    <span class="stat-label">Walk Score</span>
+                <div class="info-box">
+                    <div class="info-label">Language</div>
+                    <div class="info-value">{{LANGUAGE_NAME}}</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Currency</div>
+                    <div class="info-value">{{CURRENCY_NAME}}</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="{{LLM_OPTIMIZED_LINK}}" class="btn">🤖 LLM-Optimized Version</a>
+                <a href="/" class="btn btn-secondary">🏠 Home</a>
+                <button onclick="randomCity()" class="btn btn-secondary">🎲 Random City</button>
+            </div>
+        </div>
+        
+        <!-- Weather Tab -->
+        <div id="weather" class="tab-content">
+            <h2 class="card-title">Weather & Climate</h2>
+            
+            <div class="card">
+                <h3>Climate Zone: Temperate</h3>
+                <p>Janin has a Temperate climate.</p>
+                
+                <div class="grid" style="margin-top: 1.5rem;">
+                    <div class="info-box">
+                        <div class="info-label">Winter (Jan-Mar)</div>
+                        <div class="info-value">{{WINTER_TEMP}}</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">Summer (Jul-Sep)</div>
+                        <div class="info-value">{{SUMMER_TEMP}}</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Main Content -->
-    <div class="container">
-        <div class="grid">
-            <!-- Main Column -->
-            <div class="main-content">
-                <!-- Map -->
-                <div class="card" id="overview">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-map-marked-alt"></i>
+        
+        <!-- Housing Tab -->
+        <div id="housing" class="tab-content">
+            <h2 class="card-title">Housing & Rentals</h2>
+            
+            <div class="card">
+                <h3>Average Rent Prices</h3>
+                <p>Typical monthly rent prices in Janin by property type.</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Studio Apartment</span>
+                            <strong>$700</strong>
                         </div>
-                        <h2 class="card-title">Location & Map</h2>
-                    </div>
-                    <div id="map"></div>
-                    <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">
-                        <i class="fas fa-info-circle"></i> Interactive map showing Janin and surrounding areas
-                    </p>
-                </div>
-
-                <!-- Overview -->
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-info-circle"></i>
-                        </div>
-                        <h2 class="card-title">City Overview</h2>
-                    </div>
-                    <p style="line-height: 1.8; color: var(--text-dark);">
-                        Janin is a vibrant city in West Bank, Palestine State Of. Known for its unique culture, 
-                        diverse neighborhoods, and quality of life, it attracts people from around the world looking to 
-                        relocate. Whether you're moving for work, education, or lifestyle, this guide will help you 
-                        understand everything you need to know about living in Janin.
-                    </p>
-                    
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-item-label">Climate</div>
-                            <div class="info-item-value">Temperate</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-item-label">Time Zone</div>
-                            <div class="info-item-value">UTC</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-item-label">Language</div>
-                            <div class="info-item-value">Local Language</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-item-label">Currency</div>
-                            <div class="info-item-value">Local Currency</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Neighborhoods -->
-                <div class="card" id="neighborhoods">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <h2 class="card-title">Popular Neighborhoods</h2>
-                    </div>
-                    <p style="margin-bottom: 1.5rem; color: var(--text-light);">
-                        Explore the best neighborhoods in Janin to find your perfect home.
-                    </p>
-                    
-                    <div class="neighborhoods-grid">
-                        
-                        <div class="neighborhood-card">
-                            <div class="neighborhood-name">City Center</div>
-                            <div class="neighborhood-description">
-                                The main commercial and administrative hub with shops and services.
-                            </div>
-                            <div class="neighborhood-tags">
-                                <span class="tag">Central</span><span class="tag">Convenient</span><span class="tag">Shopping</span>
-                            </div>
-                        </div>
-
-                        <div class="neighborhood-card">
-                            <div class="neighborhood-name">Residential District</div>
-                            <div class="neighborhood-description">
-                                Quiet neighborhoods with family homes and local amenities.
-                            </div>
-                            <div class="neighborhood-tags">
-                                <span class="tag">Residential</span><span class="tag">Quiet</span><span class="tag">Family-Friendly</span>
-                            </div>
-                        </div>
-
-                        <div class="neighborhood-card">
-                            <div class="neighborhood-name">Historic Quarter</div>
-                            <div class="neighborhood-description">
-                                Area with traditional architecture and local character.
-                            </div>
-                            <div class="neighborhood-tags">
-                                <span class="tag">Historic</span><span class="tag">Traditional</span><span class="tag">Charming</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cost of Living -->
-                <div class="card" id="cost">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <h2 class="card-title">Average Rent Prices</h2>
-                    </div>
-                    <p style="margin-bottom: 1.5rem; color: var(--text-light);">
-                        Typical monthly rent prices in Janin by property type.
-                    </p>
-                    
-                    <div class="rent-bars">
-                        <div class="rent-bar-item">
-                            <div class="rent-bar-header">
-                                <span class="rent-bar-label">Studio Apartment</span>
-                                <span class="rent-bar-value">$1,200/mo</span>
-                            </div>
-                            <div class="rent-bar-track">
-                                <div class="rent-bar-fill" style="width: 40%;"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="rent-bar-item">
-                            <div class="rent-bar-header">
-                                <span class="rent-bar-label">1 Bedroom</span>
-                                <span class="rent-bar-value">$1,800/mo</span>
-                            </div>
-                            <div class="rent-bar-track">
-                                <div class="rent-bar-fill" style="width: 60%;"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="rent-bar-item">
-                            <div class="rent-bar-header">
-                                <span class="rent-bar-label">2 Bedroom</span>
-                                <span class="rent-bar-value">$2,500/mo</span>
-                            </div>
-                            <div class="rent-bar-track">
-                                <div class="rent-bar-fill" style="width: 75%;"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="rent-bar-item">
-                            <div class="rent-bar-header">
-                                <span class="rent-bar-label">3 Bedroom</span>
-                                <span class="rent-bar-value">$3,200/mo</span>
-                            </div>
-                            <div class="rent-bar-track">
-                                <div class="rent-bar-fill" style="width: 90%;"></div>
-                            </div>
+                        <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
+                            <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 30%; border-radius: 4px;"></div>
                         </div>
                     </div>
                     
-                    <!-- Collapsible Rental Listings -->
-                    <details style="margin-top: 2rem;">
-                        <summary style="cursor: pointer; font-weight: 600; padding: 1rem; background: var(--bg-light); border-radius: 8px; user-select: none;">
-                            <i class="fas fa-home"></i> View 10 Sample Rental Listings
-                        </summary>
-                        <div class="rental-listings" style="margin-top: 1rem;">
-                            
-                        <div class="listing-item">
-                            <div class="listing-header">
-                                <div>
-                                    <div class="listing-title">1-Bedroom Apartment in Janin</div>
-                                    <div class="listing-details">
-                                        1 bed • 1 bath • 50 m²
-                                    </div>
-                                </div>
-                                <div class="listing-price">$1200/mo</div>
-                            </div>
-                            <div class="listing-description">Modern 1-bedroom apartment with great amenities and location.</div>
-                            <div class="listing-footer">
-                                <span class="listing-rating">⭐ 4.2</span>
-                                <a href="https://www.airbnb.com/s/Janin/homes" target="_blank" class="listing-link">View Listing →</a>
-                            </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>1 Bedroom</span>
+                            <strong>{{1BR_RENT}}</strong>
                         </div>
-
-                        <div class="listing-item">
-                            <div class="listing-header">
-                                <div>
-                                    <div class="listing-title">2-Bedroom Apartment in Janin</div>
-                                    <div class="listing-details">
-                                        2 bed • 2 bath • 65 m²
-                                    </div>
-                                </div>
-                                <div class="listing-price">$1275/mo</div>
-                            </div>
-                            <div class="listing-description">Modern 2-bedroom apartment with great amenities and location.</div>
-                            <div class="listing-footer">
-                                <span class="listing-rating">⭐ 4.3</span>
-                                <a href="https://www.airbnb.com/s/Janin/homes" target="_blank" class="listing-link">View Listing →</a>
-                            </div>
+                        <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
+                            <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 50%; border-radius: 4px;"></div>
                         </div>
-
-                        <div class="listing-item">
-                            <div class="listing-header">
-                                <div>
-                                    <div class="listing-title">3-Bedroom Apartment in Janin</div>
-                                    <div class="listing-details">
-                                        3 bed • 1 bath • 80 m²
-                                    </div>
-                                </div>
-                                <div class="listing-price">$1350/mo</div>
-                            </div>
-                            <div class="listing-description">Modern 3-bedroom apartment with great amenities and location.</div>
-                            <div class="listing-footer">
-                                <span class="listing-rating">⭐ 4.4</span>
-                                <a href="https://www.airbnb.com/s/Janin/homes" target="_blank" class="listing-link">View Listing →</a>
-                            </div>
-                        </div>
-
-                        <div class="listing-item">
-                            <div class="listing-header">
-                                <div>
-                                    <div class="listing-title">1-Bedroom Apartment in Janin</div>
-                                    <div class="listing-details">
-                                        1 bed • 2 bath • 95 m²
-                                    </div>
-                                </div>
-                                <div class="listing-price">$1425/mo</div>
-                            </div>
-                            <div class="listing-description">Modern 1-bedroom apartment with great amenities and location.</div>
-                            <div class="listing-footer">
-                                <span class="listing-rating">⭐ 4.5</span>
-                                <a href="https://www.airbnb.com/s/Janin/homes" target="_blank" class="listing-link">View Listing →</a>
-                            </div>
-                        </div>
-
-                        <div class="listing-item">
-                            <div class="listing-header">
-                                <div>
-                                    <div class="listing-title">2-Bedroom Apartment in Janin</div>
-                                    <div class="listing-details">
-                                        2 bed • 1 bath • 110 m²
-                                    </div>
-                                </div>
-                                <div class="listing-price">$1500/mo</div>
-                            </div>
-                            <div class="listing-description">Modern 2-bedroom apartment with great amenities and location.</div>
-                            <div class="listing-footer">
-                                <span class="listing-rating">⭐ 4.6</span>
-                                <a href="https://www.airbnb.com/s/Janin/homes" target="_blank" class="listing-link">View Listing →</a>
-                            </div>
-                        </div>
-
-                        <div class="listing-item">
-                            <div class="listing-header">
-                                <div>
-                                    <div class="listing-title">3-Bedroom Apartment in Janin</div>
-                                    <div class="listing-details">
-                                        3 bed • 2 bath • 125 m²
-                                    </div>
-                                </div>
-                                <div class="listing-price">$1575/mo</div>
-                            </div>
-                            <div class="listing-description">Modern 3-bedroom apartment with great amenities and location.</div>
-                            <div class="listing-footer">
-                                <span class="listing-rating">⭐ 4.7</span>
-                                <a href="https://www.airbnb.com/s/Janin/homes" target="_blank" class="listing-link">View Listing →</a>
-                            </div>
-                        </div>
-
-                        <div class="listing-item">
-                            <div class="listing-header">
-                                <div>
-                                    <div class="listing-title">1-Bedroom Apartment in Janin</div>
-                                    <div class="listing-details">
-                                        1 bed • 1 bath • 140 m²
-                                    </div>
-                                </div>
-                                <div class="listing-price">$1650/mo</div>
-                            </div>
-                            <div class="listing-description">Modern 1-bedroom apartment with great amenities and location.</div>
-                            <div class="listing-footer">
-                                <span class="listing-rating">⭐ 4.8</span>
-                                <a href="https://www.airbnb.com/s/Janin/homes" target="_blank" class="listing-link">View Listing →</a>
-                            </div>
-                        </div>
-
-                        <div class="listing-item">
-                            <div class="listing-header">
-                                <div>
-                                    <div class="listing-title">2-Bedroom Apartment in Janin</div>
-                                    <div class="listing-details">
-                                        2 bed • 2 bath • 155 m²
-                                    </div>
-                                </div>
-                                <div class="listing-price">$1725/mo</div>
-                            </div>
-                            <div class="listing-description">Modern 2-bedroom apartment with great amenities and location.</div>
-                            <div class="listing-footer">
-                                <span class="listing-rating">⭐ 4.9</span>
-                                <a href="https://www.airbnb.com/s/Janin/homes" target="_blank" class="listing-link">View Listing →</a>
-                            </div>
-                        </div>
-
-                        <div class="listing-item">
-                            <div class="listing-header">
-                                <div>
-                                    <div class="listing-title">3-Bedroom Apartment in Janin</div>
-                                    <div class="listing-details">
-                                        3 bed • 1 bath • 170 m²
-                                    </div>
-                                </div>
-                                <div class="listing-price">$1800/mo</div>
-                            </div>
-                            <div class="listing-description">Modern 3-bedroom apartment with great amenities and location.</div>
-                            <div class="listing-footer">
-                                <span class="listing-rating">⭐ 4.2</span>
-                                <a href="https://www.airbnb.com/s/Janin/homes" target="_blank" class="listing-link">View Listing →</a>
-                            </div>
-                        </div>
-
-                        <div class="listing-item">
-                            <div class="listing-header">
-                                <div>
-                                    <div class="listing-title">1-Bedroom Apartment in Janin</div>
-                                    <div class="listing-details">
-                                        1 bed • 2 bath • 185 m²
-                                    </div>
-                                </div>
-                                <div class="listing-price">$1875/mo</div>
-                            </div>
-                            <div class="listing-description">Modern 1-bedroom apartment with great amenities and location.</div>
-                            <div class="listing-footer">
-                                <span class="listing-rating">⭐ 4.3</span>
-                                <a href="https://www.airbnb.com/s/Janin/homes" target="_blank" class="listing-link">View Listing →</a>
-                            </div>
-                        </div>
-                        </div>
-                    </details>
-                </div>
-
-                <!-- Walk Score -->
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-walking"></i>
-                        </div>
-                        <h2 class="card-title">Walkability & Transportation</h2>
                     </div>
-                    <p style="margin-bottom: 1.5rem; color: var(--text-light);">
-                        How easy is it to get around Janin without a car?
-                    </p>
                     
-                    <div class="walk-score-display">
-                        <div>
-                            <div class="score-circle">
-                                <svg width="120" height="120">
-                                    <circle cx="60" cy="60" r="54" fill="none" stroke="#e5e7eb" stroke-width="8"/>
-                                    <circle cx="60" cy="60" r="54" fill="none" stroke="url(#gradient)" stroke-width="8" 
-                                            stroke-dasharray="339.3" stroke-dashoffset="67.9" 
-                                            transform="rotate(-90 60 60)" stroke-linecap="round"/>
-                                    <defs>
-                                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                                <div class="score-value">65</div>
-                            </div>
-                            <div class="score-label">Walk Score</div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>2 Bedroom</span>
+                            <strong>{{2BR_RENT}}</strong>
                         </div>
-                        
-                        <div style="flex: 1; max-width: 400px;">
-                            <h4 style="margin-bottom: 1rem;">Transportation Options</h4>
-                            <ul style="list-style: none; color: var(--text-dark);">
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-subway" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Public Transit</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-bicycle" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Bike Lanes</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-car" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Car-Friendly</li>
-                                <li style="padding: 0.5rem 0;"><i class="fas fa-plane" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Airport Access</li>
-                            </ul>
+                        <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
+                            <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 70%; border-radius: 4px;"></div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Photos -->
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-images"></i>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>3 Bedroom</span>
+                            <strong>{{3BR_RENT}}</strong>
                         </div>
-                        <h2 class="card-title">City Photos</h2>
-                    </div>
-                    <div class="photos-grid">
-                        <div class="photo-item">
-                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400" alt="Janin skyline">
+                        <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
+                            <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 90%; border-radius: 4px;"></div>
                         </div>
-                        <div class="photo-item">
-                            <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400" alt="Janin street">
-                        </div>
-                        <div class="photo-item">
-                            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400" alt="Janin architecture">
-                        </div>
-                        <div class="photo-item">
-                            <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=400" alt="Janin park">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Useful Links -->
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-link"></i>
-                        </div>
-                        <h2 class="card-title">Useful Resources</h2>
-                    </div>
-                    <div class="links-grid">
-                        <a href="https://www.airbnb.com/s/Janin--West Bank--Palestine State Of" target="_blank" class="link-button">
-                            <i class="fab fa-airbnb link-icon"></i>
-                            <span class="link-text">Find on Airbnb</span>
-                        </a>
-                        <a href="https://www.zillow.com/Janin-West Bank/" target="_blank" class="link-button">
-                            <i class="fas fa-home link-icon"></i>
-                            <span class="link-text">Browse Homes</span>
-                        </a>
-                        <a href="https://www.indeed.com/jobs?q=&l=Janin" target="_blank" class="link-button">
-                            <i class="fas fa-briefcase link-icon"></i>
-                            <span class="link-text">Find Jobs</span>
-                        </a>
-                        <a href="https://www.tripadvisor.com/Search?q=Janin" target="_blank" class="link-button">
-                            <i class="fas fa-map-signs link-icon"></i>
-                            <span class="link-text">Things to Do</span>
-                        </a>
-                        <a href="https://www.numbeo.com/cost-of-living/in/Janin" target="_blank" class="link-button">
-                            <i class="fas fa-calculator link-icon"></i>
-                            <span class="link-text">Cost Calculator</span>
-                        </a>
-                        <a href="https://www.google.com/maps/place/Janin" target="_blank" class="link-button">
-                            <i class="fas fa-map link-icon"></i>
-                            <span class="link-text">Google Maps</span>
-                        </a>
                     </div>
                 </div>
             </div>
-
-            <!-- Sidebar -->
-            <aside>
-                <div class="card sidebar-card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-list-ul"></i>
-                        </div>
-                        <h3 class="card-title">Quick Facts</h3>
-                    </div>
-                    <ul class="quick-facts">
-                        <li class="quick-fact">
-                            <span class="fact-label">Country</span>
-                            <span class="fact-value">Palestine State Of</span>
-                        </li>
-                        <li class="quick-fact">
-                            <span class="fact-label">State/Region</span>
-                            <span class="fact-value">West Bank</span>
-                        </li>
-                        <li class="quick-fact">
-                            <span class="fact-label">Population</span>
-                            <span class="fact-value">231K</span>
-                        </li>
-                        <li class="quick-fact">
-                            <span class="fact-label">Area</span>
-                            <span class="fact-value">N/A</span>
-                        </li>
-                        <li class="quick-fact">
-                            <span class="fact-label">Founded</span>
-                            <span class="fact-value">Historic</span>
-                        </li>
-                    </ul>
+            
+            <button class="collapsible">View Sample Rental Listings (10)</button>
+            <div class="collapsible-content">
+                <div style="padding: 1rem; background: #f8f9fa; border-radius: 0 0 6px 6px;">
                     
-                    <div style="margin-top: 2rem;">
-                        <a href="https://www.airbnb.com/s/Janin%2C-Palestine-State-Of/homes" target="_blank" class="cta-button" style="display: block;">
-                            <i class="fab fa-airbnb"></i> Find Accommodations
-                        </a>
+        <div class="listing-card">
+            <h4>Studio Apartment in Janin</h4>
+            <div class="listing-details">
+                <span>Studio • 1 bath • 50 m²</span>
+            </div>
+            <p>Modern apartment with great amenities and location.</p>
+            <div class="listing-footer">
+                <span class="listing-rating">⭐ 4.0</span>
+                <strong class="listing-price">$700/mo</strong>
+            </div>
+            <a href="#" class="listing-link">View Listing →</a>
+        </div>
+        
+        <div class="listing-card">
+            <h4>1BR Apartment in Janin</h4>
+            <div class="listing-details">
+                <span>1 bed • 2 bath • 60 m²</span>
+            </div>
+            <p>Modern apartment with great amenities and location.</p>
+            <div class="listing-footer">
+                <span class="listing-rating">⭐ 4.1</span>
+                <strong class="listing-price">$900/mo</strong>
+            </div>
+            <a href="#" class="listing-link">View Listing →</a>
+        </div>
+        
+        <div class="listing-card">
+            <h4>2BR Apartment in Janin</h4>
+            <div class="listing-details">
+                <span>2 bed • 3 bath • 70 m²</span>
+            </div>
+            <p>Modern apartment with great amenities and location.</p>
+            <div class="listing-footer">
+                <span class="listing-rating">⭐ 4.2</span>
+                <strong class="listing-price">$1,200/mo</strong>
+            </div>
+            <a href="#" class="listing-link">View Listing →</a>
+        </div>
+        
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="{{AIRBNB_LINK}}" target="_blank" class="btn">Find on Airbnb</a>
+                <a href="{{LOCAL_RENTAL_LINK}}" target="_blank" class="btn btn-secondary">{{LOCAL_RENTAL_PLATFORM}}</a>
+            </div>
+        </div>
+        
+        <!-- Employment Tab -->
+        <div id="employment" class="tab-content">
+            <h2 class="card-title">Employment & Jobs</h2>
+            
+            <div class="card">
+                <h3>Job Market Overview</h3>
+                <p>Janin has a diverse economy with opportunities in various sectors.</p>
+                
+                <h4 style="margin-top: 1.5rem;">Major Employers</h4>
+                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                    {{MAJOR_EMPLOYERS_HTML}}
+                </ul>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="https://www.linkedin.com/jobs/search/?location=Janin" target="_blank" class="btn">Browse Jobs on LinkedIn</a>
+                <a href="https://www.indeed.com/jobs?q=&l=Janin" target="_blank" class="btn btn-secondary">Browse Jobs on Indeed</a>
+            </div>
+        </div>
+        
+        <!-- Attractions Tab -->
+        <div id="attractions" class="tab-content">
+            <h2 class="card-title">Attractions & Things to Do</h2>
+            
+            <div class="card">
+                <h3>Popular Attractions</h3>
+                <p>Discover the best things to do in Janin.</p>
+                
+                <div class="grid" style="margin-top: 1.5rem;">
+                    {{ATTRACTIONS_HTML}}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Food Tab -->
+        <div id="food" class="tab-content">
+            <h2 class="card-title">Restaurants & Food</h2>
+            
+            <div class="card">
+                <h3>Popular Restaurants</h3>
+                <p>Explore the culinary scene in Janin.</p>
+                
+                <div class="grid" style="margin-top: 1.5rem;">
+                    {{RESTAURANTS_HTML}}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Transport Tab -->
+        <div id="transport" class="tab-content">
+            <h2 class="card-title">Transportation</h2>
+            
+            <div class="card">
+                <h3>Getting Around</h3>
+                
+                <div class="grid">
+                    <div class="info-box">
+                        <div class="info-label">Walk Score</div>
+                        <div class="info-value">55</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">Public Transit</div>
+                        <div class="info-value">{{TRANSIT_SCORE}}</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">Bike Score</div>
+                        <div class="info-value">{{BIKE_SCORE}}</div>
                     </div>
                 </div>
-            </aside>
+                
+                <p style="margin-top: 1.5rem;">{{TRANSPORT_DESCRIPTION}}</p>
+            </div>
+        </div>
+        
+        <!-- Education Tab -->
+        <div id="education" class="tab-content">
+            <h2 class="card-title">Education & Schools</h2>
+            
+            <div class="card">
+                <h3>Education System</h3>
+                <p>Janin offers quality education options for all ages.</p>
+                
+                <h4 style="margin-top: 1.5rem;">Notable Institutions</h4>
+                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                    {{SCHOOLS_HTML}}
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Healthcare Tab -->
+        <div id="healthcare" class="tab-content">
+            <h2 class="card-title">Healthcare</h2>
+            
+            <div class="card">
+                <h3>Healthcare System</h3>
+                <p>{{HEALTHCARE_DESCRIPTION}}</p>
+                
+                <h4 style="margin-top: 1.5rem;">Major Hospitals</h4>
+                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                    {{HOSPITALS_HTML}}
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Cost of Living Tab -->
+        <div id="cost" class="tab-content">
+            <h2 class="card-title">Cost of Living</h2>
+            
+            <div class="card">
+                <h3>Monthly Expenses</h3>
+                <p>Estimated monthly costs for a single person in Janin.</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    {{COST_BREAKDOWN_HTML}}
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 6px;">
+                    <strong>Total Monthly Cost:</strong> {{TOTAL_MONTHLY_COST}}
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- LLM Version Link -->
-    <a href="./llm-optimized.html" class="llm-version-link">
-        <i class="fas fa-robot"></i>
-        LLM-Optimized Version
-    </a>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2025 Moving.to - Your Complete Relocation Guide</p>
-        <p style="margin-top: 0.5rem; opacity: 0.8;">Information updated regularly. Always verify details with official sources.</p>
+    
+    <footer>
+        <p>&copy; 2025 Moving.to - Find your perfect city to move to</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Data updated: {{LAST_UPDATED}}</p>
     </footer>
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activate button
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
         // Initialize map
-        const map = L.map('map').setView([0, 0], 12);
+        const map = L.map('map').setView([0.0, 0.0], 12);
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 19
+            attribution: '© OpenStreetMap contributors'
         }).addTo(map);
         
-        // Add marker
-        L.marker([0, 0])
+        L.marker([0.0, 0.0])
             .addTo(map)
-            .bindPopup('<b>Janin</b><br>West Bank, Palestine State Of')
+            .bindPopup('Janin')
             .openPopup();
         
-        // Navigation functions
-        function goToRandomCity() {
-            // Redirect to homepage with random parameter
-            window.location.href = '/?random=true';
-        }
+        // Collapsible
+        document.querySelectorAll('.collapsible').forEach(button => {
+            button.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                content.classList.toggle('active');
+            });
+        });
         
-        function showSimilarCities() {
-            alert('Similar cities feature coming soon! This will show cities with similar population and cost of living.');
-        }
-        
-        function showFavorites() {
-            const favorites = JSON.parse(localStorage.getItem('favoriteCities') || '[]');
-            if (favorites.length === 0) {
-                alert('You haven\'t favorited any cities yet. Click the star button on city pages to save your favorites!');
-            } else {
-                alert('Your favorite cities:\n\n' + favorites.join('\n'));
-            }
+        // Random city
+        function randomCity() {
+            // This would be populated with actual city list
+            alert('Random city feature coming soon!');
         }
     </script>
 </body>

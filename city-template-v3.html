@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving to {{CITY_NAME}}, {{REGION}}, {{COUNTRY}}</title>
+    <meta name="description" content="Complete guide to relocating to {{CITY_NAME}}. Population: {{POPULATION}}, Average rent: {{AVG_RENT}}, Climate: {{CLIMATE}}.">
+    
+    <!-- Leaflet for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        .breadcrumb {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .quick-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+        
+        .nav-btn {
+            padding: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            color: #667eea;
+        }
+        
+        .nav-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        /* Tabs */
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* Info boxes */
+        .info-box {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .info-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+        
+        .info-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* Map */
+        #map {
+            height: 400px;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        /* Neighborhoods */
+        .neighborhood {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .neighborhood-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .neighborhood-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.75rem;
+        }
+        
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        /* Collapsible */
+        .collapsible {
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            padding: 1rem;
+            border: none;
+            text-align: left;
+            width: 100%;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+        
+        .collapsible:hover {
+            background: #5568d3;
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .collapsible-content.active {
+            max-height: 2000px;
+        }
+        
+        /* Listings */
+        .listing {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        
+        .listing-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .listing-price {
+            color: #667eea;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        
+        .listing-details {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+        
+        .listing-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        /* Buttons */
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .quick-stats {
+                gap: 1.5rem;
+            }
+            
+            .nav-container {
+                overflow-x: auto;
+            }
+            
+            .nav-btn {
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <a href="/{{COUNTRY_SLUG}}">{{COUNTRY}}</a> / <a href="/{{COUNTRY_SLUG}}/{{REGION_SLUG}}">{{REGION}}</a> / {{CITY_NAME}}
+        </div>
+        
+        <h1>Moving to {{CITY_NAME}}</h1>
+        <p class="subtitle">Your complete guide to relocating to {{CITY_NAME}}, {{REGION}}, {{COUNTRY}}</p>
+        
+        <div class="quick-stats">
+            <div class="stat">
+                <div class="stat-value">{{POPULATION_FORMATTED}}</div>
+                <div class="stat-label">Population</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">{{AVG_RENT}}</div>
+                <div class="stat-label">Avg. Rent</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">{{WALK_SCORE}}</div>
+                <div class="stat-label">Walk Score</div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showTab('overview')">Overview</button>
+            <button class="nav-btn" onclick="showTab('weather')">Weather</button>
+            <button class="nav-btn" onclick="showTab('housing')">Housing</button>
+            <button class="nav-btn" onclick="showTab('employment')">Employment</button>
+            <button class="nav-btn" onclick="showTab('attractions')">Attractions</button>
+            <button class="nav-btn" onclick="showTab('food')">Food</button>
+            <button class="nav-btn" onclick="showTab('transport')">Transport</button>
+            <button class="nav-btn" onclick="showTab('education')">Education</button>
+            <button class="nav-btn" onclick="showTab('healthcare')">Healthcare</button>
+            <button class="nav-btn" onclick="showTab('cost')">Cost of Living</button>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <h2 class="card-title">City Overview</h2>
+            <p>{{CITY_DESCRIPTION}}</p>
+            
+            <div id="map"></div>
+            
+            <div class="grid">
+                <div class="info-box">
+                    <div class="info-label">Climate</div>
+                    <div class="info-value">{{CLIMATE}}</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Time Zone</div>
+                    <div class="info-value">{{TIMEZONE_NAME}}</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Language</div>
+                    <div class="info-value">{{LANGUAGE_NAME}}</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Currency</div>
+                    <div class="info-value">{{CURRENCY_NAME}}</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="{{LLM_OPTIMIZED_LINK}}" class="btn">🤖 LLM-Optimized Version</a>
+                <a href="/" class="btn btn-secondary">🏠 Home</a>
+                <button onclick="randomCity()" class="btn btn-secondary">🎲 Random City</button>
+            </div>
+        </div>
+        
+        <!-- Weather Tab -->
+        <div id="weather" class="tab-content">
+            <h2 class="card-title">Weather & Climate</h2>
+            
+            <div class="card">
+                <h3>Climate Zone: {{CLIMATE}}</h3>
+                <p>{{CITY_NAME}} has a {{CLIMATE}} climate.</p>
+                
+                <div class="grid" style="margin-top: 1.5rem;">
+                    <div class="info-box">
+                        <div class="info-label">Winter (Jan-Mar)</div>
+                        <div class="info-value">{{WINTER_TEMP}}</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">Summer (Jul-Sep)</div>
+                        <div class="info-value">{{SUMMER_TEMP}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Housing Tab -->
+        <div id="housing" class="tab-content">
+            <h2 class="card-title">Housing & Rentals</h2>
+            
+            <div class="card">
+                <h3>Average Rent Prices</h3>
+                <p>Typical monthly rent prices in {{CITY_NAME}} by property type.</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Studio Apartment</span>
+                            <strong>{{STUDIO_RENT}}</strong>
+                        </div>
+                        <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
+                            <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 30%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>1 Bedroom</span>
+                            <strong>{{1BR_RENT}}</strong>
+                        </div>
+                        <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
+                            <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 50%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>2 Bedroom</span>
+                            <strong>{{2BR_RENT}}</strong>
+                        </div>
+                        <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
+                            <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 70%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>3 Bedroom</span>
+                            <strong>{{3BR_RENT}}</strong>
+                        </div>
+                        <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
+                            <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 90%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="collapsible">View Sample Rental Listings (10)</button>
+            <div class="collapsible-content">
+                <div style="padding: 1rem; background: #f8f9fa; border-radius: 0 0 6px 6px;">
+                    {{RENTAL_LISTINGS_HTML}}
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="{{AIRBNB_LINK}}" target="_blank" class="btn">Find on Airbnb</a>
+                <a href="{{LOCAL_RENTAL_LINK}}" target="_blank" class="btn btn-secondary">{{LOCAL_RENTAL_PLATFORM}}</a>
+            </div>
+        </div>
+        
+        <!-- Employment Tab -->
+        <div id="employment" class="tab-content">
+            <h2 class="card-title">Employment & Jobs</h2>
+            
+            <div class="card">
+                <h3>Job Market Overview</h3>
+                <p>{{CITY_NAME}} has a diverse economy with opportunities in various sectors.</p>
+                
+                <h4 style="margin-top: 1.5rem;">Major Employers</h4>
+                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                    {{MAJOR_EMPLOYERS_HTML}}
+                </ul>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="https://www.linkedin.com/jobs/search/?location={{CITY_NAME}}" target="_blank" class="btn">Browse Jobs on LinkedIn</a>
+                <a href="https://www.indeed.com/jobs?q=&l={{CITY_NAME}}" target="_blank" class="btn btn-secondary">Browse Jobs on Indeed</a>
+            </div>
+        </div>
+        
+        <!-- Attractions Tab -->
+        <div id="attractions" class="tab-content">
+            <h2 class="card-title">Attractions & Things to Do</h2>
+            
+            <div class="card">
+                <h3>Popular Attractions</h3>
+                <p>Discover the best things to do in {{CITY_NAME}}.</p>
+                
+                <div class="grid" style="margin-top: 1.5rem;">
+                    {{ATTRACTIONS_HTML}}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Food Tab -->
+        <div id="food" class="tab-content">
+            <h2 class="card-title">Restaurants & Food</h2>
+            
+            <div class="card">
+                <h3>Popular Restaurants</h3>
+                <p>Explore the culinary scene in {{CITY_NAME}}.</p>
+                
+                <div class="grid" style="margin-top: 1.5rem;">
+                    {{RESTAURANTS_HTML}}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Transport Tab -->
+        <div id="transport" class="tab-content">
+            <h2 class="card-title">Transportation</h2>
+            
+            <div class="card">
+                <h3>Getting Around</h3>
+                
+                <div class="grid">
+                    <div class="info-box">
+                        <div class="info-label">Walk Score</div>
+                        <div class="info-value">{{WALK_SCORE}}</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">Public Transit</div>
+                        <div class="info-value">{{TRANSIT_SCORE}}</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">Bike Score</div>
+                        <div class="info-value">{{BIKE_SCORE}}</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 1.5rem;">{{TRANSPORT_DESCRIPTION}}</p>
+            </div>
+        </div>
+        
+        <!-- Education Tab -->
+        <div id="education" class="tab-content">
+            <h2 class="card-title">Education & Schools</h2>
+            
+            <div class="card">
+                <h3>Education System</h3>
+                <p>{{CITY_NAME}} offers quality education options for all ages.</p>
+                
+                <h4 style="margin-top: 1.5rem;">Notable Institutions</h4>
+                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                    {{SCHOOLS_HTML}}
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Healthcare Tab -->
+        <div id="healthcare" class="tab-content">
+            <h2 class="card-title">Healthcare</h2>
+            
+            <div class="card">
+                <h3>Healthcare System</h3>
+                <p>{{HEALTHCARE_DESCRIPTION}}</p>
+                
+                <h4 style="margin-top: 1.5rem;">Major Hospitals</h4>
+                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                    {{HOSPITALS_HTML}}
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Cost of Living Tab -->
+        <div id="cost" class="tab-content">
+            <h2 class="card-title">Cost of Living</h2>
+            
+            <div class="card">
+                <h3>Monthly Expenses</h3>
+                <p>Estimated monthly costs for a single person in {{CITY_NAME}}.</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    {{COST_BREAKDOWN_HTML}}
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 6px;">
+                    <strong>Total Monthly Cost:</strong> {{TOTAL_MONTHLY_COST}}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Moving.to - Find your perfect city to move to</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Data updated: {{LAST_UPDATED}}</p>
+    </footer>
+    
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activate button
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Initialize map
+        const map = L.map('map').setView([{{LATITUDE}}, {{LONGITUDE}}], 12);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        
+        L.marker([{{LATITUDE}}, {{LONGITUDE}}])
+            .addTo(map)
+            .bindPopup('{{CITY_NAME}}')
+            .openPopup();
+        
+        // Collapsible
+        document.querySelectorAll('.collapsible').forEach(button => {
+            button.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                content.classList.toggle('active');
+            });
+        });
+        
+        // Random city
+        function randomCity() {
+            // This would be populated with actual city list
+            alert('Random city feature coming soon!');
+        }
+    </script>
+</body>
+</html>
+
