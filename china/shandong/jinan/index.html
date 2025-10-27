@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moving to Jinan, Shandong, China</title>
-    <meta name="description" content="Complete guide to relocating to Jinan. Population: 4335989, Average rent: ¥10,800, Climate: Temperate.">
+    <meta name="description" content="Complete guide to relocating to Jinan. Population: 4335989, Average rent: ¥2,300, Climate: Temperate.">
     
     <!-- Leaflet for maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -308,21 +308,71 @@
         }
         
         /* Responsive */
+        /* Mobile-first responsive design */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.75rem;
             }
             
+            .subtitle {
+                font-size: 0.95rem;
+            }
+            
             .quick-stats {
-                gap: 1.5rem;
+                gap: 1rem;
+                flex-direction: column;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
             }
             
             .nav-container {
                 overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            
+            .nav-container::-webkit-scrollbar {
+                display: none;
             }
             
             .nav-btn {
                 white-space: nowrap;
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+            
+            .tab-content {
+                padding: 1rem;
+            }
+            
+            .container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            header {
+                padding: 1.5rem 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .stat-value {
+                font-size: 1.25rem;
+            }
+            
+            .nav-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -342,7 +392,7 @@
                 <div class="stat-label">Population</div>
             </div>
             <div class="stat">
-                <div class="stat-value">¥10,800</div>
+                <div class="stat-value">¥2,300</div>
                 <div class="stat-label">Avg. Rent</div>
             </div>
             <div class="stat">
@@ -386,7 +436,7 @@
                 </div>
                 <div class="info-box">
                     <div class="info-label">Language</div>
-                    <div class="info-value">Local Language</div>
+                    <div class="info-value">Mandarin Chinese</div>
                 </div>
                 <div class="info-box">
                     <div class="info-label">Currency</div>
@@ -412,11 +462,11 @@
                 <div class="grid" style="margin-top: 1.5rem;">
                     <div class="info-box">
                         <div class="info-label">Winter (Jan-Mar)</div>
-                        <div class="info-value">14.668329999999997°C - 14.668329999999997°C</div>
+                        <div class="info-value">14°C - 14°C</div>
                     </div>
                     <div class="info-box">
                         <div class="info-label">Summer (Jul-Sep)</div>
-                        <div class="info-value">31.668329999999997°C - 31.668329999999997°C</div>
+                        <div class="info-value">31°C - 31°C</div>
                     </div>
                 </div>
             </div>
@@ -434,7 +484,7 @@
                     <div style="margin-bottom: 1.5rem;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>Studio Apartment</span>
-                            <strong>¥7,559</strong>
+                            <strong>¥1,500</strong>
                         </div>
                         <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
                             <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 30%; border-radius: 4px;"></div>
@@ -444,7 +494,7 @@
                     <div style="margin-bottom: 1.5rem;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>1 Bedroom</span>
-                            <strong>¥9,720</strong>
+                            <strong>¥2,300</strong>
                         </div>
                         <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
                             <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 50%; border-radius: 4px;"></div>
@@ -454,7 +504,7 @@
                     <div style="margin-bottom: 1.5rem;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>2 Bedroom</span>
-                            <strong>¥12,960</strong>
+                            <strong>¥3,500</strong>
                         </div>
                         <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
                             <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 70%; border-radius: 4px;"></div>
@@ -464,7 +514,7 @@
                     <div style="margin-bottom: 1.5rem;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>3 Bedroom</span>
-                            <strong>¥16,200</strong>
+                            <strong>¥4,800</strong>
                         </div>
                         <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
                             <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 90%; border-radius: 4px;"></div>
@@ -479,7 +529,7 @@
                     
         <div class="listing">
             <div class="listing-title">1-Bedroom Apartment in Jinan</div>
-            <div class="listing-price">¥10,800/mo</div>
+            <div class="listing-price">¥2,300/mo</div>
             <div class="listing-details">1 bed • 1 bath • 70 m²</div>
             <p>Modern 1-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -490,7 +540,7 @@
         \n
         <div class="listing">
             <div class="listing-title">2-Bedroom Apartment in Jinan</div>
-            <div class="listing-price">¥14,039/mo</div>
+            <div class="listing-price">¥2,989/mo</div>
             <div class="listing-details">2 bed • 2 bath • 90 m²</div>
             <p>Modern 2-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -501,7 +551,7 @@
         \n
         <div class="listing">
             <div class="listing-title">3-Bedroom Apartment in Jinan</div>
-            <div class="listing-price">¥17,280/mo</div>
+            <div class="listing-price">¥3,679/mo</div>
             <div class="listing-details">3 bed • 2 bath • 110 m²</div>
             <p>Modern 3-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -512,7 +562,7 @@
         \n
         <div class="listing">
             <div class="listing-title">1-Bedroom Apartment in Jinan</div>
-            <div class="listing-price">¥10,800/mo</div>
+            <div class="listing-price">¥2,300/mo</div>
             <div class="listing-details">1 bed • 1 bath • 70 m²</div>
             <p>Modern 1-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -523,7 +573,7 @@
         \n
         <div class="listing">
             <div class="listing-title">2-Bedroom Apartment in Jinan</div>
-            <div class="listing-price">¥14,039/mo</div>
+            <div class="listing-price">¥2,989/mo</div>
             <div class="listing-details">2 bed • 2 bath • 90 m²</div>
             <p>Modern 2-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -534,7 +584,7 @@
         \n
         <div class="listing">
             <div class="listing-title">3-Bedroom Apartment in Jinan</div>
-            <div class="listing-price">¥17,280/mo</div>
+            <div class="listing-price">¥3,679/mo</div>
             <div class="listing-details">3 bed • 2 bath • 110 m²</div>
             <p>Modern 3-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -545,7 +595,7 @@
         \n
         <div class="listing">
             <div class="listing-title">1-Bedroom Apartment in Jinan</div>
-            <div class="listing-price">¥10,800/mo</div>
+            <div class="listing-price">¥2,300/mo</div>
             <div class="listing-details">1 bed • 1 bath • 70 m²</div>
             <p>Modern 1-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -556,7 +606,7 @@
         \n
         <div class="listing">
             <div class="listing-title">2-Bedroom Apartment in Jinan</div>
-            <div class="listing-price">¥14,039/mo</div>
+            <div class="listing-price">¥2,989/mo</div>
             <div class="listing-details">2 bed • 2 bath • 90 m²</div>
             <p>Modern 2-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -567,7 +617,7 @@
         \n
         <div class="listing">
             <div class="listing-title">3-Bedroom Apartment in Jinan</div>
-            <div class="listing-price">¥17,280/mo</div>
+            <div class="listing-price">¥3,679/mo</div>
             <div class="listing-details">3 bed • 2 bath • 110 m²</div>
             <p>Modern 3-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -578,7 +628,7 @@
         \n
         <div class="listing">
             <div class="listing-title">1-Bedroom Apartment in Jinan</div>
-            <div class="listing-price">¥10,800/mo</div>
+            <div class="listing-price">¥2,300/mo</div>
             <div class="listing-details">1 bed • 1 bath • 70 m²</div>
             <p>Modern 1-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -606,7 +656,9 @@
                 
                 <h4 style="margin-top: 1.5rem;">Major Employers</h4>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                    <li>Major local employers</li><li>Technology companies</li><li>Healthcare institutions</li>
+                    <li>Shandong Heavy Industry Group</li>
+<li>Jinan Hi-tech Industrial Development Zone</li>
+<li>Jinan Steel Group</li>
                 </ul>
             </div>
             
@@ -625,7 +677,9 @@
                 <p>Discover the best things to do in Jinan.</p>
                 
                 <div class="grid" style="margin-top: 1.5rem;">
-                    <div class="info-box"><div class="info-value">Museums</div><p>Cultural attractions</p></div><div class="info-box"><div class="info-value">Parks</div><p>Green spaces</p></div>
+                    <div class="info-box"><div class="info-value">Daming Lake</div><p>Popular attraction</p></div>
+<div class="info-box"><div class="info-value">Baotu Spring Park</div><p>Popular attraction</p></div>
+<div class="info-box"><div class="info-value">Thousand Buddha Mountain</div><p>Popular attraction</p></div>
                 </div>
             </div>
         </div>
@@ -639,7 +693,9 @@
                 <p>Explore the culinary scene in Jinan.</p>
                 
                 <div class="grid" style="margin-top: 1.5rem;">
-                    <div class="info-box"><div class="info-value">Local Cuisine</div><p>Traditional dishes</p></div><div class="info-box"><div class="info-value">International</div><p>World flavors</p></div>
+                    <div class="info-box"><div class="info-value">Lao Ma Tou (老码头火锅)</div><p>Popular restaurant</p></div>
+<div class="info-box"><div class="info-value">Jinan Dezhou Braised Chicken Restaurant</div><p>Popular restaurant</p></div>
+<div class="info-box"><div class="info-value">Shandong Dumpling House</div><p>Popular restaurant</p></div>
                 </div>
             </div>
         </div>
@@ -680,7 +736,8 @@
                 
                 <h4 style="margin-top: 1.5rem;">Notable Institutions</h4>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                    <li>Public schools</li><li>Private institutions</li><li>Universities</li>
+                    <li>Shandong University</li>
+<li>University of Jinan</li>
                 </ul>
             </div>
         </div>
@@ -695,7 +752,8 @@
                 
                 <h4 style="margin-top: 1.5rem;">Major Hospitals</h4>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                    <li>General Hospital</li><li>Medical Center</li><li>Specialty Clinics</li>
+                    <li>Shandong Provincial Hospital</li>
+<li>Jinan Central Hospital</li>
                 </ul>
             </div>
         </div>
@@ -713,30 +771,30 @@
     <div style="margin-bottom: 1rem;">
         <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 4px; margin-bottom: 0.5rem;">
             <span>Rent (1BR)</span>
-            <strong>¥9,720</strong>
+            <strong>¥2,300</strong>
         </div>
         <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 4px; margin-bottom: 0.5rem;">
             <span>Food & Groceries</span>
-            <strong>¥2,916</strong>
+            <strong>¥690</strong>
         </div>
         <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 4px; margin-bottom: 0.5rem;">
             <span>Transportation</span>
-            <strong>¥1,458</strong>
+            <strong>¥345</strong>
         </div>
         <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 4px; margin-bottom: 0.5rem;">
             <span>Utilities</span>
-            <strong>¥1,944</strong>
+            <strong>¥460</strong>
         </div>
         <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 4px; margin-bottom: 0.5rem;">
             <span>Entertainment</span>
-            <strong>¥1,458</strong>
+            <strong>¥345</strong>
         </div>
     </div>
     
                 </div>
                 
                 <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 6px;">
-                    <strong>Total Monthly Cost:</strong> ¥17,496
+                    <strong>Total Monthly Cost:</strong> ¥4,140
                 </div>
             </div>
         </div>

@@ -308,21 +308,71 @@
         }
         
         /* Responsive */
+        /* Mobile-first responsive design */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.75rem;
             }
             
+            .subtitle {
+                font-size: 0.95rem;
+            }
+            
             .quick-stats {
-                gap: 1.5rem;
+                gap: 1rem;
+                flex-direction: column;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
             }
             
             .nav-container {
                 overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            
+            .nav-container::-webkit-scrollbar {
+                display: none;
             }
             
             .nav-btn {
                 white-space: nowrap;
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+            
+            .tab-content {
+                padding: 1rem;
+            }
+            
+            .container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            header {
+                padding: 1.5rem 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .stat-value {
+                font-size: 1.25rem;
+            }
+            
+            .nav-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -386,7 +436,7 @@
                 </div>
                 <div class="info-box">
                     <div class="info-label">Language</div>
-                    <div class="info-value">Local Language</div>
+                    <div class="info-value">English</div>
                 </div>
                 <div class="info-box">
                     <div class="info-label">Currency</div>
@@ -412,11 +462,11 @@
                 <div class="grid" style="margin-top: 1.5rem;">
                     <div class="info-box">
                         <div class="info-label">Winter (Jan-Mar)</div>
-                        <div class="info-value">3.299840000000003°C - 8.299840000000003°C</div>
+                        <div class="info-value">3°C - 8°C</div>
                     </div>
                     <div class="info-box">
                         <div class="info-label">Summer (Jul-Sep)</div>
-                        <div class="info-value">20.299840000000003°C - 25.299840000000003°C</div>
+                        <div class="info-value">20°C - 25°C</div>
                     </div>
                 </div>
             </div>

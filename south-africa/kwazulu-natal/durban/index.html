@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moving to Durban, Kwazulu Natal, South Africa</title>
-    <meta name="description" content="Complete guide to relocating to Durban. Population: 3338026, Average rent: $1,500, Climate: Subtropical.">
+    <meta name="description" content="Complete guide to relocating to Durban. Population: 3338026, Average rent: ZAR7,500, Climate: Subtropical.">
     
     <!-- Leaflet for maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -308,21 +308,71 @@
         }
         
         /* Responsive */
+        /* Mobile-first responsive design */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.75rem;
             }
             
+            .subtitle {
+                font-size: 0.95rem;
+            }
+            
             .quick-stats {
-                gap: 1.5rem;
+                gap: 1rem;
+                flex-direction: column;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
             }
             
             .nav-container {
                 overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            
+            .nav-container::-webkit-scrollbar {
+                display: none;
             }
             
             .nav-btn {
                 white-space: nowrap;
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+            
+            .tab-content {
+                padding: 1rem;
+            }
+            
+            .container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            header {
+                padding: 1.5rem 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .stat-value {
+                font-size: 1.25rem;
+            }
+            
+            .nav-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -342,7 +392,7 @@
                 <div class="stat-label">Population</div>
             </div>
             <div class="stat">
-                <div class="stat-value">$1,500</div>
+                <div class="stat-value">ZAR7,500</div>
                 <div class="stat-label">Avg. Rent</div>
             </div>
             <div class="stat">
@@ -386,11 +436,11 @@
                 </div>
                 <div class="info-box">
                     <div class="info-label">Language</div>
-                    <div class="info-value">Local Language</div>
+                    <div class="info-value">English, Afrikaans, Zulu</div>
                 </div>
                 <div class="info-box">
                     <div class="info-label">Currency</div>
-                    <div class="info-value">$</div>
+                    <div class="info-value">ZAR</div>
                 </div>
             </div>
             
@@ -412,11 +462,11 @@
                 <div class="grid" style="margin-top: 1.5rem;">
                     <div class="info-box">
                         <div class="info-label">Winter (Jan-Mar)</div>
-                        <div class="info-value">7.857900000000001°C - 22.8579°C</div>
+                        <div class="info-value">7°C - 22°C</div>
                     </div>
                     <div class="info-box">
                         <div class="info-label">Summer (Jul-Sep)</div>
-                        <div class="info-value">24.8579°C - 39.8579°C</div>
+                        <div class="info-value">24°C - 39°C</div>
                     </div>
                 </div>
             </div>
@@ -434,7 +484,7 @@
                     <div style="margin-bottom: 1.5rem;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>Studio Apartment</span>
-                            <strong>$1,050</strong>
+                            <strong>ZAR5,500</strong>
                         </div>
                         <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
                             <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 30%; border-radius: 4px;"></div>
@@ -444,7 +494,7 @@
                     <div style="margin-bottom: 1.5rem;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>1 Bedroom</span>
-                            <strong>$1,350</strong>
+                            <strong>ZAR7,500</strong>
                         </div>
                         <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
                             <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 50%; border-radius: 4px;"></div>
@@ -454,7 +504,7 @@
                     <div style="margin-bottom: 1.5rem;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>2 Bedroom</span>
-                            <strong>$1,800</strong>
+                            <strong>ZAR11,000</strong>
                         </div>
                         <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
                             <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 70%; border-radius: 4px;"></div>
@@ -464,7 +514,7 @@
                     <div style="margin-bottom: 1.5rem;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>3 Bedroom</span>
-                            <strong>$2,250</strong>
+                            <strong>ZAR16,000</strong>
                         </div>
                         <div style="background: #e0e0e0; height: 8px; border-radius: 4px;">
                             <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 90%; border-radius: 4px;"></div>
@@ -479,7 +529,7 @@
                     
         <div class="listing">
             <div class="listing-title">1-Bedroom Apartment in Durban</div>
-            <div class="listing-price">$1,500/mo</div>
+            <div class="listing-price">ZAR7,500/mo</div>
             <div class="listing-details">1 bed • 1 bath • 70 m²</div>
             <p>Modern 1-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -490,7 +540,7 @@
         \n
         <div class="listing">
             <div class="listing-title">2-Bedroom Apartment in Durban</div>
-            <div class="listing-price">$1,949/mo</div>
+            <div class="listing-price">ZAR9,749/mo</div>
             <div class="listing-details">2 bed • 2 bath • 90 m²</div>
             <p>Modern 2-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -501,7 +551,7 @@
         \n
         <div class="listing">
             <div class="listing-title">3-Bedroom Apartment in Durban</div>
-            <div class="listing-price">$2,400/mo</div>
+            <div class="listing-price">ZAR11,999/mo</div>
             <div class="listing-details">3 bed • 2 bath • 110 m²</div>
             <p>Modern 3-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -512,7 +562,7 @@
         \n
         <div class="listing">
             <div class="listing-title">1-Bedroom Apartment in Durban</div>
-            <div class="listing-price">$1,500/mo</div>
+            <div class="listing-price">ZAR7,500/mo</div>
             <div class="listing-details">1 bed • 1 bath • 70 m²</div>
             <p>Modern 1-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -523,7 +573,7 @@
         \n
         <div class="listing">
             <div class="listing-title">2-Bedroom Apartment in Durban</div>
-            <div class="listing-price">$1,949/mo</div>
+            <div class="listing-price">ZAR9,749/mo</div>
             <div class="listing-details">2 bed • 2 bath • 90 m²</div>
             <p>Modern 2-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -534,7 +584,7 @@
         \n
         <div class="listing">
             <div class="listing-title">3-Bedroom Apartment in Durban</div>
-            <div class="listing-price">$2,400/mo</div>
+            <div class="listing-price">ZAR11,999/mo</div>
             <div class="listing-details">3 bed • 2 bath • 110 m²</div>
             <p>Modern 3-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -545,7 +595,7 @@
         \n
         <div class="listing">
             <div class="listing-title">1-Bedroom Apartment in Durban</div>
-            <div class="listing-price">$1,500/mo</div>
+            <div class="listing-price">ZAR7,500/mo</div>
             <div class="listing-details">1 bed • 1 bath • 70 m²</div>
             <p>Modern 1-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -556,7 +606,7 @@
         \n
         <div class="listing">
             <div class="listing-title">2-Bedroom Apartment in Durban</div>
-            <div class="listing-price">$1,949/mo</div>
+            <div class="listing-price">ZAR9,749/mo</div>
             <div class="listing-details">2 bed • 2 bath • 90 m²</div>
             <p>Modern 2-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -567,7 +617,7 @@
         \n
         <div class="listing">
             <div class="listing-title">3-Bedroom Apartment in Durban</div>
-            <div class="listing-price">$2,400/mo</div>
+            <div class="listing-price">ZAR11,999/mo</div>
             <div class="listing-details">3 bed • 2 bath • 110 m²</div>
             <p>Modern 3-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -578,7 +628,7 @@
         \n
         <div class="listing">
             <div class="listing-title">1-Bedroom Apartment in Durban</div>
-            <div class="listing-price">$1,500/mo</div>
+            <div class="listing-price">ZAR7,500/mo</div>
             <div class="listing-details">1 bed • 1 bath • 70 m²</div>
             <p>Modern 1-bedroom apartment with great amenities and location.</p>
             <div style="margin-top: 0.5rem;">
@@ -606,7 +656,9 @@
                 
                 <h4 style="margin-top: 1.5rem;">Major Employers</h4>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                    <li>Major local employers</li><li>Technology companies</li><li>Healthcare institutions</li>
+                    <li>Durban Port Authority</li>
+<li>Mondi Group</li>
+<li>Toyota South Africa</li>
                 </ul>
             </div>
             
@@ -625,7 +677,9 @@
                 <p>Discover the best things to do in Durban.</p>
                 
                 <div class="grid" style="margin-top: 1.5rem;">
-                    <div class="info-box"><div class="info-value">Museums</div><p>Cultural attractions</p></div><div class="info-box"><div class="info-value">Parks</div><p>Green spaces</p></div>
+                    <div class="info-box"><div class="info-value">uShaka Marine World</div><p>Popular attraction</p></div>
+<div class="info-box"><div class="info-value">Moses Mabhida Stadium</div><p>Popular attraction</p></div>
+<div class="info-box"><div class="info-value">Durban Botanic Gardens</div><p>Popular attraction</p></div>
                 </div>
             </div>
         </div>
@@ -639,7 +693,9 @@
                 <p>Explore the culinary scene in Durban.</p>
                 
                 <div class="grid" style="margin-top: 1.5rem;">
-                    <div class="info-box"><div class="info-value">Local Cuisine</div><p>Traditional dishes</p></div><div class="info-box"><div class="info-value">International</div><p>World flavors</p></div>
+                    <div class="info-box"><div class="info-value">9th Avenue Waterside</div><p>Popular restaurant</p></div>
+<div class="info-box"><div class="info-value">The Oyster Box - Ocean Terrace</div><p>Popular restaurant</p></div>
+<div class="info-box"><div class="info-value">Moyo Umhlanga</div><p>Popular restaurant</p></div>
                 </div>
             </div>
         </div>
@@ -680,7 +736,8 @@
                 
                 <h4 style="margin-top: 1.5rem;">Notable Institutions</h4>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                    <li>Public schools</li><li>Private institutions</li><li>Universities</li>
+                    <li>Durban High School</li>
+<li>Westville Boys' High School</li>
                 </ul>
             </div>
         </div>
@@ -695,7 +752,8 @@
                 
                 <h4 style="margin-top: 1.5rem;">Major Hospitals</h4>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                    <li>General Hospital</li><li>Medical Center</li><li>Specialty Clinics</li>
+                    <li>Netcare St Augustine's Hospital</li>
+<li>Addington Hospital</li>
                 </ul>
             </div>
         </div>
@@ -713,30 +771,30 @@
     <div style="margin-bottom: 1rem;">
         <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 4px; margin-bottom: 0.5rem;">
             <span>Rent (1BR)</span>
-            <strong>$1,350</strong>
+            <strong>ZAR7,500</strong>
         </div>
         <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 4px; margin-bottom: 0.5rem;">
             <span>Food & Groceries</span>
-            <strong>$405</strong>
+            <strong>ZAR2,250</strong>
         </div>
         <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 4px; margin-bottom: 0.5rem;">
             <span>Transportation</span>
-            <strong>$202</strong>
+            <strong>ZAR1,125</strong>
         </div>
         <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 4px; margin-bottom: 0.5rem;">
             <span>Utilities</span>
-            <strong>$270</strong>
+            <strong>ZAR1,500</strong>
         </div>
         <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 4px; margin-bottom: 0.5rem;">
             <span>Entertainment</span>
-            <strong>$202</strong>
+            <strong>ZAR1,125</strong>
         </div>
     </div>
     
                 </div>
                 
                 <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 6px;">
-                    <strong>Total Monthly Cost:</strong> $2,430
+                    <strong>Total Monthly Cost:</strong> ZAR13,500
                 </div>
             </div>
         </div>

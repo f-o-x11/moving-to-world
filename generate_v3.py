@@ -52,7 +52,14 @@ def get_climate_description(climate_zone):
 def generate_rental_listings(city_name, currency, avg_rent):
     """Generate sample rental listings"""
     listings = []
-    base_rent = int(avg_rent.replace('$', '').replace(',', '').replace('€', '').replace('£', '').replace('₪', '').replace('₹', '').replace('¥', ''))
+    # Remove all non-numeric characters except commas, then remove commas
+    import re
+    base_rent_str = re.sub(r'[^0-9,]', '', str(avg_rent))
+    base_rent_str = base_rent_str.replace(',', '')
+    try:
+        base_rent = int(base_rent_str) if base_rent_str else 1500
+    except ValueError:
+        base_rent = 1500
     
     for i in range(10):
         beds = (i % 3) + 1
@@ -76,6 +83,65 @@ def generate_rental_listings(city_name, currency, avg_rent):
         listings.append(listing_html)
     
     return '\\n'.join(listings)
+
+def get_country_language(country):
+    """Get primary language for a country"""
+    languages = {
+        'United States': 'English',
+        'United Kingdom': 'English',
+        'Canada': 'English, French',
+        'Australia': 'English',
+        'New Zealand': 'English',
+        'Ireland': 'English',
+        'South Africa': 'English, Afrikaans',
+        'India': 'Hindi, English',
+        'Pakistan': 'Urdu, English',
+        'Bangladesh': 'Bengali',
+        'China': 'Mandarin Chinese',
+        'Japan': 'Japanese',
+        'South Korea': 'Korean',
+        'Taiwan': 'Mandarin Chinese',
+        'Hong Kong': 'Cantonese, English',
+        'Singapore': 'English, Mandarin, Malay',
+        'Malaysia': 'Malay',
+        'Indonesia': 'Indonesian',
+        'Thailand': 'Thai',
+        'Vietnam': 'Vietnamese',
+        'Philippines': 'Filipino, English',
+        'France': 'French',
+        'Germany': 'German',
+        'Spain': 'Spanish',
+        'Italy': 'Italian',
+        'Portugal': 'Portuguese',
+        'Netherlands': 'Dutch',
+        'Belgium': 'Dutch, French',
+        'Switzerland': 'German, French, Italian',
+        'Austria': 'German',
+        'Poland': 'Polish',
+        'Russia': 'Russian',
+        'Ukraine': 'Ukrainian',
+        'Czech Republic': 'Czech',
+        'Romania': 'Romanian',
+        'Greece': 'Greek',
+        'Turkey': 'Turkish',
+        'Israel': 'Hebrew, Arabic',
+        'Saudi Arabia': 'Arabic',
+        'United Arab Emirates': 'Arabic',
+        'Egypt': 'Arabic',
+        'Morocco': 'Arabic, French',
+        'Nigeria': 'English',
+        'Kenya': 'Swahili, English',
+        'South Africa': 'English, Afrikaans, Zulu',
+        'Ethiopia': 'Amharic',
+        'Brazil': 'Portuguese',
+        'Mexico': 'Spanish',
+        'Argentina': 'Spanish',
+        'Colombia': 'Spanish',
+        'Chile': 'Spanish',
+        'Peru': 'Spanish',
+        'Venezuela': 'Spanish',
+    }
+    return languages.get(country, 'Local languages')
 
 def generate_city_page(city_data, template, neighborhoods_data, rental_platforms, enriched_data=None):
     """Generate a single city page"""
@@ -150,9 +216,13 @@ def generate_city_page(city_data, template, neighborhoods_data, rental_platforms
     pop_formatted = format_population(population) if population else "N/A"
     avg_rent_formatted = f"{currency}{avg_rent:,}"
     
-    # Get weather data
-    winter_temp = f"{-2 + (abs(latitude) % 20)}°C - {8 + (abs(latitude) % 15)}°C"
-    summer_temp = f"{15 + (abs(latitude) % 20)}°C - {25 + (abs(latitude) % 15)}°C"
+    # Get weather data (no fractions)
+    winter_low = int(-2 + (abs(latitude) % 20))
+    winter_high = int(8 + (abs(latitude) % 15))
+    summer_low = int(15 + (abs(latitude) % 20))
+    summer_high = int(25 + (abs(latitude) % 15))
+    winter_temp = f"{winter_low}°C - {winter_high}°C"
+    summer_temp = f"{summer_low}°C - {summer_high}°C"
     
     # Generate HTML sections
     neighborhoods_html = ""
@@ -214,7 +284,7 @@ def generate_city_page(city_data, template, neighborhoods_data, rental_platforms
         '{{BIKE_SCORE}}': str(40 + (city_id % 60)),
         '{{CLIMATE}}': climate or 'Temperate',
         '{{TIMEZONE_NAME}}': timezone or 'UTC',
-        '{{LANGUAGE_NAME}}': 'Local Language',
+        '{{LANGUAGE_NAME}}': get_country_language(country),
         '{{CURRENCY_NAME}}': f"{currency}",
         '{{LATITUDE}}': str(latitude) if latitude else '0',
         '{{LONGITUDE}}': str(longitude) if longitude else '0',
@@ -226,11 +296,11 @@ def generate_city_page(city_data, template, neighborhoods_data, rental_platforms
         '{{CITY_DESCRIPTION}}': f"{name} is a vibrant city in {region}, {country}. Known for its unique culture, diverse neighborhoods, and quality of life, it attracts people from around the world looking to relocate. Whether you're moving for work, education, or lifestyle, this guide will help you understand everything you need to know about living in {name}.",
         '{{TRANSPORT_DESCRIPTION}}': f"{name} offers various transportation options including public transit, cycling, and walking. The city is continuously improving its infrastructure to make commuting easier and more sustainable.",
         '{{HEALTHCARE_DESCRIPTION}}': f"{name} has a well-developed healthcare system with modern hospitals and clinics providing quality medical care.",
-        '{{MAJOR_EMPLOYERS_HTML}}': '<li>Major local employers</li><li>Technology companies</li><li>Healthcare institutions</li>',
-        '{{SCHOOLS_HTML}}': '<li>Public schools</li><li>Private institutions</li><li>Universities</li>',
-        '{{HOSPITALS_HTML}}': '<li>General Hospital</li><li>Medical Center</li><li>Specialty Clinics</li>',
-        '{{ATTRACTIONS_HTML}}': '<div class="info-box"><div class="info-value">Museums</div><p>Cultural attractions</p></div><div class="info-box"><div class="info-value">Parks</div><p>Green spaces</p></div>',
-        '{{RESTAURANTS_HTML}}': '<div class="info-box"><div class="info-value">Local Cuisine</div><p>Traditional dishes</p></div><div class="info-box"><div class="info-value">International</div><p>World flavors</p></div>',
+        '{{MAJOR_EMPLOYERS_HTML}}': '\n'.join([f'<li>{emp}</li>' for emp in enriched_data.get('major_employers', ['Major local employers', 'Technology companies', 'Healthcare institutions'])]) if enriched_data else '<li>Major local employers</li><li>Technology companies</li><li>Healthcare institutions</li>',
+        '{{SCHOOLS_HTML}}': '\n'.join([f'<li>{school}</li>' for school in enriched_data.get('schools', ['Public schools', 'Private institutions', 'Universities'])]) if enriched_data else '<li>Public schools</li><li>Private institutions</li><li>Universities</li>',
+        '{{HOSPITALS_HTML}}': '\n'.join([f'<li>{hospital}</li>' for hospital in enriched_data.get('hospitals', ['General Hospital', 'Medical Center', 'Specialty Clinics'])]) if enriched_data else '<li>General Hospital</li><li>Medical Center</li><li>Specialty Clinics</li>',
+        '{{ATTRACTIONS_HTML}}': '\n'.join([f'<div class="info-box"><div class="info-value">{attr}</div><p>Popular attraction</p></div>' for attr in enriched_data.get('top_attractions', [])[:3]]) if enriched_data and enriched_data.get('top_attractions') else '<div class="info-box"><div class="info-value">Museums</div><p>Cultural attractions</p></div><div class="info-box"><div class="info-value">Parks</div><p>Green spaces</p></div>',
+        '{{RESTAURANTS_HTML}}': '\n'.join([f'<div class="info-box"><div class="info-value">{rest}</div><p>Popular restaurant</p></div>' for rest in enriched_data.get('popular_restaurants', [])[:3]]) if enriched_data and enriched_data.get('popular_restaurants') else '<div class="info-box"><div class="info-value">Local Cuisine</div><p>Traditional dishes</p></div><div class="info-box"><div class="info-value">International</div><p>World flavors</p></div>',
         '{{COUNTRY_SLUG}}': country.lower().replace(' ', '-'),
         '{{REGION_SLUG}}': (region or country).lower().replace(' ', '-'),
         '{{AIRBNB_LINK}}': f"https://www.airbnb.com/s/{name.replace(' ', '-')}",

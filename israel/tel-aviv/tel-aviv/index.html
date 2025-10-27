@@ -308,21 +308,71 @@
         }
         
         /* Responsive */
+        /* Mobile-first responsive design */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.75rem;
             }
             
+            .subtitle {
+                font-size: 0.95rem;
+            }
+            
             .quick-stats {
-                gap: 1.5rem;
+                gap: 1rem;
+                flex-direction: column;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
             }
             
             .nav-container {
                 overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            
+            .nav-container::-webkit-scrollbar {
+                display: none;
             }
             
             .nav-btn {
                 white-space: nowrap;
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+            
+            .tab-content {
+                padding: 1rem;
+            }
+            
+            .container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            header {
+                padding: 1.5rem 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .stat-value {
+                font-size: 1.25rem;
+            }
+            
+            .nav-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -386,7 +436,7 @@
                 </div>
                 <div class="info-box">
                     <div class="info-label">Language</div>
-                    <div class="info-value">Local Language</div>
+                    <div class="info-value">Hebrew, Arabic</div>
                 </div>
                 <div class="info-box">
                     <div class="info-label">Currency</div>
@@ -412,11 +462,11 @@
                 <div class="grid" style="margin-top: 1.5rem;">
                     <div class="info-box">
                         <div class="info-label">Winter (Jan-Mar)</div>
-                        <div class="info-value">10.08088°C - 10.08088°C</div>
+                        <div class="info-value">10°C - 10°C</div>
                     </div>
                     <div class="info-box">
                         <div class="info-label">Summer (Jul-Sep)</div>
-                        <div class="info-value">27.08088°C - 27.08088°C</div>
+                        <div class="info-value">27°C - 27°C</div>
                     </div>
                 </div>
             </div>
@@ -606,7 +656,9 @@
                 
                 <h4 style="margin-top: 1.5rem;">Major Employers</h4>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                    <li>Major local employers</li><li>Technology companies</li><li>Healthcare institutions</li>
+                    <li>Intel</li>
+<li>Google</li>
+<li>Microsoft</li>
                 </ul>
             </div>
             
@@ -625,7 +677,9 @@
                 <p>Discover the best things to do in Tel Aviv.</p>
                 
                 <div class="grid" style="margin-top: 1.5rem;">
-                    <div class="info-box"><div class="info-value">Museums</div><p>Cultural attractions</p></div><div class="info-box"><div class="info-value">Parks</div><p>Green spaces</p></div>
+                    <div class="info-box"><div class="info-value">Tel Aviv Museum of Art</div><p>Popular attraction</p></div>
+<div class="info-box"><div class="info-value">Jaffa Old City</div><p>Popular attraction</p></div>
+<div class="info-box"><div class="info-value">Carmel Market</div><p>Popular attraction</p></div>
                 </div>
             </div>
         </div>
@@ -639,7 +693,9 @@
                 <p>Explore the culinary scene in Tel Aviv.</p>
                 
                 <div class="grid" style="margin-top: 1.5rem;">
-                    <div class="info-box"><div class="info-value">Local Cuisine</div><p>Traditional dishes</p></div><div class="info-box"><div class="info-value">International</div><p>World flavors</p></div>
+                    <div class="info-box"><div class="info-value">Port Said</div><p>Popular restaurant</p></div>
+<div class="info-box"><div class="info-value">Shila - Sharon Cohen's Kitchen & Bar</div><p>Popular restaurant</p></div>
+<div class="info-box"><div class="info-value">M25</div><p>Popular restaurant</p></div>
                 </div>
             </div>
         </div>
@@ -680,7 +736,8 @@
                 
                 <h4 style="margin-top: 1.5rem;">Notable Institutions</h4>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                    <li>Public schools</li><li>Private institutions</li><li>Universities</li>
+                    <li>The Tel Aviv American International School</li>
+<li>Ironi Alef High School</li>
                 </ul>
             </div>
         </div>
@@ -695,7 +752,8 @@
                 
                 <h4 style="margin-top: 1.5rem;">Major Hospitals</h4>
                 <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                    <li>General Hospital</li><li>Medical Center</li><li>Specialty Clinics</li>
+                    <li>Ichilov Hospital (Sourasky Medical Center)</li>
+<li>Tel Aviv Sourasky Medical Center</li>
                 </ul>
             </div>
         </div>
