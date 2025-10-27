@@ -77,7 +77,7 @@ def generate_rental_listings(city_name, currency, avg_rent):
     
     return '\\n'.join(listings)
 
-def generate_city_page(city_data, template, neighborhoods_data, rental_platforms):
+def generate_city_page(city_data, template, neighborhoods_data, rental_platforms, enriched_data=None):
     """Generate a single city page"""
     
     city_id, name, country, region, population, latitude, longitude, timezone, climate = city_data
@@ -129,12 +129,22 @@ def generate_city_page(city_data, template, neighborhoods_data, rental_platforms
     else:
         avg_rent_usd = 900
     
-    # Convert to local currency
-    avg_rent = int(avg_rent_usd * exchange_rate)
-    studio_rent = int(avg_rent * 0.7)
-    br1_rent = int(avg_rent * 0.9)
-    br2_rent = int(avg_rent * 1.2)
-    br3_rent = int(avg_rent * 1.5)
+    # Check if we have enriched data with real rent prices
+    if enriched_data and enriched_data.get('rent'):
+        rent_data = enriched_data['rent']
+        currency = rent_data.get('currency_symbol', currency)
+        studio_rent = rent_data.get('studio', int(avg_rent_usd * 0.7 * exchange_rate))
+        br1_rent = rent_data.get('1br', int(avg_rent_usd * 0.9 * exchange_rate))
+        br2_rent = rent_data.get('2br', int(avg_rent_usd * 1.2 * exchange_rate))
+        br3_rent = rent_data.get('3br', int(avg_rent_usd * 1.5 * exchange_rate))
+        avg_rent = br1_rent  # Use 1BR as average
+    else:
+        # Convert to local currency (fallback)
+        avg_rent = int(avg_rent_usd * exchange_rate)
+        studio_rent = int(avg_rent * 0.7)
+        br1_rent = int(avg_rent * 0.9)
+        br2_rent = int(avg_rent * 1.2)
+        br3_rent = int(avg_rent * 1.5)
     
     # Format values
     pop_formatted = format_population(population) if population else "N/A"
@@ -268,9 +278,18 @@ def generate_all_cities():
     success = 0
     errors = 0
     
+    # Create a new connection for fetching enriched data
+    conn_enriched = sqlite3.connect('/home/ubuntu/moving_to_world/moving_to.db')
+    cursor_enriched = conn_enriched.cursor()
+    
     for city_data in cities:
         try:
             city_id, name, country, region, *rest = city_data
+            
+            # Fetch enriched data if available
+            cursor_enriched.execute("SELECT raw_json FROM city_enriched_data WHERE city_id = ?", (city_id,))
+            enriched_row = cursor_enriched.fetchone()
+            enriched_data = json.loads(enriched_row[0]) if enriched_row and enriched_row[0] else None
             
             # Create directory structure
             country_slug = country.lower().replace(' ', '-')
@@ -281,7 +300,7 @@ def generate_all_cities():
             city_dir.mkdir(parents=True, exist_ok=True)
             
             # Generate HTML
-            html = generate_city_page(city_data, template, neighborhoods_data, rental_platforms)
+            html = generate_city_page(city_data, template, neighborhoods_data, rental_platforms, enriched_data)
             
             # Write file
             with open(city_dir / 'index.html', 'w', encoding='utf-8') as f:
@@ -310,10 +329,12 @@ def generate_all_cities():
             if errors < 10:
                 print(f"✗ Error generating {name}: {e}")
     
+    conn_enriched.close()
+    
     print(f"\n=== Generation Complete ===")
     print(f"✓ Success: {success:,}")
     print(f"✗ Errors: {errors:,}")
-    print(f"Success rate: {success/len(cities)*100:.1f}%")
+    print(f"Success rate: {success/(success+errors)*100:.1f}%")
 
 if __name__ == "__main__":
     generate_all_cities()
