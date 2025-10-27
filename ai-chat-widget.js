@@ -7,9 +7,12 @@ class MovingToAIChat {
   constructor() {
     this.isOpen = false;
     this.messages = [];
+    this.conversationHistory = [];
+    this.userPreferences = {};
     this.sessionId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    this.apiEndpoint = 'https://api.openai.com/v1/chat/completions';
-    this.apiKey = null; // Will be set via serverless function
+    // TODO: Replace with your Vercel deployment URL after deploying api-deploy/
+    // Example: this.apiEndpoint = 'https://moving-to-chat-api.vercel.app/api/chat';
+    this.apiEndpoint = '/api/chat'; // Will work after Vercel deployment
     
     this.init();
   }
@@ -421,11 +424,8 @@ class MovingToAIChat {
   }
 
   async callAI(message, context) {
-    // Call serverless function endpoint
-    const apiEndpoint = '/api/chat';
-    
     try {
-      const response = await fetch(apiEndpoint, {
+      const response = await fetch(this.apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -433,6 +433,7 @@ class MovingToAIChat {
         body: JSON.stringify({
           message,
           context,
+          conversationHistory: this.conversationHistory,
         }),
       });
 
@@ -441,6 +442,23 @@ class MovingToAIChat {
       }
 
       const data = await response.json();
+      
+      // Handle personalization commands
+      if (data.commands && data.commands.length > 0) {
+        this.executeCommands(data.commands);
+      }
+      
+      // Update conversation history
+      this.conversationHistory.push(
+        { role: 'user', content: message },
+        { role: 'assistant', content: data.message }
+      );
+      
+      // Keep only last 10 messages to avoid token limits
+      if (this.conversationHistory.length > 10) {
+        this.conversationHistory = this.conversationHistory.slice(-10);
+      }
+      
       return data.message;
     } catch (error) {
       console.error('AI API Error:', error);
@@ -464,19 +482,76 @@ class MovingToAIChat {
     }
   }
 
+  executeCommands(commands) {
+    commands.forEach(cmd => {
+      switch (cmd.type) {
+        case 'highlight':
+          this.highlightSection(cmd.target);
+          break;
+        case 'show_section':
+          this.showSection(cmd.target);
+          break;
+        case 'filter':
+          this.userPreferences[cmd.key] = cmd.value;
+          this.applyFilters();
+          break;
+      }
+    });
+  }
+
   highlightSection(sectionName) {
     // Find and highlight relevant tab/section
     const tabs = document.querySelectorAll('.tab-button');
     tabs.forEach(tab => {
       if (tab.textContent.toLowerCase().includes(sectionName)) {
+        // Highlight with animation
         tab.style.background = '#ffd700';
-        tab.style.transition = 'background 0.5s';
+        tab.style.transform = 'scale(1.05)';
+        tab.style.transition = 'all 0.3s';
+        
         setTimeout(() => {
           tab.style.background = '';
+          tab.style.transform = '';
         }, 2000);
         
         // Click the tab to show content
         tab.click();
+        
+        // Scroll to tab
+        tab.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
+
+  showSection(sectionId) {
+    // Expand collapsible sections
+    const section = document.getElementById(sectionId);
+    if (section && section.classList.contains('collapsible-content')) {
+      const button = section.previousElementSibling;
+      if (button && !section.classList.contains('active')) {
+        button.click();
+      }
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  applyFilters() {
+    // Apply user preference filters to page content
+    if (this.userPreferences.budget) {
+      this.filterByBudget(parseInt(this.userPreferences.budget));
+    }
+  }
+
+  filterByBudget(budget) {
+    // Highlight rent options within budget
+    const rentElements = document.querySelectorAll('[data-rent-price]');
+    rentElements.forEach(el => {
+      const price = parseInt(el.dataset.rentPrice);
+      if (price <= budget) {
+        el.style.background = '#e8f5e9';
+        el.style.border = '2px solid #4caf50';
+      } else {
+        el.style.opacity = '0.5';
       }
     });
   }
