@@ -1,0 +1,284 @@
+{
+  "comment": "Rental and real estate listing platforms by country/region",
+  "global_platforms": [
+    {
+      "name": "Airbnb",
+      "url": "https://www.airbnb.com",
+      "type": "short_term_rental",
+      "coverage": "global",
+      "api_available": true
+    },
+    {
+      "name": "Booking.com",
+      "url": "https://www.booking.com",
+      "type": "short_term_rental",
+      "coverage": "global",
+      "api_available": true
+    }
+  ],
+  "by_country": {
+    "United States": [
+      {
+        "name": "Zillow",
+        "url": "https://www.zillow.com",
+        "type": "long_term_rental",
+        "api_available": true
+      },
+      {
+        "name": "Apartments.com",
+        "url": "https://www.apartments.com",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Realtor.com",
+        "url": "https://www.realtor.com",
+        "type": "long_term_rental",
+        "api_available": true
+      }
+    ],
+    "United Kingdom": [
+      {
+        "name": "Rightmove",
+        "url": "https://www.rightmove.co.uk",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Zoopla",
+        "url": "https://www.zoopla.co.uk",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "OnTheMarket",
+        "url": "https://www.onthemarket.com",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "France": [
+      {
+        "name": "SeLoger",
+        "url": "https://www.seloger.com",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "LeBonCoin",
+        "url": "https://www.leboncoin.fr",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "PAP",
+        "url": "https://www.pap.fr",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Germany": [
+      {
+        "name": "ImmobilienScout24",
+        "url": "https://www.immobilienscout24.de",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Immowelt",
+        "url": "https://www.immowelt.de",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Spain": [
+      {
+        "name": "Idealista",
+        "url": "https://www.idealista.com",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Fotocasa",
+        "url": "https://www.fotocasa.es",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Italy": [
+      {
+        "name": "Immobiliare.it",
+        "url": "https://www.immobiliare.it",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Casa.it",
+        "url": "https://www.casa.it",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Netherlands": [
+      {
+        "name": "Funda",
+        "url": "https://www.funda.nl",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Pararius",
+        "url": "https://www.pararius.com",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Australia": [
+      {
+        "name": "Domain",
+        "url": "https://www.domain.com.au",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Realestate.com.au",
+        "url": "https://www.realestate.com.au",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Canada": [
+      {
+        "name": "Realtor.ca",
+        "url": "https://www.realtor.ca",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Rentals.ca",
+        "url": "https://rentals.ca",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Japan": [
+      {
+        "name": "Suumo",
+        "url": "https://suumo.jp",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Homes.co.jp",
+        "url": "https://www.homes.co.jp",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "India": [
+      {
+        "name": "99acres",
+        "url": "https://www.99acres.com",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "MagicBricks",
+        "url": "https://www.magicbricks.com",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Housing.com",
+        "url": "https://housing.com",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Israel": [
+      {
+        "name": "Yad2",
+        "url": "https://www.yad2.co.il",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Madlan",
+        "url": "https://www.madlan.co.il",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "United Arab Emirates": [
+      {
+        "name": "Property Finder",
+        "url": "https://www.propertyfinder.ae",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Bayut",
+        "url": "https://www.bayut.com",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Mexico": [
+      {
+        "name": "MexHome",
+        "url": "https://mexhome.com",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Inmuebles24",
+        "url": "https://www.inmuebles24.com",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Brazil": [
+      {
+        "name": "ZAP Imóveis",
+        "url": "https://www.zapimoveis.com.br",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "VivaReal",
+        "url": "https://www.vivareal.com.br",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "Singapore": [
+      {
+        "name": "PropertyGuru",
+        "url": "https://www.propertyguru.com.sg",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "99.co",
+        "url": "https://www.99.co",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ],
+    "South Africa": [
+      {
+        "name": "Property24",
+        "url": "https://www.property24.com",
+        "type": "long_term_rental",
+        "api_available": false
+      },
+      {
+        "name": "Private Property",
+        "url": "https://www.privateproperty.co.za",
+        "type": "long_term_rental",
+        "api_available": false
+      }
+    ]
+  }
+}
+
