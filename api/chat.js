@@ -1,11 +1,12 @@
 /**
- * Serverless function to proxy OpenAI API calls
+ * Serverless function to proxy Manus LLM API calls
  * Keeps API key secure on the server side
  * 
  * Deploy to Vercel/Netlify/Cloudflare Workers
  */
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const MANUS_API_URL = process.env.BUILT_IN_FORGE_API_URL || 'https://forge.manus.ai';
+const MANUS_API_KEY = process.env.BUILT_IN_FORGE_API_KEY;
 
 export default async function handler(req, res) {
   // CORS headers
@@ -43,15 +44,15 @@ Be conversational, helpful, and concise. Keep responses under 150 words.
 
 ${context?.excerpt ? `\n\nCurrent page content:\n${context.excerpt.substring(0, 1000)}` : ''}`;
 
-    // Call OpenAI API
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    // Call Manus LLM API
+    const response = await fetch(`${MANUS_API_URL}/v1/chat/completions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        'Authorization': `Bearer ${MANUS_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
+        model: 'gemini-2.5-flash',
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: message },
@@ -62,7 +63,7 @@ ${context?.excerpt ? `\n\nCurrent page content:\n${context.excerpt.substring(0, 
     });
 
     if (!response.ok) {
-      throw new Error(`OpenAI API error: ${response.statusText}`);
+      throw new Error(`Manus API error: ${response.statusText}`);
     }
 
     const data = await response.json();

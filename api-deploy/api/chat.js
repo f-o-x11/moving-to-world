@@ -1,10 +1,14 @@
 /**
- * Vercel Serverless Function for AI Chat
+ * Vercel Serverless Function for AI Chat using Manus LLM
  * Rate limited to $100/month (~10,000 requests/day)
  * 
  * Deploy: vercel --prod
- * Set secret: vercel env add OPENAI_API_KEY
+ * Set secrets: vercel env add BUILT_IN_FORGE_API_URL
+ *              vercel env add BUILT_IN_FORGE_API_KEY
  */
+
+const MANUS_API_URL = process.env.BUILT_IN_FORGE_API_URL || 'https://forge.manus.ai';
+const MANUS_API_KEY = process.env.BUILT_IN_FORGE_API_KEY;
 
 // Simple in-memory rate limiting (resets on cold start)
 const usage = {
@@ -27,7 +31,7 @@ function checkRateLimit(ip) {
   const now = Date.now();
   const hourKey = Math.floor(now / (60 * 60 * 1000));
   
-  // Daily limit: 10,000 requests = $3.30/day = ~$100/month
+  // Daily limit: 10,000 requests
   const dailyTotal = Array.from(usage.daily.values()).reduce((sum, count) => sum + count, 0);
   if (dailyTotal >= 10000) {
     return { allowed: false, reason: 'Daily limit reached' };
@@ -114,15 +118,15 @@ ${context?.excerpt ? `\n\nPage data:\n${context.excerpt.substring(0, 1000)}` : '
       { role: 'user', content: message },
     ];
 
-    // Call OpenAI
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    // Call Manus LLM API
+    const response = await fetch(`${MANUS_API_URL}/v1/chat/completions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+        'Authorization': `Bearer ${MANUS_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
+        model: 'gemini-2.5-flash',
         messages,
         max_tokens: 250,
         temperature: 0.7,
@@ -130,7 +134,7 @@ ${context?.excerpt ? `\n\nPage data:\n${context.excerpt.substring(0, 1000)}` : '
     });
 
     if (!response.ok) {
-      throw new Error(`OpenAI API error: ${response.statusText}`);
+      throw new Error(`Manus API error: ${response.statusText}`);
     }
 
     const data = await response.json();
